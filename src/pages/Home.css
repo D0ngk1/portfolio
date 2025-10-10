@@ -1,0 +1,11 @@
+.main-background {
+  width:100vw;
+  height:100vh;
+  background-color: grey;
+  background-image: url('../assets/wallhaven-y892kg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  color:black;
+  display:flex;
+}
