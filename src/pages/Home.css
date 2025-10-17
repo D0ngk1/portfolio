@@ -1,13 +1,23 @@
 .main-background {
   width:100%;
-  height:100%;
+  height:100vh;
   background-color: grey;
   background-image: url('../assets/wallhaven-y892kg.jpg');
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center;
+  top:0;
+  left: 0;
   background-size: cover;
   color:black;
-  display:flex;
-  position: relative;
+  position: absolute;
 }
+.desktop {
+  height: 95vh;
+  margin-top: 5vh;
+  --background-color: green;
+  width: 100vw;
+}
+
+
+
 
