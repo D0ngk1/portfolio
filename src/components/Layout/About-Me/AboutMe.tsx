@@ -1,13 +1,14 @@
 import "./AboutMe.css";
 import Windows from "@/components/UI/Windows.tsx";
-interface SectionProps {
+/*interface SectionProps {
   onClick?: () => void;
   style?: React.CSSProperties;
-}
-export default function AboutMe({onClick,style}: SectionProps) {
+}*/
+export default function AboutMe() {
   return (
-    <div className="about-me" onClick={onClick} style={style}>
+    <div className="about-me" >
       <Windows backgroundColor='green'/>
+      
     </div>
     
   );

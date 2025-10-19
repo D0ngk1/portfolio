@@ -16,7 +16,36 @@
   margin-top: 5vh;
   --background-color: green;
   width: 100vw;
+  position: relative;
 }
+.win-container {
+  width:500px;
+  height: 500px;
+  position:absolute;
+}
+.about {
+  top: 50px;
+  left: 400px;
+}
+.resize-btn {
+  width: 15px;
+  height: 15px;
+  background-color: white;
+  position: absolute;
+  bottom: 0;
+  right:0;
+  z-index: 3;
+  cursor: nwse-resize;
+}
+.drag-container {
+  width: 100%;
+  height: 10%;
+  background-color: blue;
+  position: absolute;
+  z-index: 3;
+}
+
+
 
 
 
