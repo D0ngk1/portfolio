@@ -3,14 +3,14 @@ import "./Home.css";
 import Header from "@/components/Layout/Header/Header.tsx"
 import AboutMe from "@/components/Layout/About-Me/AboutMe.tsx"
 import Cert from "@/components/Layout/Cert/Cert.tsx"
-import {useState} from "react";   
+import {useRef} from "react";   
 export default function Home(){
-  const makeDraggable = (windowEl: HTMLDivElement | null, handleSelector: string,
-                        activeComponent: string) => {
+  const activezIndex = useRef(1);
+  const makeDraggable = (windowEl: HTMLDivElement | null, handleSelector: string) => {
   
     if (!windowEl) return;
     const handle = windowEl.querySelector(handleSelector) as HTMLDivElement | null;
-
+    console.log(windowEl);
     if(!handle) return;
     
     let isDragging = false;
@@ -19,14 +19,18 @@ export default function Home(){
     let offsetX =0, offsetY = 0;
     
     const onMouseDown = (e: MouseEvent) => {
-      console.log("i am here!");
-      setActive(activeComponent);
+      e.preventDefault();
+      console.log("mouseDown");
+      //setActive(activeComponent);
       isDragging = true;
+
       startX = e.clientX - offsetX;
       startY = e.clientY - offsetY;
+      console.log("eClientx: "+startX+" | offsetY: "+ offsetY);
+      console.log("eClientx: "+startX+" | offsetY: "+ offsetY);
+      activezIndex.current++;
+      windowEl.style.zIndex = activezIndex.current.toString();
 
-    
-     
       document.addEventListener("mousemove",onMouseMove);
       document.addEventListener("mouseup",onMouseUp);
 
@@ -46,21 +50,30 @@ export default function Home(){
 
     const onMouseUp = () => {
       isDragging = false;
+      console.log("mouseup!");
+      //console.log(windowEl.style);
+      //windowEl.style.top = offsetX+"px";
+
+      //console.log(windowEl.style.top);
+      //windowEl.style.left = offsetY+"px";
       document.removeEventListener("mousemove",onMouseMove);
       document.removeEventListener("mouseup",onMouseUp);
+      //document.removeEventListener("mousedown",onMouseDown);
+
 
     };
     
     handle.addEventListener("mousedown",onMouseDown);
     return () => {
       handle.removeEventListener("mousedown",onMouseDown);
+
     };
 
 
   }
 
   //Track the active components
-  const [active, setActive] = useState<string>("about");
+  //const [active, setActive] = useState<string>("about");
   //const active = useRef<string>("about");
   //Components
   const sections = [
@@ -80,11 +93,10 @@ export default function Home(){
               <div className={`win-container ${key}`} 
                 key = {key}
                 //onClick = {()=> setActive(key)}
-                ref={(el) => makeDraggable(el,".drag-container",key)}
-                style={{zIndex:active == key ? 2 : 1}} 
-                
+                ref={(el) => makeDraggable(el,".title")}
+                //style={{zIndex:active == key ? 2 : 1}} 
                 >
-                <div className="drag-container" ></div>
+               
                 <div className="resize-btn"></div>
                 
                 <Component />

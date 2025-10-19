@@ -34,7 +34,7 @@
   position: absolute;
   bottom: 0;
   right:0;
-  z-index: 3;
+  z-index: 1;
   cursor: nwse-resize;
 }
 .drag-container {
@@ -42,7 +42,7 @@
   height: 10%;
   background-color: blue;
   position: absolute;
-  z-index: 3;
+ z-index: 0;
 }
 
 
