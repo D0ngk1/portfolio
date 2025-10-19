@@ -6,19 +6,23 @@ import Cert from "@/components/Layout/Cert/Cert.tsx"
 import {useRef} from "react";   
 export default function Home(){
   const activezIndex = useRef(1);
+  //const el = useRef<HTMLDivElement>(null);
   const makeDraggable = (windowEl: HTMLDivElement | null, handleSelector: string) => {
   
     if (!windowEl) return;
     const handle = windowEl.querySelector(handleSelector) as HTMLDivElement | null;
-    console.log(windowEl);
-    if(!handle) return;
-    
+    if (!handle) return;  
     let isDragging = false;
     let startX = 0, startY = 0;
     let currentX = 0, currentY = 0;
     let offsetX =0, offsetY = 0;
     
     const onMouseDown = (e: MouseEvent) => {
+      //activezIndex.current++;
+      //windowEl.style.zIndex = activezIndex.current.toString();
+      
+      if (!handle) return;
+
       e.preventDefault();
       console.log("mouseDown");
       //setActive(activeComponent);
@@ -58,11 +62,10 @@ export default function Home(){
       //windowEl.style.left = offsetY+"px";
       document.removeEventListener("mousemove",onMouseMove);
       document.removeEventListener("mouseup",onMouseUp);
-      //document.removeEventListener("mousedown",onMouseDown);
+     
 
 
     };
-    
     handle.addEventListener("mousedown",onMouseDown);
     return () => {
       handle.removeEventListener("mousedown",onMouseDown);
@@ -76,6 +79,12 @@ export default function Home(){
   //const [active, setActive] = useState<string>("about");
   //const active = useRef<string>("about");
   //Components
+  const handleWindowClick = (windowEl: HTMLDivElement | null) => {
+    if (!windowEl) return;
+    activezIndex.current++;
+    windowEl.style.zIndex = activezIndex.current.toString();
+  }
+
   const sections = [
     { key: "about", Component: AboutMe},
     { key: "cert", Component: Cert },
@@ -93,10 +102,17 @@ export default function Home(){
               <div className={`win-container ${key}`} 
                 key = {key}
                 //onClick = {()=> setActive(key)}
-                ref={(el) => makeDraggable(el,".title")}
-                //style={{zIndex:active == key ? 2 : 1}} 
+                ref={(el) => {
+                   makeDraggable(el,".title");
+                   if (el) {
+                     el.addEventListener("mousedown", () => handleWindowClick(el));
+                    }
+                  }
+                }
+                //onMouseDown = {setActive}
+                //style={{zIndex:active == key ? 2 : 1}}
                 >
-               
+
                 <div className="resize-btn"></div>
                 
                 <Component />
