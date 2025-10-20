@@ -7,7 +7,10 @@ import {useRef} from "react";
 export default function Home(){
   const activezIndex = useRef(1);
   //const el = useRef<HTMLDivElement>(null);
-  const makeDraggable = (windowEl: HTMLDivElement | null, handleSelector: string) => {
+  const makeDraggable = (windowEl: HTMLDivElement | null, 
+                         handleSelector: string ,
+                         initialX =0 ,
+                         initialY =0 , ) => {
   
     if (!windowEl) return;
     const handle = windowEl.querySelector(handleSelector) as HTMLDivElement | null;
@@ -15,7 +18,7 @@ export default function Home(){
     let isDragging = false;
     let startX = 0, startY = 0;
     let currentX = 0, currentY = 0;
-    let offsetX =0, offsetY = 0;
+    let offsetX =initialX, offsetY = initialY;
     
     const onMouseDown = (e: MouseEvent) => {
       //activezIndex.current++;
@@ -43,6 +46,8 @@ export default function Home(){
       if (!isDragging) return;
       currentX = e.clientX - startX;
       currentY = e.clientY - startY;
+
+      if (currentY < 0) currentY = 0;
 
       requestAnimationFrame(() => {
         windowEl.style.transform = `translate(${currentX}px, ${currentY}px)`
@@ -86,8 +91,8 @@ export default function Home(){
   }
 
   const sections = [
-    { key: "about", Component: AboutMe},
-    { key: "cert", Component: Cert },
+    { key: "about", Component: AboutMe , defaultX:400 , defaultY:50 },
+    { key: "cert",  Component: Cert    , defaultX:0   , defaultY:0  },
     //{ key: "pro}
   ]
 
@@ -98,12 +103,12 @@ export default function Home(){
         <Header />
         <div className="desktop">
           {
-            sections.map(({key,Component}) => (
+            sections.map(({key,Component,defaultX,defaultY}) => (
               <div className={`win-container ${key}`} 
                 key = {key}
                 //onClick = {()=> setActive(key)}
                 ref={(el) => {
-                   makeDraggable(el,".title");
+                   makeDraggable(el,".title",defaultX,defaultY);
                    if (el) {
                      el.addEventListener("mousedown", () => handleWindowClick(el));
                     }
