@@ -1,12 +1,9 @@
 import "./Cert.css";
 import Windows from "@/components/UI/Windows.tsx";
-interface SectionProps {
-  onClick?: () => void;
-  style?: React.CSSProperties;
-}
-export default function Cert({onClick,style}: SectionProps){
+
+export default function Cert(){
   return (
-    <div className="cert" onClick={onClick} style ={style}>
+    <div className="cert-content">
       <Windows backgroundColor='black'/>
     </div>
     

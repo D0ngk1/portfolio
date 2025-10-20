@@ -27,17 +27,6 @@
 .about {
   transform: translate(400px,50px);
 }
-.resize-btn {
-  width: 15px;
-  height: 15px;
-  background-color: white;
-  position: absolute;
-  bottom: 0;
-  right:0;
-  z-index: 1;
-  cursor: nwse-resize;
-}
-
 
 
 

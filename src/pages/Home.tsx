@@ -14,12 +14,14 @@ export default function Home(){
   
     if (!windowEl) return;
     const handle = windowEl.querySelector(handleSelector) as HTMLDivElement | null;
+    const handleResizeBtn = windowEl.querySelector(".resize-btn") as HTMLDivElement | null; 
     if (!handle) return;  
     let isDragging = false;
+    let isResizing = false;
     let startX = 0, startY = 0;
-    let currentX = 0, currentY = 0;
+    let startWidth = 0, startHeight =0;
     let offsetX =initialX, offsetY = initialY;
-    
+    //Dragging feature start
     const onMouseDown = (e: MouseEvent) => {
       //activezIndex.current++;
       //windowEl.style.zIndex = activezIndex.current.toString();
@@ -33,8 +35,10 @@ export default function Home(){
 
       startX = e.clientX - offsetX;
       startY = e.clientY - offsetY;
-      console.log("eClientx: "+startX+" | offsetY: "+ offsetY);
-      console.log("eClientx: "+startX+" | offsetY: "+ offsetY);
+      /*console.log("down down --------------------");
+      console.log("eClientx: "+ e.clientX +" | eClienty: "+ e.clientY);
+      console.log("offsetX: "+offsetX+" | offsetY: "+ offsetY);
+      console.log("startx:" + startX + " startY: "+startY);*/
       activezIndex.current++;
       windowEl.style.zIndex = activezIndex.current.toString();
 
@@ -44,17 +48,20 @@ export default function Home(){
     };
     const onMouseMove = (e: MouseEvent) => {
       if (!isDragging) return;
-      currentX = e.clientX - startX;
-      currentY = e.clientY - startY;
+      offsetX = e.clientX - startX;
+      offsetY = e.clientY - startY;
 
-      if (currentY < 0) currentY = 0;
-
+      if (offsetY < 0) offsetY = 0;
+      /*
+      console.log("^^^^^^^^^^^^^^^^^^^^^^^^^");
+      console.log("eClientx: "+ e.clientX +" | eClienty: "+ e.clientY);
+      console.log("offsetX: "+offsetX+" | offsetY: "+ offsetY);
+      console.log("startx:" + startX + " startY: "+startY);*/
       requestAnimationFrame(() => {
-        windowEl.style.transform = `translate(${currentX}px, ${currentY}px)`
+        windowEl.style.transform = `translate(${offsetX}px, ${offsetY}px)`
       });
 
-      offsetY = currentY;
-      offsetX = currentX;
+
     };
 
     const onMouseUp = () => {
@@ -67,13 +74,47 @@ export default function Home(){
       //windowEl.style.left = offsetY+"px";
       document.removeEventListener("mousemove",onMouseMove);
       document.removeEventListener("mouseup",onMouseUp);
-     
+    };
+    //Dragging feature end ------------------
+    //Resize feature start ---------------
+    const onMouseDownResize = (e: MouseEvent) => {
+      e.preventDefault();
+      console.log("resize");
+      isResizing = true;
+      startX = e.clientX;
+      startY = e.clientY;
+      const rect = windowEl.getBoundingClientRect();
+      startWidth = rect.width;
+      startHeight = rect.height;
 
+      document.addEventListener("mousemove",onMouseMoveResize);
+      document.addEventListener("mouseup",onMouseUpResize);
 
     };
+
+    const onMouseMoveResize = (e: MouseEvent) => {
+      if (!isResizing) return;
+      const newWidth = startWidth + (e.clientX - startX);
+      const newHeight = startHeight + (e.clientY - startY);
+
+      windowEl.style.width   = Math.max(500, newWidth)  + "px";
+      windowEl.style.height  = Math.max(500, newHeight) + "px";
+
+    };
+
+    const onMouseUpResize = () => {
+      isResizing = false;
+      document.removeEventListener("mousemove",onMouseMoveResize);
+      document.removeEventListener("mouseup",onMouseUpResize);
+
+    }
+    
+    //Resize feature end ----------------
     handle.addEventListener("mousedown",onMouseDown);
+    handleResizeBtn?.addEventListener("mousedown",onMouseDownResize);
     return () => {
       handle.removeEventListener("mousedown",onMouseDown);
+      handle.removeEventListener("mousedown",onMouseDownResize);
 
     };
 
@@ -118,8 +159,7 @@ export default function Home(){
                 //style={{zIndex:active == key ? 2 : 1}}
                 >
 
-                <div className="resize-btn"></div>
-                
+                                
                 <Component />
               </div>
             ))
