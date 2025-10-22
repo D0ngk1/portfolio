@@ -132,8 +132,8 @@ export default function Home(){
   }
 
   const sections = [
-    { key: "about", Component: AboutMe , defaultX:400 , defaultY:50 },
-    { key: "cert",  Component: Cert    , defaultX:0   , defaultY:0  },
+    { key: "about", Component: AboutMe , defaultX:26, defaultY:18 },
+    { key: "cert",  Component: Cert    , defaultX:26 , defaultY:542  },
     //{ key: "pro}
   ]
 

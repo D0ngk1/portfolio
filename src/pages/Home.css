@@ -12,8 +12,8 @@
   position: absolute;
 }
 .desktop {
-  height: 95vh;
-  margin-top: 5vh;
+  height: 96vh;
+  margin-top: 4vh;
   --background-color: green;
   width: 100vw;
   position: relative;
@@ -25,9 +25,11 @@
   position:absolute;
 }
 .about {
-  transform: translate(400px,50px);
+  transform: translate(26px,18px);
 }
-
+.cert {
+  transform: translate(26px,542px);
+}
 
 
 

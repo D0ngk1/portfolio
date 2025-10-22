@@ -7,9 +7,8 @@ import Windows from "@/components/UI/Windows.tsx";
 export default function AboutMe() {
   return (
     <div className="about-me" >
-      <Windows backgroundColor='green'/>
-      
+      <Windows backgroundColor='green' title='About Me'/>
     </div>
     
   );
-} 
+}

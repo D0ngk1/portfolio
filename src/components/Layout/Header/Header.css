@@ -1,34 +1,48 @@
 .main-header {
-  height: 5vh;
+  height: 4vh;
   width: 100vw;
-  --background-color: red; 
+  --background-color: green; 
   position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header-left,.header-center,.header-left{
+.header-left,.header-center,.header-right{
   position: relative;
   height: 100%;
-  width: auto;
-  display: flex;
+  width: 33.33%;
   align-items: center;
   --background-color: red;
   padding: 5px;
-  --justify-content: space-between;
+  display: flex;
+}
+.header-left {
+  flex-direction: row;
+}
+.header-right {
+  flex-direction: row-reverse;
+}
+.header-center {
+  justify-content: center;
 }
 
-.header-left .name,.header-left .location {
-  border-radius:25px;
-  background: rgba(255, 255, 255, 0); /* Semi-transparent white background */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(3px); /* Apply blur to the background behind this element */
+.header-left .name,.header-left .location, .time-display {
+  border-radius:10px;
+  background: rgba(0, 0, 0, 0.4); /* Semi-transparent white background */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(1px); /* Apply blur to the background behind this element */
   -webkit-backdrop-filter: blur(3px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  --border: 1px solid rgba(255, 255, 255, 0.3);
   margin-left: 10px;
-  padding: 10px;
-  font-size: 19px;
+  padding: 5px 10px 5px 10px;
+  font-size: 16px;
   color:rgb(229, 218, 173);
   font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.time-display {
+  white-space: pre;
 }
