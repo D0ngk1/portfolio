@@ -2,5 +2,50 @@
   width: 100%;
   height: 100%;
   position: relative;
+  --background-color: green;
+}
+.profile-picture, .profile {
+  width: 200px;
+  height: min-content;
 }
 
+
+
+.content {
+  margin-top: 30px;
+  --background-color: red;
+  position: absolute;
+  height: calc(100% - 45px);
+  width: 100%;
+  top:0;
+  display: flex;
+  color:rgb(229, 218, 173);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.content .about-name{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.job-title {
+  font-size: 17px;
+  color:rgba(229, 218, 173, 0.7);
+}
+.github-icon, .github-img {
+  width: 25px;
+  height: min-content;
+}
+
+.github-img{
+  filter: brightness(50%);
+  transition: filter 0.3 ease;
+}
+
+.github-img:hover {
+  --width: 30px;
+  filter: grayscale(100%);
+  --transition: width 0.3 ease;
+  cursor: pointer;
+}

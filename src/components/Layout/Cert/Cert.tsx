@@ -4,7 +4,7 @@ import Windows from "@/components/UI/Windows.tsx";
 export default function Cert(){
   return (
     <div className="cert-content">
-      <Windows backgroundColor='black' title='Certificate'/>
+      <Windows  title='Certificate'/>
     </div>
     
   );

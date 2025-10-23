@@ -23,7 +23,9 @@
   width:500px;
   height: 500px;
   position:absolute;
+
 }
+
 .about {
   transform: translate(26px,18px);
 }
