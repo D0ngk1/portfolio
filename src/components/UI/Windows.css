@@ -22,8 +22,8 @@
   justify-content: center;  
 }
 .blur-bg {
-  backdrop-filter: blur(3px); /* Apply blur to the background behind this element */
-  -webkit-backdrop-filter: blur(3px); /* Safari support */
+  backdrop-filter: blur(15px); /* Apply blur to the background behind this element */
+  -webkit-backdrop-filter: blur(15px); /* Safari support */
 }
 .resize-btn {
   width: 15px;

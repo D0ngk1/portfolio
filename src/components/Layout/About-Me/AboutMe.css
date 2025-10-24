@@ -9,6 +9,9 @@
   height: min-content;
 }
 
+.profile {
+  margin-bottom: 5px;
+}
 
 
 .content {
@@ -26,6 +29,7 @@
 }
 .content .about-name{
   font-size: 25px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 
@@ -33,17 +37,26 @@
   font-size: 17px;
   color:rgba(229, 218, 173, 0.7);
 }
-.github-icon, .github-img {
-  width: 25px;
+
+.links-containers {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-containers {
+  width: min-content;
   height: min-content;
 }
-
-.github-img{
+.icons{
+  width: 25px;
+  height: 25px;
   filter: brightness(50%);
   transition: filter 0.3 ease;
+  margin: 10px;
 }
 
-.github-img:hover {
+.icons:hover {
   --width: 30px;
   filter: grayscale(100%);
   --transition: width 0.3 ease;

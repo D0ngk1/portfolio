@@ -17,8 +17,7 @@ export default function Header() {
       const spaces = "   ";
       const formattedPST = now.toLocaleString('en-US', options);
       const newDateFormat = formattedPST.replace(" at ",spaces);
-      console.log(newDateFormat);
-      setPstTime(newDateFormat);
+      setPstTime(newDateFormat+"  ( HST )");
     }
     updateTime();
     const intervalID = setInterval(updateTime,60000);
