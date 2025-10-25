@@ -25,6 +25,19 @@
   position:absolute;
 
 }
+.content {
+  margin-top: 30px;
+ --background-color: red;
+  position: absolute;
+  height: calc(100% - 45px);
+  width: 100%;
+  top:0;
+  display: flex;
+  color:rgb(229, 218, 173);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
 .about {
   transform: translate(26px,18px);

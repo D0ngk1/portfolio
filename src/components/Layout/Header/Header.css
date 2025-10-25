@@ -29,10 +29,10 @@
 
 .header-left .name,.header-left .location, .time-display {
   border-radius:10px;
-  background: rgba(0, 0, 0, 0.4); /* Semi-transparent white background */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(1px); /* Apply blur to the background behind this element */
-  -webkit-backdrop-filter: blur(3px); /* Safari support */
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent white background */
+  --box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px); /* Apply blur to the background behind this element */
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
   --border: 1px solid rgba(255, 255, 255, 0.3);
   margin-left: 10px;
   padding: 5px 10px 5px 10px;
@@ -41,6 +41,7 @@
   font-weight: bold;
   display: flex;
   align-items: center;
+  --box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.30);
 }
 
 .time-display {

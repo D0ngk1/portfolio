@@ -5,6 +5,7 @@
   --border: 1px solid green;
   position: relative;
   background: rgba(0, 0, 0, 0.4);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.30);
   border-radius:8px;
 }
 .title {
@@ -21,6 +22,20 @@
   align-items: center;
   justify-content: center;  
 }
+.window-container,.title-con,.menu {
+  --background-color: red;
+  width: 33.33%;
+  display: flex;
+}
+.title-con {
+  justify-content: center;
+}
+.window-container {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+}
 .blur-bg {
   backdrop-filter: blur(15px); /* Apply blur to the background behind this element */
   -webkit-backdrop-filter: blur(15px); /* Safari support */
@@ -34,6 +49,26 @@
   right:0;
   z-index: 1;
   cursor: nwse-resize;
+}
+
+.window-btn {
+  margin-left: 15px;
+  
+}
+.minimize-btn {
+  font-size: 18px;
+  padding-bottom: 4px;
+}
+
+.close-btn {
+  font-size: 20px;
+  --background:red;
+}
+
+.maximize-btn {
+  font-size:17px;
+  padding-bottom: 3px;
+  --background-color: red;
 }
 
 

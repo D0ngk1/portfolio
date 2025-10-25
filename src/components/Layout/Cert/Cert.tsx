@@ -5,6 +5,9 @@ export default function Cert(){
   return (
     <div className="cert-content">
       <Windows  title='Certificate'/>
+      <div className="content">
+        
+      </div>
     </div>
     
   );

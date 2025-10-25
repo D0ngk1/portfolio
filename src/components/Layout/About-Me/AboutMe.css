@@ -12,30 +12,18 @@
 .profile {
   margin-bottom: 5px;
 }
-
-
-.content {
-  margin-top: 30px;
-  --background-color: red;
-  position: absolute;
-  height: calc(100% - 45px);
-  width: 100%;
-  top:0;
-  display: flex;
-  color:rgb(229, 218, 173);
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .content .about-name{
-  font-size: 25px;
-  margin-bottom: 10px;
+  font-size: 30px;
   font-weight: bold;
 }
 
 .job-title {
   font-size: 17px;
-  color:rgba(229, 218, 173, 0.7);
+  color:rgb(229, 218, 173);
+}
+.education {
+  color:rgba(229, 218, 173,0.7);
+
 }
 
 .links-containers {
