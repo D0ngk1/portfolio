@@ -25,16 +25,36 @@
 .window-container,.title-con,.menu {
   --background-color: red;
   width: 33.33%;
+  height: 30px;
+  height: 100%;
   display: flex;
+  --background: red;
+  border: 1px solid black;
 }
 .title-con {
+  top:0;
+  align-items: center;
   justify-content: center;
 }
+
+.cert-container .title-con h4{
+  width: 300px;
+  height: 30px;
+  --background-color: green;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-top: 2.5px;
+  text-align: center;
+}
+
+
 .window-container {
   flex-direction: row;
   align-items: center;
   justify-content: flex-end;
   padding-right: 10px;
+  
 }
 .blur-bg {
   backdrop-filter: blur(15px); /* Apply blur to the background behind this element */
@@ -45,19 +65,24 @@
   height: 15px;
   background-color: white;
   position: absolute;
-  bottom: 0;
-  right:0;
-  z-index: 1;
+  bottom: -5px;
+  right:-5px;
+  z-index: 1000;
   cursor: nwse-resize;
 }
 
 .window-btn {
   margin-left: 15px;
-  
+  cursor: pointer;
+  filter: brightness(30%);
+}
+.window-btn:hover {
+  filter: brightness(100%);
 }
 .minimize-btn {
   font-size: 18px;
   padding-bottom: 4px;
+  
 }
 
 .close-btn {
@@ -70,5 +95,3 @@
   padding-bottom: 3px;
   --background-color: red;
 }
-
-

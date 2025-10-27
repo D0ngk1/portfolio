@@ -14,7 +14,9 @@ export default function Home(){
   
     if (!windowEl) return;
     const handle = windowEl.querySelector(handleSelector) as HTMLDivElement | null;
-    const handleResizeBtn = windowEl.querySelector(".resize-btn") as HTMLDivElement | null; 
+    const handleResizeBtn = windowEl.querySelector(".resize-btn") as HTMLDivElement | null;
+    const handleMaximizeBtn = windowEl.querySelector(".maximize-btn") as HTMLDivElement | null;
+    //const handleMaximizeBtn = windowEl.querySelector(".restore-btn") as HTMLDivElement | null;
     if (!handle) return;  
     let isDragging = false;
     let isResizing = false;
@@ -29,7 +31,7 @@ export default function Home(){
       if (!handle) return;
 
       e.preventDefault();
-      console.log("mouseDown");
+      //console.log("mouseDown");
       //setActive(activeComponent);
       isDragging = true;
 
@@ -66,7 +68,7 @@ export default function Home(){
 
     const onMouseUp = () => {
       isDragging = false;
-      console.log("mouseup!");
+     // console.log("mouseup!");
       //console.log(windowEl.style);
       //windowEl.style.top = offsetX+"px";
 
@@ -79,7 +81,7 @@ export default function Home(){
     //Resize feature start ---------------
     const onMouseDownResize = (e: MouseEvent) => {
       e.preventDefault();
-      console.log("resize");
+     // console.log("resize");
       isResizing = true;
       startX = e.clientX;
       startY = e.clientY;
@@ -110,12 +112,25 @@ export default function Home(){
     }
     
     //Resize feature end ----------------
+    //Maximize button start ---------
+    const onClickMaxBtn =()=> {
+      windowEl.style.width = '100%';
+      windowEl.style.height = '100%';
+      offsetX =0; offsetY =0;
+      requestAnimationFrame( () => {
+       windowEl.style.transform = `translate(0px,0px)`;
+      });
+      console.log(handleMaximizeBtn);
+      handleMaximizeBtn?.removeEventListener("click",onClickMaxBtn);
+    }
+    //const onClickRestoreBtn = () =
     handle.addEventListener("mousedown",onMouseDown);
     handleResizeBtn?.addEventListener("mousedown",onMouseDownResize);
+    handleMaximizeBtn?.addEventListener("click",onClickMaxBtn);
     return () => {
       handle.removeEventListener("mousedown",onMouseDown);
-      handle.removeEventListener("mousedown",onMouseDownResize);
-
+      handleResizeBtn?.removeEventListener("mousedown",onMouseDownResize);
+      handleMaximizeBtn?.removeEventListener("click",onClickMaxBtn);
     };
 
 

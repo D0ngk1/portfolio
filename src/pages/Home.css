@@ -27,9 +27,9 @@
 }
 .content {
   margin-top: 30px;
- --background-color: red;
+  --background-color: red;
   position: absolute;
-  height: calc(100% - 45px);
+  height: calc(100% - 30px);
   width: 100%;
   top:0;
   display: flex;
@@ -45,6 +45,13 @@
 .cert {
   transform: translate(26px,542px);
 }
+
+.about-container .title-con h4 {
+  background-color: red;
+  text-align: center;
+}
+
+
 
 
 

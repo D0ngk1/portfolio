@@ -12,8 +12,8 @@ import gmailIcon    from "@/assets/gmail-light.png";
 }*/
 export default function AboutMe() {
   return (
-    <div className="about-me" >
-      <Windows  title='About Me'/>
+    <div className="about-me about-container" >
+      <Windows  title='About Me' hideResizeBtn={true} isMax={false} />
       <div className="content">
         <div className="profile">
             <img className="profile-picture" src={selfie} alt="daryl"/>
