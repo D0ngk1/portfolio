@@ -4,5 +4,34 @@
   position: relative;
   --background-color: red;
 }
+.cert-container .imgs {
+  margin:5px 5px 0px 5px;
+  --background-color: green;
+}
+.cert-container .content {
+  --background-color:green;
+  display:flex;
+  flex-direction: row;
+}
+.lbl {
+  text-align: center;
+}
+.image-container {
+  --background-color:red;
+  width:100%;
+  height:100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+.img-label {
+  --background-color: red;
+  width: 150px;
+  height: auto;
+  padding:  8px;
+}
+
 
 
