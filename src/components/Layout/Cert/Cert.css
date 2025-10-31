@@ -12,26 +12,37 @@
   --background-color:green;
   display:flex;
   flex-direction: row;
+  flex:1;
 }
 .lbl {
   text-align: center;
+  --background-color: white;
 }
 .image-container {
-  --background-color:red;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+.image-container-wrap {
+  --background-color:green;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  overflow: auto;
+
 }
 
 .img-label {
   --background-color: red;
   width: 150px;
-  height: auto;
+  height: 170px;
   padding:  8px;
 }
+.imgs {
+  width: 110px;
+  height: 110px;
+  --background-color: red;
+}
+
 
 
 

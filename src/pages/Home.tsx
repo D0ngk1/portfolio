@@ -10,12 +10,14 @@ export default function Home(){
   const makeDraggable = (windowEl: HTMLDivElement | null, 
                          handleSelector: string ,
                          initialX =0 ,
-                         initialY =0 , ) => {
+                         initialY =0 , pWidth=0,pHeight=0) => {
   
     if (!windowEl) return;
     const handle = windowEl.querySelector(handleSelector) as HTMLDivElement | null;
     const handleResizeBtn = windowEl.querySelector(".resize-btn") as HTMLDivElement | null;
     const handleMaximizeBtn = windowEl.querySelector(".maximize-btn") as HTMLDivElement | null;
+    const handleManimizeBtn = windowEl.querySelector(".manimize-btn") as HTMLDivElement | null;
+
     //const handleMaximizeBtn = windowEl.querySelector(".restore-btn") as HTMLDivElement | null;
     if (!handle) return;  
     let isDragging = false;
@@ -78,6 +80,8 @@ export default function Home(){
       document.removeEventListener("mouseup",onMouseUp);
     };
     //Dragging feature end ------------------
+
+
     //Resize feature start ---------------
     const onMouseDownResize = (e: MouseEvent) => {
       e.preventDefault();
@@ -114,13 +118,20 @@ export default function Home(){
     //Resize feature end ----------------
     //Maximize button start ---------
     const onClickMaxBtn =()=> {
+      const rect = windowEl.getBoundingClientRect();
+      const pw = rect.width;
+      const ph = rect.height;
+
+      pWidth = pw;
+      pHeight = ph;
+      console.log(pWidth+" - "+pHeight );
+
       windowEl.style.width = '100%';
       windowEl.style.height = '100%';
       offsetX =0; offsetY =0;
       requestAnimationFrame( () => {
        windowEl.style.transform = `translate(0px,0px)`;
       });
-      console.log(handleMaximizeBtn);
       handleMaximizeBtn?.removeEventListener("click",onClickMaxBtn);
     }
     //const onClickRestoreBtn = () =
@@ -147,8 +158,8 @@ export default function Home(){
   }
 
   const sections = [
-    { key: "about", Component: AboutMe , defaultX:26, defaultY:18 },
-    { key: "cert",  Component: Cert    , defaultX:26 , defaultY:542  },
+    { key: "about", Component: AboutMe , defaultX:26, defaultY:18 , pWidth:0, pHeight:0},
+    { key: "cert",  Component: Cert    , defaultX:26 , defaultY:542, pWidth:0, pHeight:0},
     //{ key: "pro}
   ]
 
@@ -159,12 +170,12 @@ export default function Home(){
         <Header />
         <div className="desktop">
           {
-            sections.map(({key,Component,defaultX,defaultY}) => (
+            sections.map(({key,Component,defaultX,defaultY,pWidth,pHeight}) => (
               <div className={`win-container ${key}`} 
                 key = {key}
                 //onClick = {()=> setActive(key)}
                 ref={(el) => {
-                   makeDraggable(el,".title",defaultX,defaultY);
+                   makeDraggable(el,".title",defaultX,defaultY,pWidth,pHeight);
                    if (el) {
                      el.addEventListener("mousedown", () => handleWindowClick(el));
                     }
