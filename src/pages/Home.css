@@ -19,10 +19,20 @@
   position: relative;
   overflow: hidden;
 }
-.win-container {
+.about, .cert{
   width:500px;
   height: 500px;
   position:absolute;
+
+}
+
+
+
+.blur-bg {
+  backdrop-filter: blur(15px); /* Apply blur to the background behind this element */
+  -webkit-backdrop-filter: blur(15px); /* Safari support */
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
 
 }
 .content {
@@ -42,6 +52,14 @@
 .about {
   transform: translate(26px,18px);
 }
+
+.experience {
+  width: 70%;
+  height: 100%;
+  position:absolute;
+  transform: translate(600px,0px);
+}
+
 .cert {
   transform: translate(26px,542px);
 }

@@ -63,7 +63,7 @@ const Cert: React.FC<CertProps> = () => {
   }
   return (
     <div className="cert-container">
-      <Windows  title={activeFolder} hideResizeBtn={false} isMax={false}/>
+      <Windows  title={activeFolder} hideResizeBtn={false}/>
       <div className="content">
           <NavPane onDataSend={handleDataFromNavPane}/>
           <div className="image-container">

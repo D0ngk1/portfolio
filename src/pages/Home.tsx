@@ -1,15 +1,18 @@
 import "./Home.css";
 //import Header from "../components/Header/Header.tsx";
-import Header from "@/components/Layout/Header/Header.tsx"
-import AboutMe from "@/components/Layout/About-Me/AboutMe.tsx"
-import Cert from "@/components/Layout/Cert/Cert.tsx"
+import Header   from      "@/components/Layout/Header/Header.tsx"
+import AboutMe  from      "@/components/Layout/About-Me/AboutMe.tsx"
+import Cert     from      "@/components/Layout/Cert/Cert.tsx"
+import Exp      from      "@/components/Layout/Experience/Experience.tsx"
+
 import {windowManager} from "@/lib/windowManager";
 import {useRef} from "react";   
 export default function Home(){
   const activezIndex = useRef(1);
     const sections = [
-    { key: "about", Component: AboutMe , defaultX:26, defaultY:18 , pWidth:0, pHeight:0},
-    { key: "cert",  Component: Cert    , defaultX:26 , defaultY:542, pWidth:0, pHeight:0},
+    { key: "about",       Component: AboutMe , defaultX:26, defaultY:18 , pWidth:0, pHeight:0},
+    { key: "cert",        Component: Cert    , defaultX:26 , defaultY:542, pWidth:0, pHeight:0},
+    { key: "experience",  Component: Exp    , defaultX:600 , defaultY:0, pWidth:0, pHeight:0},
     //{ key: "pro}
   ]
   const handleWindowClick = (windowEl: HTMLDivElement | null) => {
@@ -31,7 +34,7 @@ export default function Home(){
 
             return (
               <div
-                className={`win-container ${key}`}
+                className={`win-container ${key} blur-bg`}
                 key={key}
                 ref={winRef}
                 onMouseDown={() => handleWindowClick(winRef.current)}

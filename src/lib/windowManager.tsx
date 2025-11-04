@@ -1,6 +1,6 @@
 
   //const el = useRef<HTMLDivElement>(null);
-import {useEffect,useRef} from "react";
+import {useEffect} from "react";
 interface wmOptions {
   handleSelector:string;
   initialX?: number;
