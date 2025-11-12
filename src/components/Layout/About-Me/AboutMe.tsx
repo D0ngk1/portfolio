@@ -5,15 +5,19 @@ import selfie from "@/assets/profile-picture.png";
 import githubIcon   from "@/assets/github-light.png";
 import linkedInIcon from "@/assets/linkedin-light.png";
 import gmailIcon    from "@/assets/gmail-light.png";
-
-/*interface SectionProps {
-  onClick?: () => void;
-  style?: React.CSSProperties;
-}*/
-export default function AboutMe() {
+//import {useState}   from "react";
+interface  AboutMeProps{
+  sendCloseB?: (isClose:boolean) => void;
+  //style?: React.CSSProperties;
+}
+export default function AboutMe({sendCloseB}:AboutMeProps) {
+ // const [isClose,setIsClose] = useState(null);
+  const handleOnClose = (data) => {
+    sendCloseB(data);
+  }
   return (
     <div className="about-me about-container" >
-      <Windows  title='About Me' hideResizeBtn={true} />
+      <Windows  title='About Me' hideResizeBtn={true} onClose={handleOnClose}/>
       <div className="content">
         <div className="profile">
             <img className="profile-picture" src={selfie} alt="daryl"/>

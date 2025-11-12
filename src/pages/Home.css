@@ -56,9 +56,9 @@
 
 .experience {
   width: 70%;
-  height: 100%;
+  height: 85%;
   position:absolute;
-  transform: translate(600px,0px);
+  transform: translate(535px,0px);
 }
 
 .cert {

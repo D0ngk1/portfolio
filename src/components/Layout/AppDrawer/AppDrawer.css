@@ -1,0 +1,43 @@
+.app-drawer-container {
+  ----background-color: ;
+  width: 20%;
+  height: max-content;
+  position: fixed;
+  bottom: 20px;
+  left: 40%;
+  z-index: 9999;
+}
+.app-drawer-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: black;
+  padding: 10px 30px 10px 30px;
+  --padding-top: 5px;
+  border-radius: 50px;
+
+}
+.app-icon {
+  width: 100px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  --background-color: red;
+}
+.app-icon img {
+  width: 60px;
+  height: 60px;
+  --background-color: green;
+  padding: 0;
+  margin-left: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.app-icon p {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  --background-color: goldenrod;
+  color: whitesmoke;
+}

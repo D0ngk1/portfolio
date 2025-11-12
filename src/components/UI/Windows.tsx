@@ -5,26 +5,21 @@ interface MyComponentProps {
   hideResizeBtn:boolean;
   height?:string;
   menuBar?:React.ReactNode;
+  onClose?: (state:boolean) => void; 
   //isMax:boolean;
 }
-const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar,height='30px'}) => {
-  /*let maxWidth = 0;
-  let maxHeight = 0;
-    useEffect(() => {
-    const parentDivRef = document.getElementById("desktop");
-
-     //const rect = parentDivRef?.current.getBoundingClientRect();
-    console.log(parentDivRef+" "+isMax);
-    // maxWidth = rect.width;
-    // maxHeight = rect.Height;
-     console.log(maxWidth+" .--. " + maxHeight);
-  }, []);
-*/
+const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar,height='30px',onClose}) => {
   const [showMax, setShowMax] = useState<boolean>(true);
-
+  const [isClose,setisClose] = useState<boolean>(false);
   const onClickMax = () => {
     if(showMax) setShowMax(false);
     else setShowMax(true);
+  }
+  const closeBtn = () => {
+    const closeB = !isClose;
+    setisClose(closeB);
+    onClose(closeB);
+    //console.log(isClose);
   }
 
   
@@ -38,7 +33,7 @@ const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar
         <div className="window-container">
           <div className="minimize-btn window-btn">&#128469;</div>
           <div className="maximize-btn window-btn" onClick={onClickMax}>{!showMax ? '🗗' : '🗖'}</div>            
-          <div className="close-btn window-btn">&#x2715;</div>
+          <div className="close-btn window-btn" onClick={()=>closeBtn()}>&#x2715;</div>
         </div>
       </div>
     </div>

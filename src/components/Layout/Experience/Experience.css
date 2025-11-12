@@ -1,18 +1,15 @@
 .exp {
   width: 100%;
   height: 100%;
-  --background-color: green;
   position: relative; 
 }
 
 .exp .content {
   height: 100%;
-  --background-color: green;
 }
 
 .exp .title {
  background-color: rgba(0, 0, 0, 0);
- --background-color: red;
 } 
 
 .menu-btn-exp {
@@ -20,14 +17,11 @@
   width: 120px;
   height: 100%;
   font-size: 20px;
-  --background-color: green;
 }
 
 .select-items-proj {
   list-style-type: none;
-  --color: red;
   display: flex;
-  --background-color: green;
   justify-content: space-evenly;
   height: 80%;
   margin:0;
@@ -36,26 +30,28 @@
 }
 
 .select-items-proj li {
-  background-color: blue;
+  background-color: black;
   margin:0 8px;
-  width: 250px;
-  height: 100%;
+  width: 180px;
+  height: 90%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(20, 20, 20, 0.4), 0 6px 20px rgba(20, 20, 20, 0.3);
   font-size: 20px;
-
-    /* strong dark shadow */
 }
 .select-items-proj h3 {
   text-align: center;
-  background-color: rgba(0,0,0,0.2);
   position: absolute;
   width: 100%;
-  bottom: 0;
+  bottom: -38px;
   margin: 0;
+}
+.items h3 {
+  font-size: 20px;
+  font-weight:normal;
+
 }
 
 .select-items-proj li:hover {
@@ -64,24 +60,22 @@
 }
 
 .menu-btn-exp:hover {
- --background-color: grey;
  cursor: pointer;
- --border-bottom: 1px solid white;
 }
 .active {
   border-bottom: 1px solid red;
 }
 
 .active-item {
-  filter: brightness(100%);
+  filter: brightness(1.5);
 }
 .not-active-item{
-  filter: brightness(25%);
+  filter: brightness(.5);
+  transition: .5s;
 }
 
 
 .exp .selector {
-  --background-color: white;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -94,7 +88,6 @@
 .active-items {
   width: 100%;
   height: 100%;
-  --background-color: red;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -115,35 +108,66 @@
 
 .exp-con-menu{
   width: 100%;
+  --height: 60%;
+  --height: max-content;
   display: flex;
-
-  align-items: stretch;
 }
 .right-box{
   border-left: 3px solid red;
   width: 50%;
   height: calc-size(max-content,size - 50px);
-  --background-color: goldenrod;
   padding: 0;
+  margin-top: 110px;
 }
 .left-box {
   width: 50%;
   height: 100%;
-}
-.item-left {
-  height: 100%;
-  border: 1px solid white;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  position: relative;
 }
 .exp-con-menu .item {
   position: relative;
   padding: 0;
 }
-.item-right {
+.item-right, .item-left {
   padding: 0;
+  position: relative;
 }
+.move-to-right {
+  width: 400px;
+  height: 150px;
+  margin-top: -40px;
+  height: 150px;
+  position: relative;
+  filter: brightness(60%);
+  transition: filter 0.3 ease;
+}
+.move-to-right:hover {
+  filter:brightness(100%);
+}
+.item-left {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.horizontal-line-left {
+  width: 100px;
+  height: 100%;
+  border-top: solid 3px white;
+  position: absolute;
+  top:20px;
+  right: 0;
+}
+.horizontal-line-left::after {
+  content: '';
+  width: 100px;
+  height: 100px;
+  border-right: solid 3px red;
+  position: absolute;
+  top:10px;
+  right: -3px;
+}
+
 
 .horizontal-line {
   width: 100px;
@@ -153,22 +177,30 @@
   top:20px;
   left: 0;
 }
-.horizontal-line::after {
-  content: " ";
+.circle{
   width: 30px;
   height: 30px;
   background-color: black;
   border: 3px white solid;
   border-radius: 50%;
   position: absolute;
-  top:-17px;
-  left: -18px;
+  top:8px;
+  left: -17px;
+}
+.circle-left {
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border: 3px white solid;
+  border-radius: 50%;
+  position: absolute;
+  top:7px;
+  right:-16px;
 }
 
 .item-right-content {
-  --background-color: blue;
   width: 300px;
-  height: 150px;
+  height: 110px;
   margin-left: 110px;
   margin-top: -40px;
   margin-bottom: 50px;
@@ -176,8 +208,17 @@
 
 .item-left-content {
   text-align: end;
-  margin-right: 110px;
-  margin-top: -40px;
-
+  width: 300px;
+  padding-right: 10px;
+  height: 110px;
+  --background-color: yellow;
 }
-
+.job-title, .company , .year {
+  margin:0;
+}
+.job-title {
+  filter: brightness(80%);
+}
+.year {
+  filter: brightness(50%);
+} 

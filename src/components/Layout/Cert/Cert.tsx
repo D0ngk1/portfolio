@@ -19,7 +19,9 @@ import React from "@/assets/tech-stack/react.svg";
 import Spring from "@/assets/tech-stack/spring-icon.svg";
 import TS from "@/assets/tech-stack/typescript-icon.svg";
 
-interface CertProps{}
+interface CertProps{
+  sendCloseB?:(isClose:boolean) => void;
+}
 
 interface ImageURLS {
   key:number;
@@ -49,10 +51,13 @@ const techImageUrls = [
 ];
 
 
-const Cert: React.FC<CertProps> = () => {
+const Cert: React.FC<CertProps> = ({sendCloseB}) => {
   const [activeFolder, setActiveFolder] = useState<string>('Certificate');
   const [imageURLS,setImageURLS] = useState<ImageURLS[] | null>(certImageUrls);
-
+  
+  const handleCloseBtn = (data) => {
+    sendCloseB(data)
+  }
 
   const handleDataFromNavPane = (data:string) => {
     setActiveFolder(data);
@@ -63,7 +68,7 @@ const Cert: React.FC<CertProps> = () => {
   }
   return (
     <div className="cert-container">
-      <Windows  title={activeFolder} hideResizeBtn={false}/>
+      <Windows  title={activeFolder} onClose={handleCloseBtn}  hideResizeBtn={false}/>
       <div className="content">
           <NavPane onDataSend={handleDataFromNavPane}/>
           <div className="image-container">
