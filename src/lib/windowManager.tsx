@@ -13,19 +13,14 @@ export const windowManager = (
                        ref: React.RefObject<HTMLDivElement | null>, 
                        { handleSelector,
                          initialX =0 ,
-                         initialY =0 , pWidth=0,pHeight=0 }:wmOptions ) => {
+                         initialY =0}:wmOptions ) => {
 
-  
-  let isMax =false;
-  useEffect( () => {
+    useEffect( () => {
     const windowEl = ref.current;
     if (!windowEl) return;
     const handle = windowEl.querySelector(handleSelector) as HTMLDivElement | null;
     const handleResizeBtn = windowEl.querySelector(".resize-btn") as HTMLDivElement | null;
-    const handleMaximizeBtn = windowEl.querySelector(".maximize-btn") as HTMLDivElement | null;
-    //const handleMinimizeBtn = windowEl.querySelector(".manimize-btn") as HTMLDivElement | null;
 
-    //const handleMaximizeBtn = windowEl.querySelector(".restore-btn") as HTMLDivElement | null;
     if (!handle) return;  
     let isDragging = false;
     let isResizing = false;
@@ -121,49 +116,13 @@ export const windowManager = (
 
     }
     
-    //Resize feature end ----------------
-    //Maximize button start ---------
-    const onClickMaxBtn =()=> {
-      if(!isMax){
-        const rect = windowEl.getBoundingClientRect();
-        const pw = rect.width;
-        const ph = rect.height;
-
-        pWidth = pw;
-        pHeight = ph;
-        initialY = offsetY;
-        initialX = offsetX;
-        console.log(pWidth+" - "+pHeight );
-
-        windowEl.style.width = '100%';
-        windowEl.style.height = '100%';
-        offsetX =0; offsetY =0;
-        requestAnimationFrame( () => {
-         windowEl.style.transform = `translate(0px,0px)`;
-        });
-        console.log("if");
-      }else {
-        windowEl.style.width = pWidth+"px";
-        windowEl.style.height = pHeight+"px";
-        offsetX = initialX; offsetY = initialY;
-        requestAnimationFrame( () => {
-         windowEl.style.transform = `translate(${offsetX}px,${offsetY}px)`;
-        });
-
-
-        console.log("else");
-      }
-      isMax = !isMax;
-      //handleMaximizeBtn?.removeEventListener("click",onClickMaxBtn);
-    }
     //const onClickRestoreBtn = () =
     handle.addEventListener("mousedown",onMouseDown);
     handleResizeBtn?.addEventListener("mousedown",onMouseDownResize);
-    handleMaximizeBtn?.addEventListener("click",onClickMaxBtn);
+   
     return () => {
       handle.removeEventListener("mousedown",onMouseDown);
-      handleResizeBtn?.removeEventListener("mousedown",onMouseDownResize);
-      handleMaximizeBtn?.removeEventListener("click",onClickMaxBtn);
+      handleResizeBtn?.removeEventListener("mousedown",onMouseDownResize); 
     };
   },[ref]);
 

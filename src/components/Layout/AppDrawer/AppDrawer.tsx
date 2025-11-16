@@ -4,13 +4,13 @@ import Files from "@/assets/app-icon/folder.png";
 import Skills from "@/assets/app-icon/skill.png";
 import Resume from "@/assets/app-icon/curriculum-vitae.png";
 import Calendar from "@/assets/app-icon/calendar.png";
-import {useState} from "react";
+//import {useState} from "react";
 interface AppDrawerProps {
-  onClose?: (key:string) => void;
+  onClose?: (key?:string) => void;
 }
 const AppDrawer: React.FC<AppDrawerProps> = ({onClose}) => {
   const handleApp = (key:string) => {
-     onClose(key);
+     onClose?.(key);
   }
   return (
     <div className="app-drawer-container">

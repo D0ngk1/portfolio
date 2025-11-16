@@ -19,8 +19,14 @@ import React from "@/assets/tech-stack/react.svg";
 import Spring from "@/assets/tech-stack/spring-icon.svg";
 import TS from "@/assets/tech-stack/typescript-icon.svg";
 
+
+//import type { WinPos } from "@/components/UI/Windows.tsx";
+
+
 interface CertProps{
-  sendCloseB?:(isClose:boolean) => void;
+  sendCloseB?:(isClose?:boolean) => void;
+  sendMaxB?:(isMax?:boolean) => void;
+  //sendDragB?:(pos:WinPos) => void;
 }
 
 interface ImageURLS {
@@ -51,13 +57,17 @@ const techImageUrls = [
 ];
 
 
-const Cert: React.FC<CertProps> = ({sendCloseB}) => {
+const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB}) => {
   const [activeFolder, setActiveFolder] = useState<string>('Certificate');
   const [imageURLS,setImageURLS] = useState<ImageURLS[] | null>(certImageUrls);
   
-  const handleCloseBtn = (data) => {
-    sendCloseB(data)
+  const handleCloseBtn = (data?:boolean) => {
+    sendCloseB?.(data)
   }
+  const handleMaxBtn = (data?:boolean) => {
+    sendMaxB?.(data);
+  }
+
 
   const handleDataFromNavPane = (data:string) => {
     setActiveFolder(data);
@@ -68,7 +78,7 @@ const Cert: React.FC<CertProps> = ({sendCloseB}) => {
   }
   return (
     <div className="cert-container">
-      <Windows  title={activeFolder} onClose={handleCloseBtn}  hideResizeBtn={false}/>
+      <Windows  title={activeFolder} onClose={handleCloseBtn} onMax={handleMaxBtn}  hideResizeBtn={false}/>
       <div className="content">
           <NavPane onDataSend={handleDataFromNavPane}/>
           <div className="image-container">

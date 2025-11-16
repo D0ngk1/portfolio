@@ -7,13 +7,13 @@ import linkedInIcon from "@/assets/linkedin-light.png";
 import gmailIcon    from "@/assets/gmail-light.png";
 //import {useState}   from "react";
 interface  AboutMeProps{
-  sendCloseB?: (isClose:boolean) => void;
+  sendCloseB?: (isClose?:boolean) => void;
   //style?: React.CSSProperties;
 }
 export default function AboutMe({sendCloseB}:AboutMeProps) {
  // const [isClose,setIsClose] = useState(null);
-  const handleOnClose = (data) => {
-    sendCloseB(data);
+  const handleOnClose = (data?:boolean) => {
+    sendCloseB?.(data);
   }
   return (
     <div className="about-me about-container" >

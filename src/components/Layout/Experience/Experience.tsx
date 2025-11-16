@@ -1,6 +1,6 @@
 import Windows from "@/components/UI/Windows.tsx";
 import "./Experience.css";
-import {useState,useEffect} from 'react';
+import {useState} from 'react';
 
 //Import images
 import TodoApp from "@/assets/projects/todo-list.jpg";
@@ -13,7 +13,8 @@ interface Proj {
 }
 
 interface ProjProps {
-  sendCloseB?: (isClose:boolean) => void;  
+  sendCloseB?: (isClose?:boolean) => void;  
+  sendMaxB?: (isMax?:boolean) => void;
 }
 
 
@@ -31,13 +32,16 @@ const workExperience = [
   { companyName:'Capstone Projects', year:'',role:'Team leader / Lead Designer / Lead Developer'},
 ];
 
-const Experience: React.FC<ProjProps> = ({sendCloseB}) => {
+const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB}) => {
   const height = "45px";
   const [menu,setMenu] = useState<String>('Projects');
   const [activeProj,setActiveProj] = useState<Proj | null>(proj[0]);
-  const handleOnclose =(data)=>{
-    sendCloseB(data);
-  } 
+  const handleOnclose =(data?: boolean)=>{
+    sendCloseB?.(data);
+  }
+  const handleOnMax = (data?:boolean) => {
+    sendMaxB?.(data);
+  }
   const handleMenuClick =  (key=1) => {
    if       (key == 1) setMenu('Overview');
    else if  (key == 2) setMenu('Experience');
@@ -55,7 +59,7 @@ const Experience: React.FC<ProjProps> = ({sendCloseB}) => {
 
   return (
     <div className="exp exp-container">
-          <Windows  title='Experience' hideResizeBtn={false} onClose={handleOnclose} height={height} menuBar= { <>
+          <Windows  title='Experience' hideResizeBtn={false} onClose={handleOnclose} onMax={handleOnMax} height={height} menuBar= { <>
             <div className={`menu-btn-exp over-btn flex-center ${menu === 'Overview' ? "active" : ""}`} onClick={()=>handleMenuClick(1)}> Overview</div>
             <div className={`menu-btn-exp exp-btn flex-center  ${menu === 'Experience' ? "active" : ""}`} onClick={()=>handleMenuClick(2)}> Experience</div>
             <div className={`menu-btn-exp proj-btn flex-center ${menu === 'Projects' ? "active" : ""}`} onClick={()=>handleMenuClick(3)}> Projects</div>
