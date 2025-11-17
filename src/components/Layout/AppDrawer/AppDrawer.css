@@ -24,6 +24,9 @@
   margin: 0;
   --background-color: red;
 }
+.app-icon:hover{
+  cursor: pointer;
+}
 .app-icon img {
   width: 60px;
   height: 60px;

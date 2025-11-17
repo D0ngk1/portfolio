@@ -1,0 +1,125 @@
+import Windows from "@/components/UI/Windows.tsx";
+import React, { useState, useEffect, useRef } from 'react';
+import * as pdfjsLib from 'pdfjs-dist';
+import pdfFile from "@/assets/resume-darylg.pdf";
+import "./PDFViewer.css";
+
+interface ProjProps {
+  sendCloseB?: (isClose?:boolean) => void;  
+  sendMaxB?: (isMax?:boolean) => void;
+}
+
+
+// Configure worker - REQUIRED
+pdfjsLib.GlobalWorkerOptions.workerSrc = 
+  `https://unpkg.com/pdfjs-dist@5.4.394/build/pdf.worker.min.mjs`;
+
+  const PDFViewer: React.FC<ProjProps> = ({sendCloseB,sendMaxB}) => {
+  const [pdf, setPdf] = useState<pdfjsLib.PDFDocumentProxy | null>(null);
+  const [pageNum, setPageNum] = useState(1);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Load PDF from file
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const arrayBuffer = await file.arrayBuffer();
+    const loadedPdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+    setPdf(loadedPdf);
+    setPageNum(1);
+  };
+  const handleOnMax = (data?:boolean) => {
+    sendMaxB?.(data);
+  }
+  const handleOnclose =(data?: boolean)=>{
+    sendCloseB?.(data);
+  }
+  useEffect(() => {
+    const loadPdf = async () => {
+      try {
+        // Fetch the PDF file
+        const response = await fetch(pdfFile);
+        const arrayBuffer = await response.arrayBuffer();
+        
+        // Load PDF
+        const loadedPdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+        setPdf(loadedPdf);
+        setPageNum(1);
+      } catch (error) {
+        console.error('Error loading PDF:', error);
+      }
+    };
+
+    loadPdf();
+  }, []);
+
+  // Render page when pdf or pageNum changes
+  useEffect(() => {
+    if (!pdf || !canvasRef.current) return;
+
+    const renderPage = async () => {
+      try {
+        const page = await pdf.getPage(pageNum);
+        const canvas = canvasRef.current!;
+        const context = canvas.getContext('2d')!;
+        
+        const viewport = page.getViewport({ scale: 1.5 });
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
+
+        await page.render({ canvasContext: context, viewport }).promise;
+      } catch (error) {
+        console.error('Error rendering page:', error);
+      }
+    };
+
+    renderPage();
+  }, [pdf, pageNum]);
+
+
+  return (
+    <div className="pdf-container">
+      <Windows  title='Resume' hideResizeBtn={false} onClose={handleOnclose} onMax={handleOnMax} />
+      <div className="pdf-wrapper">
+       <div className="pdf-btns">        
+       <input
+          type="file"
+          accept=".pdf"
+          onChange={handleFileChange}
+          className="mb-4 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white file:cursor-pointer"
+        />
+
+        {pdf && (
+          <div className="mb-4 flex gap-2 items-center">
+            <button
+              onClick={() => setPageNum(p => Math.max(1, p - 1))}
+              disabled={pageNum <= 1}
+              className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300"
+            >
+              Previous
+            </button>
+            <span className="px-4">
+              Page {pageNum} of {pdf.numPages}
+            </span>
+            <button
+              onClick={() => setPageNum(p => Math.min(pdf.numPages, p + 1))}
+              disabled={pageNum >= pdf.numPages}
+              className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300"
+            >
+              Next
+            </button>
+          </div>
+        )}
+        </div>
+        <div className="pdf-content">
+          <canvas ref={canvasRef} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PDFViewer;
+
+

@@ -5,10 +5,10 @@ import selfie from "@/assets/profile-picture.png";
 import githubIcon   from "@/assets/github-light.png";
 import linkedInIcon from "@/assets/linkedin-light.png";
 import gmailIcon    from "@/assets/gmail-light.png";
-//import {useState}   from "react";
+
 interface  AboutMeProps{
   sendCloseB?: (isClose?:boolean) => void;
-  //style?: React.CSSProperties;
+
 }
 export default function AboutMe({sendCloseB}:AboutMeProps) {
  // const [isClose,setIsClose] = useState(null);

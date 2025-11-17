@@ -70,6 +70,13 @@
   text-align: center;
 }
 
+.resume {
+  width: 920px;
+  height: 70%;
+  position: absolute;
+  transform: translate(535px,220px);
+}
+
 .drag-div {
   --background: red;
   width: 77%;
@@ -77,3 +84,5 @@
   position: absolute;
   z-index: 1001;
 }
+
+

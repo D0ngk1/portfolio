@@ -101,7 +101,7 @@ export const windowManager = (
 
     const onMouseMoveResize = (e: MouseEvent) => {
       if (!isResizing) return;
-      const newWidth = startWidth + (e.clientX - startX);
+        const newWidth = startWidth + (e.clientX - startX);
       const newHeight = startHeight + (e.clientY - startY);
 
       windowEl.style.width   = Math.max(500, newWidth)  + "px";

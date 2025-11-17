@@ -20,9 +20,6 @@ import Spring from "@/assets/tech-stack/spring-icon.svg";
 import TS from "@/assets/tech-stack/typescript-icon.svg";
 
 
-//import type { WinPos } from "@/components/UI/Windows.tsx";
-
-
 interface CertProps{
   sendCloseB?:(isClose?:boolean) => void;
   sendMaxB?:(isMax?:boolean) => void;
@@ -74,7 +71,7 @@ const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB}) => {
     if(data == 'Certificate') setImageURLS(certImageUrls);
     else if(data == 'Tech Stack')  setImageURLS(techImageUrls);
     else setImageURLS(null);
-    //console.log(activeFolder);
+   
   }
   return (
     <div className="cert-container">
