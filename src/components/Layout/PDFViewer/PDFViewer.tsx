@@ -57,7 +57,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
   // Render page when pdf or pageNum changes
   useEffect(() => {
     if (!pdf || !canvasRef.current) return;
-
+    let renderTask: pdfjsLib.RenderTask | null = null;
     const renderPage = async () => {
       try {
         const page = await pdf.getPage(pageNum);
@@ -68,13 +68,31 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
         canvas.height = viewport.height;
         canvas.width = viewport.width;
 
-        await page.render({ canvasContext: context, viewport }).promise;
-      } catch (error) {
-        console.error('Error rendering page:', error);
+        ///
+        renderTask = page.render({
+          canvas,
+          canvasContext: context,
+          viewport
+        });
+
+        await renderTask.promise;
+
+        //await page.render({ canvasContext: context,viewport,canvas}).promise;
+      } catch (error:any) {
+        if (error?.name === "RenderingCancelledException") {
+        // Ignore — expected when switching pages quickly
+        } else {
+          console.error("Error rendering page:", error);
+      }
       }
     };
 
     renderPage();
+    return () => {
+      if (renderTask) {
+        renderTask.cancel();
+      }
+      };
   }, [pdf, pageNum]);
 
 

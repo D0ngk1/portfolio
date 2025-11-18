@@ -25,6 +25,7 @@ export default function Home(){
   }>>({});
   const activezIndex = useRef(1);
   const winRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const [isLoadApps,setLoadApps] = useState<boolean>(false);
   const sections = [
     { key: "about",       Component: AboutMe , defaultX:26, defaultY:18 , pWidth:0, pHeight:0},
     { key: "cert",        Component: Cert    , defaultX:26 , defaultY:542, pWidth:0, pHeight:0},
@@ -37,6 +38,7 @@ export default function Home(){
       ...prev,
       "resume":{...prev["resume"],isClose:true}
     }));
+    setLoadApps?.(true);
   },[])
   
    const handleOnClose = (key?: string, isCloseB?: boolean) => {
@@ -110,7 +112,8 @@ export default function Home(){
             }) => {
 
             if (compAttri[key]?.isClose) return null;
-            return (
+            if(!isLoadApps) return null;
+            else return (
               <div
                 className={`win-container ${key} blur-bg`}
                 key={key}
