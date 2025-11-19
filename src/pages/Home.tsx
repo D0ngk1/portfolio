@@ -21,7 +21,8 @@ export default function Home(){
     pWidth:number;
     pHeight:number;
     pY:number;
-    pX:number
+    pX:number;
+    isFocus:boolean;
   }>>({});
   const activezIndex = useRef(1);
   const winRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -34,18 +35,31 @@ export default function Home(){
   ]
 
   useEffect(() => {
-    setCompAttri((prev)=> ({
-      ...prev,
-      "resume":{...prev["resume"],isClose:true}
+    //setLoadApps?.(true);
+    setCompAttri((prev) => ({
+      'about': {...prev['about'],pX:26,pY:18},
+      'cert': {...prev['cert'],pX:26,pY:542},
+      'experience': {...prev['experience'],pX:535,pY:0},
+      'resume': {...prev['resume'],pX:800,pY:25,isClose:true}
     }));
     setLoadApps?.(true);
+    
   },[])
   
    const handleOnClose = (key?: string, isCloseB?: boolean) => {
      if (!key) return ;
+     const windowEl = winRefs.current[key];
+     if(!windowEl) return;
+     const rect = windowEl.getBoundingClientRect();
+
     setCompAttri((prev) => ({
       ...prev,
-      [key]: {...prev[key],isClose: isCloseB ?? false}
+      [key]: {...prev[key],
+        isClose: isCloseB ?? false,
+        pHeight:rect.height,
+        pWidth:rect.width,
+        pX:rect.x,
+        pY:rect.y}
     }));
   };
 
@@ -62,7 +76,7 @@ export default function Home(){
     if(isMaxB){
 
       const rect = windowEl.getBoundingClientRect();
-      console.log(rect.x+"-"+rect.y);
+      console.log("Max: "+rect.x+"-"+rect.y);
       setCompAttri((prev) => ({
         ...prev,
         [key]: {...prev[key],
@@ -72,10 +86,11 @@ export default function Home(){
           pX:rect.x
         }
       }));
-      windowEl.style.width = "100%";
-      windowEl.style.height ="100%";
+
       requestAnimationFrame(() => {
-        windowEl.style.transform = `translate(0px, 0px)`
+        windowEl.style.transform = `translate(0px, 0px)`;
+        windowEl.style.width = "100%";
+        windowEl.style.height ="100%";
       });
 
     }else {
@@ -83,7 +98,7 @@ export default function Home(){
       windowEl.style.width =  compAttri[key].pWidth+"px";
       windowEl.style.height =  compAttri[key].pHeight+"px";
       const offsetX = compAttri[key].pX; const offsetY = compAttri[key].pY;
-      console.log(offsetX+"-"+offsetY);
+      //console.log(offsetX+"-"+offsetY);
       windowEl.style.transform = `translate(${offsetX}px,${offsetY}px)`;
 
     }
@@ -107,8 +122,7 @@ export default function Home(){
       <div className="main-background">
         <Header />
         <div className="desktop">
-            {sections.map(({ key, Component, 
-
+            {sections.map(({ key, Component,
             }) => {
 
             if (compAttri[key]?.isClose) return null;
@@ -118,9 +132,23 @@ export default function Home(){
                 className={`win-container ${key} blur-bg`}
                 key={key}
                 ref={(el) => {winRefs.current[key] = el}}
+                style={{ transform: `translate(${compAttri[key].pX}px,${compAttri[key].pY}px)`,width:`${compAttri[key].pWidth}px`, height:`${compAttri[key].pHeight}px`,
+                zIndex:`${compAttri[key].isFocus ? 1:0}`}}
 
                 onMouseDown={(e) => {
-                  activezIndex.current++;
+                  setCompAttri(prev => {
+                    const updated: typeof prev = {};
+
+                    for (const k in prev) {
+                      updated[k] = {
+                        ...prev[k],
+                        isFocus: k === key   // true for clicked, false for everything else
+                      };
+                    }
+
+                    return updated;
+                  });
+                  activezIndex.current = compAttri[key].isFocus ? 1 : 0;
                   e.preventDefault();
                   winRefs.current[key]!.style.zIndex = activezIndex.current.toString();
                   onClickWindows(e,winRefs.current[key]) 
@@ -131,12 +159,9 @@ export default function Home(){
               </div>
             );
           })}
-         
-
         </div>
         <AppDrawer onClose={handleApp}/>       
       </div>
-      
     </>
   );
 }

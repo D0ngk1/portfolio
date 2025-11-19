@@ -51,18 +51,18 @@
 }
 
 .about {
-  transform: translate(26px,18px);
+  --transform: translate(26px,18px);
 }
 
 .experience {
   width: 70%;
   height: 85%;
   position:absolute;
-  transform: translate(535px,0px);
+  --transform: translate(535px,0px);
 }
 
 .cert {
-  transform: translate(26px,542px);
+  --transform: translate(26px,542px);
 }
 
 .about-container .title-con h4 {
@@ -74,7 +74,7 @@
   width: 920px;
   height: 70%;
   position: absolute;
-  transform: translate(535px,220px);
+  --transform: translate(535px,220px);
 }
 
 .drag-div {
