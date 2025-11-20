@@ -59,7 +59,7 @@ export default function Home(){
         pHeight:rect.height,
         pWidth:rect.width,
         pX:rect.x,
-        pY:rect.y}
+        pY:rect.y-50}
     }));
   };
 
@@ -82,7 +82,7 @@ export default function Home(){
         [key]: {...prev[key],
           pWidth: rect.width,
           pHeight: rect.height,
-          pY:rect.y-53,
+          pY:rect.y-50,
           pX:rect.x
         }
       }));

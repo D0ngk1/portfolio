@@ -100,16 +100,16 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
     <div className="pdf-container">
       <Windows  title='Resume' hideResizeBtn={false} onClose={handleOnclose} onMax={handleOnMax} />
       <div className="pdf-wrapper">
-       <div className="pdf-btns">        
+       <div className="pdf-open-btns">        
        <input
           type="file"
           accept=".pdf"
           onChange={handleFileChange}
-          className="mb-4 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:bg-blue-600 file:text-white file:cursor-pointer"
+          className="pdf-change-btns"
         />
 
         {pdf && (
-          <div className="mb-4 flex gap-2 items-center">
+          <div className="pdf-btns">
             <button
               onClick={() => setPageNum(p => Math.max(1, p - 1))}
               disabled={pageNum <= 1}
