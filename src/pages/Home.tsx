@@ -22,7 +22,8 @@ export default function Home(){
     pHeight:number;
     pY:number;
     pX:number;
-    isFocus:boolean;
+    //isFocus:boolean;
+    zIndex:number;
   }>>({});
   const activezIndex = useRef(1);
   const winRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -108,13 +109,15 @@ export default function Home(){
  
 
   const handleApp = (key?:string) => {
+
     if(!key) return;
+    activezIndex.current = activezIndex.current+1;
     const isCloseB = !compAttri[key]?.isClose;
     setCompAttri((prev) => ({
       ...prev,
-      [key]: {...prev[key],isClose:isCloseB}
+      [key]: {...prev[key],isClose:isCloseB,zIndex:activezIndex.current}
     }));
-
+    //console.log(activezIndex.current);
   } 
 
   return (
@@ -132,23 +135,11 @@ export default function Home(){
                 className={`win-container ${key} blur-bg`}
                 key={key}
                 ref={(el) => {winRefs.current[key] = el}}
-                style={{ transform: `translate(${compAttri[key].pX}px,${compAttri[key].pY}px)`,width:`${compAttri[key].pWidth}px`, height:`${compAttri[key].pHeight}px`,
-                zIndex:`${compAttri[key].isFocus ? 1:0}`}}
+                style={{ transform: `translate(${compAttri[key].pX}px,${compAttri[key].pY}px)`,width:`${compAttri[key].pWidth}px`, height:`${compAttri[key].pHeight}px`,zIndex:compAttri[key].zIndex}}
 
                 onMouseDown={(e) => {
-                  setCompAttri(prev => {
-                    const updated: typeof prev = {};
-
-                    for (const k in prev) {
-                      updated[k] = {
-                        ...prev[k],
-                        isFocus: k === key   // true for clicked, false for everything else
-                      };
-                    }
-
-                    return updated;
-                  });
-                  activezIndex.current = compAttri[key].isFocus ? 1 : 0;
+                  //console.log(activezIndex.current)
+                  activezIndex.current = activezIndex.current+1;
                   e.preventDefault();
                   winRefs.current[key]!.style.zIndex = activezIndex.current.toString();
                   onClickWindows(e,winRefs.current[key]) 

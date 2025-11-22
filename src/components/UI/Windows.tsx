@@ -39,8 +39,8 @@ const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar
   
   return (
     <>
-    <div className="main-windows">
-        <div className="title">   
+    <div className="main-windows" style={{height: height}} >
+        <div className="title" style={{height: height}} >   
         <div className="menu"></div>
         <div className="title-con" style={{height: height}} > { menuBar || <h4>{title}</h4>  }</div>
 

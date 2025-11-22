@@ -1,6 +1,6 @@
 .main-windows {
   height:min-content;
-  width: 100%;
+  height: max-content;
   --background-color: black;
   --border: 1px solid green;
   position: relative;
