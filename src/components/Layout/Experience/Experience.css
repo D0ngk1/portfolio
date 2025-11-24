@@ -251,7 +251,7 @@
 
 .recent-feat {
   width: 800px;
-  height: calc(100%-15px);
+  height: calc(100% - 15px);
   background-color: black;
   margin: 10px;
   flex-shrink: 0;
