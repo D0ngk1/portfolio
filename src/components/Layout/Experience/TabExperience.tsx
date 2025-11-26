@@ -8,12 +8,11 @@ const TabProjects = () => {
   return (
     <>
       <div className="exp-con-menu">
-      
         <div className="vertical-line left-box ">
           <div className="item item-left">
           <div className="move-to-right">
-           <span className="horizontal-line-left"></span> 
-            <span className="circle-left"></span>
+           <span className="horizontal-line-left horizontal-line"></span> 
+            <span className="circle-left circle"></span>
            <div className="item-left-content">
              <h2 className="company">Relatives & Friends</h2>
              <h4 className="job-title">Personal IT Specialist</h4>
@@ -25,8 +24,8 @@ const TabProjects = () => {
         <div className="vertical-line right-box">
           { workExperience.map(({companyName,year,role}) => (
               <div className="item item-right" key={`${companyName}${year}`}>
-              { companyName!='' && (<span className="horizontal-line"></span> )}
-               <span className="circle"></span>
+              { companyName!='' && (<span className="horizontal-line-right horizontal-line"></span> )}
+               <span className="circle-right circle"></span>
                <div className="item-right-content">
                 <h2 className="company">{companyName}</h2>
                 <h4 className="job-title">{role}</h4>

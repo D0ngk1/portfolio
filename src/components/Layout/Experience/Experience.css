@@ -85,6 +85,7 @@
   justify-content: center;
 }
 
+
 .active-items {
   width: 100%;
   height: 100%;
@@ -106,7 +107,7 @@
   );
 
 }
-
+/******************** Experience **************************/
 .exp-con-menu{
   width: 100%;
   --height: 60%;
@@ -129,10 +130,6 @@
   position: relative;
   padding: 0;
 }
-.item-right, .item-left {
-  padding: 0;
-  position: relative;
-}
 .move-to-right {
   width: 400px;
   height: 150px;
@@ -151,12 +148,15 @@
   justify-content: flex-end;
 }
 
-.horizontal-line-left {
+.horizontal-line{
   width: 100px;
   height: 100%;
   border-top: solid 3px white;
   position: absolute;
   top:20px;
+}
+
+.horizontal-line-left {
   right: 0;
 }
 .horizontal-line-left::after {
@@ -168,16 +168,10 @@
   top:10px;
   right: -3px;
 }
-
-
-.horizontal-line {
-  width: 100px;
-  height: 100%;
-  border-top: solid 3px white;
-  position: absolute;
-  top:20px;
+.horizontal-line-right {
   left: 0;
 }
+
 .circle{
   width: 30px;
   height: 30px;
@@ -185,16 +179,12 @@
   border: 3px white solid;
   border-radius: 50%;
   position: absolute;
+}
+.circle-right{
   top:8px;
   left: -17px;
 }
 .circle-left {
-  width: 30px;
-  height: 30px;
-  background-color: black;
-  border: 3px white solid;
-  border-radius: 50%;
-  position: absolute;
   top:7px;
   right:-16px;
 }
@@ -225,7 +215,6 @@
 }
 .proj-desc{
   font-size: 25px;
-
   width: 50%;
   position: relative;
   z-index: 1;
@@ -240,6 +229,9 @@
 
 }
 
+
+/************************ Feature CSS *******************/
+
 .feat-container{
   margin-top: 45px;
   width: 100%;
@@ -247,51 +239,47 @@
   position: relative;
   overflow: auto;
 }
+.flex-shrink-0{
+  margin: 0 10px;
+  flex-shrink: 0;
+}
 
 .recent-feat {
   width: 800px;
-  --height: calc(100% - 15px);
   height: 100%;
   background-color: black;
-  margin: 0 10px;
-  flex-shrink: 0;
   border: .2px solid white;
 }
-
-.recent-feat-container {
-  height: 80%;
-  width: 100%;
+.display-flex-row {
   display: flex;
   flex-direction: row;
   overflow:hidden;
-
+  width: 100%;
 }
-.right-slide{
+.recent-feat-container {
+  height: 80%;
+}
+
+.slide-btn{
   width: 30%;
   height: 80%;
   position: absolute;
   top:45;
-  right: 0;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 70%);
-  opacity: 0;
   animation:
   fadeIn .3s ease forwards;
   animation-delay: .2s;
+  opacity: 0;
 }
+
+.right-slide{
+  right: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 1) 70%);
+  }
 .left-slide{
-  width: 30%;
-  height:80%;
-  position: absolute;
-  top:45;
   left:0;
   background-image: linear-gradient(
    to right, #000 15%,transparent
   );
-  opacity: 0;
-  animation:
-  fadeIn .3s ease forwards;
-  animation-delay: .2s;
-
 }
 
 @keyframes fadeIn {
@@ -299,10 +287,10 @@
   to   { opacity: 1; transform: translateX(0); }
 }
 .recent-feat:first-child{
-  margin-left:810px;
+  --margin-left:810px;
 }
 .recent-feat-container .feat-todo-app {
-  margin-right: 800px;
+  --margin-right: 800px;
 }
 .feat-label{
   margin: 0 40px;
@@ -315,13 +303,16 @@
   width: 100%;
 }
 
+.display-flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .feat-intro {
   margin-top: 30px;
   width: 100%;
   height: 500px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   box-shadow: 0 4px 8px rgba(20, 20, 20, 0.4), 0 6px 20px rgba(20, 20, 20, 0.3);
   background-image: url('/src/assets/computers.jpg');
 }
@@ -344,3 +335,19 @@
   z-index: 1;
 }
 
+.feat-skill-wrapper {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 50px;
+}
+
+.feat-skill-content {
+  height: 80%;
+  position:relative;
+}
+
+.feat-skill-items {
+  width: 300px;
+  height: 100%;
+  background-color: black;
+}
