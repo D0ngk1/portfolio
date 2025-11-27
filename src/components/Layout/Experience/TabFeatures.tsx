@@ -8,6 +8,21 @@ const extFeat = [
   ...feat,
   ...feat,
 ]
+const skills = [
+  {name: 'Networking'},
+  {name: 'Programming'},
+  {name: 'OOP'},
+  {name: 'Backed'},
+  {name: 'Frontend'},
+  {name: 'IT Security'},
+  {name: 'Unix/Linux'},
+  {name: 'Windows'},
+  {name: 'Troubleshooting'},
+  {name: 'Root Cause Analysis'},
+  //{name: ''},
+  //{name: 'Frontend'},
+
+]
 const TabFeatures = () => {
   const recentRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(4);
@@ -102,16 +117,10 @@ const TabFeatures = () => {
         </div>
         <div className="feat-skill-wrapper">
           <h2 className="feat-skill-label feat-label">Skills</h2>
-          <div className="feat-skill-content display-flex-row">
-            <div className="feat-skill-items flex-shrink-0">Networking</div>
-            <div className="feat-skill-items flex-shrink-0">Programming</div>
-            <div className="feat-skill-items flex-shrink-0">OOP</div>
-            <div className="feat-skill-items flex-shrink-0">Frontend</div>
-            <div className="feat-skill-items flex-shrink-0">Backend</div>
-            <div className="feat-skill-items flex-shrink-0">IT Security</div>
-            <div className="feat-skill-items flex-shrink-0">Unix/Linux</div>
-            <div className="feat-skill-items flex-shrink-0">Windows</div>
-            <div className="feat-skill-items flex-shrink-0">Troubleshooting</div>
+          <div className="feat-skill-content  flex-wrap">
+            {skills.map(({name},i) =>  ( 
+              <div className="feat-skill-items" key={i}>{name}</div>
+            ))}
           </div>
         </div>
       </div>

@@ -12,8 +12,8 @@
   position: absolute;
 }
 .desktop {
-  height: 96vh;
-  margin-top: 50px;
+  height: 97.8vh;
+  margin-top: 29px;
   --background-color: green;
   width: 100vw;
   position: relative;

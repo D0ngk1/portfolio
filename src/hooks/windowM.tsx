@@ -73,7 +73,7 @@ export default function useWindowDrag() {
     if (!isDragging.current || !activeWindow.current) return;
 
     const x = e.clientX - dragOffset.current.x;
-    let y = e.clientY - dragOffset.current.y - 50;
+    let y = e.clientY - dragOffset.current.y - 29;
 
     if (y < 0) y = 0;
 
@@ -93,4 +93,5 @@ export default function useWindowDrag() {
   };
   return { onClickWindows };
 }
+
 
