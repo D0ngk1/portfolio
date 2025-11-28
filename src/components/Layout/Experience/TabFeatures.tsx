@@ -108,6 +108,7 @@ const TabFeatures = () => {
                   key={i}
                 >
                   <h1>{name.name}</h1>
+                  <p>{name.description}</p>
                 </div>
               )
             })}

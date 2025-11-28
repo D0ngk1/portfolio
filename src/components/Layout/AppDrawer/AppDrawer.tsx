@@ -1,7 +1,7 @@
 import "./AppDrawer.css";
 import Boy from "@/assets/app-icon/boy.png";
-import Files from "@/assets/app-icon/folder.png";
-import Skills from "@/assets/app-icon/skill.png";
+import Files from "@/assets/app-icon/file-explorer.png";
+import Skills from "@/assets/app-icon/production.png";
 import Resume from "@/assets/app-icon/curriculum-vitae.png";
 import Calendar from "@/assets/app-icon/calendar.png";
 //import {useState} from "react";

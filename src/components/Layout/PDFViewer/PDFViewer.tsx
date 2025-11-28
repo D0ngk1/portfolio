@@ -100,7 +100,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
     <div className="pdf-container">
       <Windows  title='Resume' hideResizeBtn={false} onClose={handleOnclose} onMax={handleOnMax} />
       <div className="pdf-wrapper">
-       <div className="pdf-open-btns">        
+       <div className="pdf-btns-container">        
        <input
           type="file"
           accept=".pdf"
@@ -113,7 +113,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
             <button
               onClick={() => setPageNum(p => Math.max(1, p - 1))}
               disabled={pageNum <= 1}
-              className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300"
+              className="pdf-btns-nav"
             >
               Previous
             </button>
@@ -123,12 +123,12 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
             <button
               onClick={() => setPageNum(p => Math.min(pdf.numPages, p + 1))}
               disabled={pageNum >= pdf.numPages}
-              className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-300"
+              className="pdf-btns-nav"
             >
               Next
             </button>
-          </div>
-        )}
+           </div>
+          )}
         </div>
         <div className="pdf-content">
           <canvas ref={canvasRef} />

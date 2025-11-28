@@ -12,7 +12,11 @@
 .pdf-change-btns{
   width: 33%;
 }
-.pdf-open-btns input[type="file"]::file-selector-button {
+.pdf-btns-container input {
+  width: 100%;
+  padding-left: 20px;
+}
+.pdf-btns-container input[type="file"]::file-selector-button {
   background-color: #007bff;
   color: white;
   padding: 15px 16px;
@@ -22,15 +26,23 @@
   /* Add other desired styles */
 }
 
-.pdf-open-btns{
-  height: 8%;
+.pdf-btns-container{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  height: max-content;
+  color: white;
+  margin: 10px 0;
+}
+
+.pdf-btns{
+  height: 45px;
   width: 100%;
-  --background-color: white;
+  border: 1px solid black;
   display: flex;
+  justify-content: center;
   flex-direction: row;
   align-items: center;
-  justify-content: flex-start;
-
+  gap: 10px;
 }
 .pdf-content {
   width: 100%;
@@ -38,6 +50,13 @@
   overflow: auto;
   padding-left: auto;
   text-align: center;
+}
+
+.pdf-btns-nav{
+  height: 40px;
+  width: 80px;
+  text-align: center;
+  padding: 0;
 }
 
 
