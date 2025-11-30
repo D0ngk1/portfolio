@@ -1,7 +1,19 @@
 import { proj } from "@/components/Layout/Experience/TabProjects.tsx";
 import { useRef, useState, useEffect } from 'react';
+
+//Images
+import NetworkingImg from "@/assets/skills/networking.png";
+import SecurityImg from "@/assets/skills/cybersecurity.png";
+import ProgrammingImg from "@/assets/skills/dev.png";
+import FrontendImg from "@/assets/skills/frontend.png";
+import Backend from "@/assets/skills/backend.png";
+import TroubleshootingImg from "@/assets/skills/troubleshooting.png";
+import LinuxImg from "@/assets/skills/linux.png";
+
+
+
 const feat = [
-  { name: 'Software Engineer', description: '1.5 years of Experience', image: '' },
+  { name: 'Software Engineer',Description:'' ,shortDesc: '1.5 years of Experience', image: '' },
   ...proj.slice(0, -1),
 ];
 const extFeat = [
@@ -9,19 +21,18 @@ const extFeat = [
   ...feat,
 ]
 const skills = [
-  {name: 'Networking'},
-  {name: 'Programming'},
+  {name: 'Networking',img:NetworkingImg},
+  {name: 'Programming',img:ProgrammingImg},
   {name: 'OOP'},
-  {name: 'Backed'},
-  {name: 'Frontend'},
-  {name: 'IT Security'},
-  {name: 'Unix/Linux'},
-  {name: 'Windows'},
-  {name: 'Troubleshooting'},
+  {name: 'Backend',img:Backend},
+  {name: 'Frontend',img:FrontendImg},
+  {name: 'IT Security',img:SecurityImg},
+  {name: 'Unix/Linux',img:LinuxImg},
+  //{name: 'Windows'},
+  {name: 'Troubleshooting',img:TroubleshootingImg},
   {name: 'Root Cause Analysis'},
   //{name: ''},
   //{name: 'Frontend'},
-
 ]
 const TabFeatures = () => {
   const recentRef = useRef<HTMLDivElement>(null);
@@ -92,7 +103,7 @@ const TabFeatures = () => {
         behavior: "auto",
       });
     }
-    }, 450);
+    }, 500);
     return () => clearTimeout(timeout);
   }, [activeIndex]);
   return (
@@ -106,12 +117,16 @@ const TabFeatures = () => {
               if (name.name !== 'Dictionary') return (
                 <div style={{ ...(name.image ? { backgroundImage: `url(${name.image})` } : {}) }} className={`flex-shrink-0 recent-feat feat-${name.name.replace(/\s+/g, '-').toLowerCase()}`}
                   key={i}
+                  onClick={()=>setActiveIndex(i)}
                 >
+                <div className="feat-desc">
                   <h1>{name.name}</h1>
-                  <p>{name.description}</p>
+                  <p>{name.shortDesc}</p>
                 </div>
+              </div>
               )
             })}
+            
             <div className="left-slide slide-btn" onClick={throttledPrev}></div>
             <div className="right-slide slide-btn" onClick={throttledNext}></div>
           </div>
@@ -119,8 +134,15 @@ const TabFeatures = () => {
         <div className="feat-skill-wrapper">
           <h2 className="feat-skill-label feat-label">Skills</h2>
           <div className="feat-skill-content  flex-wrap">
-            {skills.map(({name},i) =>  ( 
-              <div className="feat-skill-items" key={i}>{name}</div>
+            {skills.map(({name,img},i) =>  ( 
+            <div className="container-skill-items">
+              <div className="feat-skill-items" key={i} 
+              /*style={{...(img ? 
+              { backgroundImage:`url(${img})`} : {}
+              )}}*/ 
+              >{img && (<img src={img} alt="" /> )}</div>
+            <h4 className="title-feat-skill" key={i}>{name}</h4>
+            </div>
             ))}
           </div>
         </div>

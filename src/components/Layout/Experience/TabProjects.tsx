@@ -16,22 +16,26 @@ export const proj = [
   { 
     name:'Portfolio', 
     image:Portfolio,
-    description:'A custom desktop-inspired interface featuring draggable and resizable windows, styled after Linux Ricing. Built to feel like a personalized Linux desktop inside the browser — smooth, dynamic, and fully interactive.'
+    description:'A custom desktop-inspired interface featuring draggable and resizable windows, styled after Linux Ricing. Built to feel like a personalized Linux desktop inside the browser — smooth, dynamic, and fully interactive.',
+    shortDesc:'React with TypeScript'
   },
   { 
     name:'Image Scraper', 
     image:ImageScraper,
-    description:'A Python Selenium automation tool that scrolls through Meta Messenger conversations and automatically downloads all images to your local machine.'
+    description:'A Python Selenium automation tool that scrolls through Meta Messenger conversations and automatically downloads all images to your local machine.',
+    shortDesc: 'Selenium library with Python'
   },
   { 
     name:'Todo App',
     image:TodoApp,
-    description:'A task management web app inspired by Microsoft To Do, featuring a clean interface for creating, organizing, and tracking daily tasks. Includes features like due dates, priority levels, and list categorization to enhance productivity and task organization.' 
+    description:'A task management web app inspired by Microsoft To Do, featuring a clean interface for creating, organizing, and tracking daily tasks. Includes features like due dates, priority levels, and list categorization to enhance productivity and task organization.',
+    shortDesc: 'Angular with TypeScript,Java Spring Boot, PostgreSQL'
   },
-  { 
+  {
     name:'Dictionary', 
     image:Dictionary,
-    description:'A web application that leverages a third-party dictionary API to provide word definitions and usage examples. Users can search for words and access comprehensive linguistic information quickly and easily.'
+    description:'A web application that leverages a third-party dictionary API to provide word definitions and usage examples. Users can search for words and access comprehensive linguistic information quickly and easily.',
+    shortDesc: 'ReactJS'
   },
 ];
 const TabProjects = () => {

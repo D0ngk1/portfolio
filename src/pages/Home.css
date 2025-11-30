@@ -50,6 +50,13 @@
   align-items: center;
 }
 
+
+.win-container{
+  overflow: hidden;
+}
+
+
+
 .about {
   --transform: translate(26px,18px);
 }

@@ -8,20 +8,22 @@ import gmailIcon    from "@/assets/gmail-light.png";
 
 interface  AboutMeProps{
   sendCloseB?: (isClose?:boolean) => void;
-
+  sendMinz?: (isMin?:boolean) =>void;
 }
-export default function AboutMe({sendCloseB}:AboutMeProps) {
+export default function AboutMe({sendCloseB,sendMinz}:AboutMeProps) {
  // const [isClose,setIsClose] = useState(null);
   const handleOnClose = (data?:boolean) => {
     sendCloseB?.(data);
   }
+  const handleOnMin = (data?:boolean) => { 
+    sendMinz?.(data);
+  }
   return (
     <div className="about-me about-container" >
-      <Windows  title='About Me' hideResizeBtn={true} onClose={handleOnClose}/>
+      <Windows  title='About Me' hideResizeBtn={true} onClose={handleOnClose} onMinz={handleOnMin}/>
       <div className="content">
         <div className="profile">
             <img className="profile-picture" src={selfie} alt="daryl"/>
-            
         </div>
         <div className="about-name">Daryl G. Guzman</div>
         <div className="job-title">Software Engineer | IT Specialist</div>

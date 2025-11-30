@@ -12,12 +12,12 @@ import {useRef,useState,useEffect} from "react";
 import wm from "@/hooks/windowM.tsx";
 
 
-
 export default function Home(){
   const {onClickWindows} = wm();
   const [compAttri, setCompAttri] = useState<Record<string, {
     isClose:boolean; 
     isMax:boolean;
+    isMinz:boolean;
     pWidth:number;
     pHeight:number;
     pY:number;
@@ -38,7 +38,7 @@ export default function Home(){
   useEffect(() => {
     //setLoadApps?.(true);
     setCompAttri((prev) => ({
-      'about': {...prev['about'],pX:26,pY:18},
+      'about': {...prev['about'],pX:26,pY:18,isMinz:false},
       'cert': {...prev['cert'],pX:26,pY:542},
       'experience': {...prev['experience'],pX:535,pY:0},
       'resume': {...prev['resume'],pX:800,pY:25,isClose:true}
@@ -46,7 +46,45 @@ export default function Home(){
     setLoadApps?.(true);
     
   },[])
-  
+   
+  //const boxRef = useRef<HTMLDivElement>({}); 
+  const handleOnMin = (windowEl: HTMLDivElement | null,key?:string, isMinz?:boolean) => {
+    if (!windowEl || !key) return;
+
+  // Save previous size/pos (for restore)
+    //const rect = windowEl.getBoundingClientRect();
+
+    setCompAttri(prev => ({
+      ...prev,
+      [key]: {
+        ...prev[key],
+        isMinz: isMinz ?? false,
+      },
+    }));
+    windowEl.style.transition = "transform .35s ease, width .35s ease, height .35s ease";
+
+    requestAnimationFrame(() => {
+      /*windowEl.style.setProperty("--x", "50vw");
+      windowEl.style.setProperty("--y", "100vh");
+      windowEl.style.setProperty("--w", "0");
+      windowEl.style.setProperty("--h", "0");
+        windowEl.style.transform = `translate(0px, 0px)`;
+        windowEl.style.width = "100%";
+        windowEl.style.height ="100%";
+
+      */ 
+      windowEl.style.transform = `translate3d(50vw,95vh,0)`;
+      windowEl.style.width = "0";
+      windowEl.style.height="0";
+    });
+    const removeTransition = () => {
+      windowEl.style.transition = "none";  // remove animation
+      windowEl.removeEventListener("transitionend", removeTransition);
+    };
+
+    windowEl.addEventListener("transitionend", removeTransition); 
+   }
+
    const handleOnClose = (key?: string, isCloseB?: boolean) => {
      if (!key) return ;
      const windowEl = winRefs.current[key];
@@ -60,12 +98,11 @@ export default function Home(){
         pHeight:rect.height,
         pWidth:rect.width,
         pX:rect.x,
-        pY:rect.y-50}
+        pY:rect.y-29}
     }));
   };
 
   const handleOnMax = (windowEl: HTMLDivElement | null, key?: string, isMaxB?: boolean) => {
-    console.log(isMaxB);
     if (!key || !windowEl) return ; 
     setCompAttri((prev) => ({
       ...prev,
@@ -83,7 +120,7 @@ export default function Home(){
         [key]: {...prev[key],
           pWidth: rect.width,
           pHeight: rect.height,
-          pY:rect.y-50,
+          pY:rect.y-29,
           pX:rect.x
         }
       }));
@@ -101,24 +138,66 @@ export default function Home(){
       const offsetX = compAttri[key].pX; const offsetY = compAttri[key].pY;
       //console.log(offsetX+"-"+offsetY);
       windowEl.style.transform = `translate(${offsetX}px,${offsetY}px)`;
-
     }
   };
 
+  const handleAppClose = (key?: string) => {
+    if (!key) return;
 
- 
+    activezIndex.current = activezIndex.current + 1;
 
-  const handleApp = (key?:string) => {
+    setCompAttri((prev) => {
+      const item = prev[key];
+      if (!item) return prev;
 
-    if(!key) return;
-    activezIndex.current = activezIndex.current+1;
-    const isCloseB = !compAttri[key]?.isClose;
-    setCompAttri((prev) => ({
-      ...prev,
-      [key]: {...prev[key],isClose:isCloseB,zIndex:activezIndex.current}
-    }));
-    //console.log(activezIndex.current);
-  } 
+      // CLOSE BEHAVIOR
+      const isCloseB = !item.isClose;
+      if (!isCloseB) {
+        return {
+          ...prev,
+          [key]: {
+            ...item,
+            isClose: isCloseB,
+            zIndex: activezIndex.current
+          }
+        };
+      }
+
+      // MINIMIZE / RESTORE
+      const newIsMinz = !item.isMinz; // correctly computed from prev
+
+      const windowEl = winRefs.current[key];
+      if (!windowEl) return prev;
+
+      windowEl.style.transition = "transform .35s ease, width .35s ease, height .35s ease";
+
+      if (newIsMinz) {
+        // RESTORE
+        requestAnimationFrame(() => {
+          windowEl.style.width = item.pWidth + "px";
+          windowEl.style.height = item.pHeight + "px";
+          windowEl.style.transform = `translate(${item.pX}px, ${item.pY}px)`;
+        });
+      }
+
+      const removeTransition = () => {
+        windowEl.style.transition = "none";
+        windowEl.removeEventListener("transitionend", removeTransition);
+      };
+      windowEl.addEventListener("transitionend", removeTransition);
+
+      // Return NEW state
+      return {
+        ...prev,
+        [key]: {
+          ...item,
+          isMinz: newIsMinz,
+          zIndex: activezIndex.current
+        }
+      };
+    });
+  };
+
 
   return (
     <>
@@ -132,11 +211,10 @@ export default function Home(){
             if(!isLoadApps) return null;
             else return (
               <div
-                className={`win-container ${key} blur-bg`}
+                className={`win-container ${key} blur-bg `}
                 key={key}
                 ref={(el) => {winRefs.current[key] = el}}
                 style={{ transform: `translate(${compAttri[key].pX}px,${compAttri[key].pY}px)`,width:`${compAttri[key].pWidth}px`, height:`${compAttri[key].pHeight}px`,zIndex:compAttri[key].zIndex}}
-
                 onMouseDown={(e) => {
                   //console.log(activezIndex.current)
                   activezIndex.current = activezIndex.current+1;
@@ -145,13 +223,15 @@ export default function Home(){
                   onClickWindows(e,winRefs.current[key]) 
                 }}
               >
-                <Component sendCloseB={(isClose?:boolean) => handleOnClose(key,isClose ?? false)} 
-                sendMaxB={(isMax?:boolean)=> handleOnMax(winRefs.current[key],key,isMax ??false)}/>
+                <Component 
+                sendMinz={(isMinz?:boolean) => handleOnMin(winRefs.current[key],key,isMinz ?? false)}
+                sendCloseB={(isClose?:boolean) => handleOnClose(key,isClose ?? false)} 
+                sendMaxB={(isMax?:boolean) => handleOnMax(winRefs.current[key],key,isMax ?? false)}/>
               </div>
             );
           })}
         </div>
-        <AppDrawer onClose={handleApp}/>       
+        <AppDrawer keyApp={handleAppClose}/>       
       </div>
     </>
   );

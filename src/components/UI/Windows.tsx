@@ -13,13 +13,14 @@ interface MyComponentProps {
   menuBar?:React.ReactNode;
   onClose?: (state:boolean) => void; 
   onMax?: (state:boolean) => void;
-
+  onMinz?: (state:boolean)  => void;
 }
 
 
-const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar,height='30px',onClose,onMax}) => {
+const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar,height='30px',onClose,onMax,onMinz}) => {
   const [showMax, setShowMax] = useState<boolean>(false);
   const [isClose,setisClose] = useState<boolean>(false);
+  const [isMinimized, setIsMinized] = useState<boolean>(false);
 
 
   const onClickMax = () => {
@@ -34,9 +35,13 @@ const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar
 
   }
 
+  const minimizeBtn = () => {
+    const minz = isMinimized;
+    setIsMinized(minz);
+    onMinz?.(minz);
+  }
 
 
-  
   return (
     <>
     <div className="main-windows" style={{height: height}} >
@@ -45,7 +50,7 @@ const Windows: React.FC<MyComponentProps> = ({ title,hideResizeBtn=false,menuBar
         <div className="title-con" style={{height: height}} > { menuBar || <h4>{title}</h4>  }</div>
 
         <div className="window-container">
-          <div className="minimize-btn window-btn">&#128469;</div>
+          <div className="minimize-btn window-btn" onClick={()=>minimizeBtn()}>&#128469;</div>
           <div className="maximize-btn window-btn" onClick={onClickMax}>{showMax ? '🗗' : '🗖'}</div>            
           <div className="close-btn window-btn" onClick={()=>closeBtn()}>&#x2715;</div>
         </div>
