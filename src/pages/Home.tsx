@@ -34,12 +34,16 @@ export default function Home(){
     { key: "experience",  Component: Exp    , defaultX:535 , defaultY:0, pWidth:0, pHeight:0},
     { key: "resume",      Component: Resume   },
   ]
+  const offset = window.innerHeight * 0.022;
+  const maxHeight = window.innerHeight * 0.38;
+  const maxWidth = window.innerWidth * 0.2;
 
   useEffect(() => {
     //setLoadApps?.(true);
+
     setCompAttri((prev) => ({
-      'about': {...prev['about'],pX:26,pY:18,isMinz:false},
-      'cert': {...prev['cert'],pX:26,pY:542},
+      'about': {...prev['about'],pX:26,pY:18,isMinz:false,pWidth:maxWidth,pHeight:maxHeight},
+      'cert': {...prev['cert'],pX:26,pY:542,pWidth:maxWidth,pHeight:maxHeight},
       'experience': {...prev['experience'],pX:535,pY:0},
       'resume': {...prev['resume'],pX:800,pY:25,isClose:true}
     }));
@@ -52,30 +56,26 @@ export default function Home(){
     if (!windowEl || !key) return;
 
   // Save previous size/pos (for restore)
-    //const rect = windowEl.getBoundingClientRect();
-
+    const rect = windowEl.getBoundingClientRect();
+    
     setCompAttri(prev => ({
       ...prev,
       [key]: {
         ...prev[key],
+        pHeight:rect.height,
+        pWidth:rect.width,
+        pX:rect.x,
+        pY:rect.y - offset,
         isMinz: isMinz ?? false,
       },
     }));
     windowEl.style.transition = "transform .35s ease, width .35s ease, height .35s ease";
 
     requestAnimationFrame(() => {
-      /*windowEl.style.setProperty("--x", "50vw");
-      windowEl.style.setProperty("--y", "100vh");
-      windowEl.style.setProperty("--w", "0");
-      windowEl.style.setProperty("--h", "0");
-        windowEl.style.transform = `translate(0px, 0px)`;
-        windowEl.style.width = "100%";
-        windowEl.style.height ="100%";
-
-      */ 
-      windowEl.style.transform = `translate3d(50vw,95vh,0)`;
       windowEl.style.width = "0";
       windowEl.style.height="0";
+      windowEl.style.transform = `translate3d(50vw,90vh,0)`;
+
     });
     const removeTransition = () => {
       windowEl.style.transition = "none";  // remove animation
@@ -90,6 +90,7 @@ export default function Home(){
      const windowEl = winRefs.current[key];
      if(!windowEl) return;
      const rect = windowEl.getBoundingClientRect();
+     
 
     setCompAttri((prev) => ({
       ...prev,
@@ -98,7 +99,7 @@ export default function Home(){
         pHeight:rect.height,
         pWidth:rect.width,
         pX:rect.x,
-        pY:rect.y-29}
+        pY:rect.y-offset}
     }));
   };
 
@@ -120,7 +121,7 @@ export default function Home(){
         [key]: {...prev[key],
           pWidth: rect.width,
           pHeight: rect.height,
-          pY:rect.y-29,
+          pY:rect.y-offset,
           pX:rect.x
         }
       }));

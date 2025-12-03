@@ -8,9 +8,10 @@ import TabFeatures from "@/components/Layout/Experience/TabFeatures.tsx";
 interface ProjProps {
   sendCloseB?: (isClose?:boolean) => void;  
   sendMaxB?: (isMax?:boolean) => void;
+  sendMinz?: (isMinz?:boolean) => void
 }
 
-const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB}) => {
+const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz}) => {
   //Margin height base on title
   const height = "45px";
   const [menu,setMenu] = useState<String>('Projects');
@@ -25,11 +26,14 @@ const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB}) => {
    else if  (key == 2) setMenu('Experience');
    else setMenu('Projects'); 
   }
+  const handelOnMinz = (data?:boolean) => {
+    sendMinz?.(data);
+  }
 
 
   return (
     <div className="exp exp-container">
-          <Windows  title='Experience' hideResizeBtn={false} onClose={handleOnclose} onMax={handleOnMax} height={height} menuBar= { <>
+          <Windows  title='Experience' hideResizeBtn={false} onMinz={handelOnMinz} onClose={handleOnclose} onMax={handleOnMax} height={height} menuBar= { <>
             <div className={`menu-btn-exp over-btn flex-center ${menu === 'Overview' ? "active" : ""}`} onClick={()=>handleMenuClick(1)}> Overview</div>
             <div className={`menu-btn-exp exp-btn flex-center  ${menu === 'Experience' ? "active" : ""}`} onClick={()=>handleMenuClick(2)}> Experience</div>
             <div className={`menu-btn-exp proj-btn flex-center ${menu === 'Projects' ? "active" : ""}`} onClick={()=>handleMenuClick(3)}> Projects</div>

@@ -24,6 +24,7 @@ interface CertProps{
   sendCloseB?:(isClose?:boolean) => void;
   sendMaxB?:(isMax?:boolean) => void;
   //sendDragB?:(pos:WinPos) => void;
+  sendMinz?:(isMinz?:boolean) => void;
 }
 
 interface ImageURLS {
@@ -54,7 +55,7 @@ const techImageUrls = [
 ];
 
 
-const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB}) => {
+const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB,sendMinz}) => {
   const [activeFolder, setActiveFolder] = useState<string>('Certificate');
   const [imageURLS,setImageURLS] = useState<ImageURLS[] | null>(certImageUrls);
   
@@ -63,6 +64,9 @@ const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB}) => {
   }
   const handleMaxBtn = (data?:boolean) => {
     sendMaxB?.(data);
+  }
+  const handleMinzBtn = (data?:boolean) => {
+    sendMinz?.(data);
   }
 
 
@@ -75,7 +79,7 @@ const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB}) => {
   }
   return (
     <div className="cert-container">
-      <Windows  title={activeFolder} onClose={handleCloseBtn} onMax={handleMaxBtn}  hideResizeBtn={false}/>
+      <Windows  title={activeFolder} onMinz={handleMinzBtn} onClose={handleCloseBtn} onMax={handleMaxBtn}  hideResizeBtn={false}/>
       <div className="content">
           <NavPane onDataSend={handleDataFromNavPane}/>
           <div className="image-container">

@@ -20,7 +20,7 @@ export default function AboutMe({sendCloseB,sendMinz}:AboutMeProps) {
   }
   return (
     <div className="about-me about-container" >
-      <Windows  title='About Me' hideResizeBtn={true} onClose={handleOnClose} onMinz={handleOnMin}/>
+      <Windows  title='About Me' hideResizeBtn={true} onClose={handleOnClose} onMinz={handleOnMin} disableMax={true}/>
       <div className="content">
         <div className="profile">
             <img className="profile-picture" src={selfie} alt="daryl"/>

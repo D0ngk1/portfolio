@@ -48,8 +48,10 @@ const TabProjects = () => {
   return (
     <>
         <div className="active-items" style={{ backgroundImage:`url(${activeProj?.image})` }}>
-         <h1>{activeProj?.name}</h1>
-         <p className="proj-desc">{activeProj?.description}</p>
+          <div className="active-proj-text">  
+           <h1>{activeProj?.name}</h1>
+           <p className="proj-desc">{activeProj?.description}</p>
+          </div>
         </div>
         <div className="selector">
          <ul className="select-items-proj">

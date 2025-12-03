@@ -13,19 +13,17 @@
 }
 .desktop {
   height: 97.8vh;
-  margin-top: 29px;
+  margin-top: 2.2vh;
   --background-color: green;
   width: 100vw;
   position: relative;
   overflow: hidden;
 }
-.about, .cert{
-  width:500px;
-  height: 500px;
-  position:absolute;
 
+.win-container {
+  position: absolute;
+  overflow: hidden;
 }
-
 
 
 .blur-bg {
@@ -44,36 +42,23 @@
   width: 100%;
   top:0;
   display: flex;
-  color:rgb(229, 218, 173);
+  color: var(--primary-color);
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
 
-.win-container{
-  overflow: hidden;
-}
-
-
-
-.about {
-  --transform: translate(26px,18px);
-}
 
 .experience {
   width: 70%;
   height: 85%;
+  min-width: 55%;
+  min-height: 70%;
   position:absolute;
-  --transform: translate(535px,0px);
-}
-
-.cert {
-  --transform: translate(26px,542px);
 }
 
 .about-container .title-con h4 {
-  --background-color: red;
   text-align: center;
 }
 
@@ -81,11 +66,9 @@
   width: 920px;
   height: 70%;
   position: absolute;
-  --transform: translate(535px,220px);
 }
 
 .drag-div {
-  --background: red;
   width: 77%;
   height: 33px;
   position: absolute;

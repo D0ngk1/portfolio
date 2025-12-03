@@ -2,21 +2,21 @@
   width: 100%;
   height: 100%;
   position: relative;
-  --background-color: red;
 }
 .cert-container .imgs {
   margin:5px 5px 0px 5px;
-  --background-color: green;
 }
 .cert-container .content {
-  --background-color:green;
   display:flex;
   flex-direction: row;
   flex:1;
 }
 .lbl {
   text-align: center;
-  --background-color: white;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .image-container {
   width: 100%;
@@ -24,23 +24,23 @@
   overflow: auto;
 }
 .image-container-wrap {
-  --background-color:green;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
+  gap:5px;
 }
 
 .img-label {
-  --background-color: red;
-  width: 150px;
-  height: 170px;
-  padding:  8px;
+  width: 6vw;
+  height: 15vh;
+  padding: 0;
+  margin: 0;
 }
-.imgs {
-  width: 110px;
-  height: 110px;
-  --background-color: red;
+.img-label .imgs {
+  width: 4.5vw;
+  height: 8vh;
+  margin: 1em auto;
+  display: block;
 }
 
 

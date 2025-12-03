@@ -7,6 +7,7 @@ import "./PDFViewer.css";
 interface ProjProps {
   sendCloseB?: (isClose?:boolean) => void;  
   sendMaxB?: (isMax?:boolean) => void;
+  sendMinz?: (isMinz?:boolean) => void;
 }
 
 
@@ -14,7 +15,7 @@ interface ProjProps {
 pdfjsLib.GlobalWorkerOptions.workerSrc = 
   `https://unpkg.com/pdfjs-dist@5.4.394/build/pdf.worker.min.mjs`;
 
-  const PDFViewer: React.FC<ProjProps> = ({sendCloseB,sendMaxB}) => {
+  const PDFViewer: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz}) => {
   const [pdf, setPdf] = useState<pdfjsLib.PDFDocumentProxy | null>(null);
   const [pageNum, setPageNum] = useState(1);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -34,6 +35,9 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
   }
   const handleOnclose =(data?: boolean)=>{
     sendCloseB?.(data);
+  }
+  const handleOnMinz = (data?: boolean) => {
+    sendMinz?.(data);
   }
   useEffect(() => {
     const loadPdf = async () => {
@@ -98,7 +102,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 
   return (
     <div className="pdf-container">
-      <Windows  title='Resume' hideResizeBtn={false} onClose={handleOnclose} onMax={handleOnMax} />
+      <Windows  title='Resume' hideResizeBtn={false} onMinz={handleOnMinz} onClose={handleOnclose} onMax={handleOnMax} />
       <div className="pdf-wrapper">
        <div className="pdf-btns-container">        
        <input
@@ -129,6 +133,9 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
             </button>
            </div>
           )}
+        <a href={pdfFile} className='a-dl-cv' download='darylg-cv' target='_blank'>
+         <button className='download-cv'>Download</button>
+        </a>
         </div>
         <div className="pdf-content">
           <canvas ref={canvasRef} />

@@ -9,6 +9,10 @@ import FrontendImg from "@/assets/skills/frontend.png";
 import Backend from "@/assets/skills/backend.png";
 import TroubleshootingImg from "@/assets/skills/troubleshooting.png";
 import LinuxImg from "@/assets/skills/linux.png";
+import OOPImg from "@/assets/skills/programming.png";
+import RootCImg from "@/assets/skills/root-cause.png";
+
+import Arrow from "@/assets/arrow.png";
 
 
 
@@ -23,14 +27,14 @@ const extFeat = [
 const skills = [
   {name: 'Networking',img:NetworkingImg},
   {name: 'Programming',img:ProgrammingImg},
-  {name: 'OOP'},
+  {name: 'OOP',img:OOPImg},
   {name: 'Backend',img:Backend},
   {name: 'Frontend',img:FrontendImg},
   {name: 'IT Security',img:SecurityImg},
   {name: 'Unix/Linux',img:LinuxImg},
   //{name: 'Windows'},
   {name: 'Troubleshooting',img:TroubleshootingImg},
-  {name: 'Root Cause Analysis'},
+  {name: 'Root Cause Analysis',img:RootCImg},
   //{name: ''},
   //{name: 'Frontend'},
 ]
@@ -117,7 +121,7 @@ const TabFeatures = () => {
               if (name.name !== 'Dictionary') return (
                 <div style={{ ...(name.image ? { backgroundImage: `url(${name.image})` } : {}) }} className={`flex-shrink-0 recent-feat feat-${name.name.replace(/\s+/g, '-').toLowerCase()}`}
                   key={i}
-                  onClick={()=>setActiveIndex(i)}
+                  //onClick={()=>setActiveIndex(i)}
                 >
                 <div className="feat-desc">
                   <h1>{name.name}</h1>
@@ -127,8 +131,8 @@ const TabFeatures = () => {
               )
             })}
             
-            <div className="left-slide slide-btn" onClick={throttledPrev}></div>
-            <div className="right-slide slide-btn" onClick={throttledNext}></div>
+            <div className="left-slide slide-btn" onClick={throttledPrev}><img className='left-arrow' src={Arrow} alt="left arrow" /></div>
+            <div className="right-slide slide-btn" onClick={throttledNext}><img className='right-arrow' src={Arrow} alt="right arrow" /></div>
           </div>
         </div>
         <div className="feat-skill-wrapper">
@@ -137,9 +141,6 @@ const TabFeatures = () => {
             {skills.map(({name,img},i) =>  ( 
             <div className="container-skill-items">
               <div className="feat-skill-items" key={i} 
-              /*style={{...(img ? 
-              { backgroundImage:`url(${img})`} : {}
-              )}}*/ 
               >{img && (<img src={img} alt="" /> )}</div>
             <h4 className="title-feat-skill" key={i}>{name}</h4>
             </div>

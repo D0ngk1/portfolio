@@ -12,7 +12,7 @@ export default function useWindowDrag() {
   //const resizeDir = useRef<{ right?: boolean; bottom?: boolean; corner?: boolean }>({});
   const startSize = useRef({ w: 0, h: 0 });
   const startPos = useRef({ x: 0, y: 0 });
-
+  const marginTop = window.innerHeight * 0.022;
   
 
   //---------------When CLicked on main-windows
@@ -25,6 +25,8 @@ export default function useWindowDrag() {
     // Only drag if click is in `.title`
     const isTitle = (e.target as HTMLElement).closest(".title");
     const isResize = (e.target as HTMLElement).closest(".resize-btn");
+
+
     //-------------------startDrag-----------------------
     if (isTitle){
 
@@ -63,18 +65,20 @@ export default function useWindowDrag() {
   };
   const resizeMove = (e: MouseEvent) => {
     if (!isResizing.current || !activeWindow.current) return;
+      const maxHeight = window.innerHeight * 0.38;
+      const maxWidth = window.innerWidth * 0.2;
       const newWidth = startSize.current.w + (e.clientX - startPos.current.x);
       const newHeight = startSize.current.h + (e.clientY - startPos.current.y);
 
-       activeWindow.current.style.width = Math.max(500, newWidth)  + "px";
-       activeWindow.current.style.height = Math.max(500, newHeight) + "px";
+       activeWindow.current.style.width = Math.max(maxWidth, newWidth)  + "px";
+       activeWindow.current.style.height = Math.max(maxHeight, newHeight) + "px";
      }; 
 
   const dragMove = (e: MouseEvent) => {
     if (!isDragging.current || !activeWindow.current) return;
 
     const x = e.clientX - dragOffset.current.x;
-    let y = e.clientY - dragOffset.current.y - 29;
+    let y = e.clientY - dragOffset.current.y - marginTop;
 
     if (y < 0) y = 0;
 
