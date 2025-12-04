@@ -5,30 +5,30 @@ export default function useWindowDrag() {
   const activeWindow = useRef<HTMLDivElement | null>(null);
   const dragOffset = useRef({ x: 0, y: 0 });
   const isDragging = useRef(false);
-
+  const keyRef = useRef<String | null>(null);
   //------------------------Resize states
-  
+
   const isResizing = useRef(false);
   //const resizeDir = useRef<{ right?: boolean; bottom?: boolean; corner?: boolean }>({});
   const startSize = useRef({ w: 0, h: 0 });
   const startPos = useRef({ x: 0, y: 0 });
   const marginTop = window.innerHeight * 0.022;
-  
+
 
   //---------------When CLicked on main-windows
   const onClickWindows = (
     e: React.MouseEvent<HTMLDivElement>,
-    windowEl: HTMLDivElement | null
+    windowEl: HTMLDivElement | null, key: string
   ) => {
     if (!windowEl) return;
-
+    keyRef.current = key;
     // Only drag if click is in `.title`
     const isTitle = (e.target as HTMLElement).closest(".title");
     const isResize = (e.target as HTMLElement).closest(".resize-btn");
 
 
     //-------------------startDrag-----------------------
-    if (isTitle){
+    if (isTitle) {
 
       const rect = windowEl.getBoundingClientRect();
 
@@ -43,7 +43,7 @@ export default function useWindowDrag() {
       document.addEventListener("mousemove", onMove);
       document.addEventListener("mouseup", stopAll);
     } //-------------------startResize-----------------------
-    else if (isResize){
+    else if (isResize) {
       const rect = windowEl.getBoundingClientRect();
       activeWindow.current = windowEl;
       isResizing.current = true;
@@ -57,7 +57,7 @@ export default function useWindowDrag() {
     else return;
   };
 
-  
+
 
   const onMove = (e: MouseEvent) => {
     if (isDragging.current && activeWindow.current) dragMove(e);
@@ -65,14 +65,20 @@ export default function useWindowDrag() {
   };
   const resizeMove = (e: MouseEvent) => {
     if (!isResizing.current || !activeWindow.current) return;
-      const maxHeight = window.innerHeight * 0.38;
-      const maxWidth = window.innerWidth * 0.2;
-      const newWidth = startSize.current.w + (e.clientX - startPos.current.x);
-      const newHeight = startSize.current.h + (e.clientY - startPos.current.y);
+    let maxHeight = 0; let maxWidth = 0;
+    if (keyRef.current !== 'experience') {
+      maxHeight = window.innerHeight * 0.38;
+      maxWidth = window.innerWidth * 0.2;
+    } else {
+      maxHeight = window.innerHeight * 0.7;
+      maxWidth = window.innerWidth * 0.55;
+    }
+    const newWidth = startSize.current.w + (e.clientX - startPos.current.x);
+    const newHeight = startSize.current.h + (e.clientY - startPos.current.y);
 
-       activeWindow.current.style.width = Math.max(maxWidth, newWidth)  + "px";
-       activeWindow.current.style.height = Math.max(maxHeight, newHeight) + "px";
-     }; 
+    activeWindow.current.style.width = Math.max(maxWidth, newWidth) + "px";
+    activeWindow.current.style.height = Math.max(maxHeight, newHeight) + "px";
+  };
 
   const dragMove = (e: MouseEvent) => {
     if (!isDragging.current || !activeWindow.current) return;
