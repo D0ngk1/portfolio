@@ -42,10 +42,10 @@ export default function Home() {
     //setLoadApps?.(true);
 
     setCompAttri((prev) => ({
-      'about': { ...prev['about'], pX: 26, pY: 18, isMinz: false, pWidth: maxWidth, pHeight: maxHeight },
-      'cert': { ...prev['cert'], pX: 26, pY: 542, pWidth: maxWidth, pHeight: maxHeight },
-      'experience': { ...prev['experience'], pX: 535, pY: 0 },
-      'resume': { ...prev['resume'], pX: 800, pY: 25, isClose: true }
+      'about':      { ...prev['about'],      pX: 26,  pY: 18,  isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
+      'cert':       { ...prev['cert'],       pX: 26,  pY: 542, isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
+      'experience': { ...prev['experience'], pX: 535, pY: 0,   isMinz:false, isClose: false},
+      'resume':     { ...prev['resume'],     pX: 800, pY: 25,  isMinz:false, isClose: true }
     }));
     setLoadApps?.(true);
 
@@ -54,21 +54,35 @@ export default function Home() {
   //const boxRef = useRef<HTMLDivElement>({}); 
   const handleOnMin = (windowEl: HTMLDivElement | null, key?: string, isMinz?: boolean) => {
     if (!windowEl || !key) return;
-
     // Save previous size/pos (for restore)
     const rect = windowEl.getBoundingClientRect();
+    console.log(isMinz)
+    if(compAttri[key].isMax){
+      setCompAttri(prev => ({
+        ...prev,
+        [key]: {
+          ...prev[key],
+          //pHeight: rect.height,
+          //pWidth: rect.width,
+          //pX: rect.x,
+          //pY: rect.y - offset,
+          isMinz: isMinz ?? false,
+        },
+      }));
+    }else {
+      setCompAttri(prev => ({
+        ...prev,
+        [key]: {
+          ...prev[key],
+          pHeight: rect.height,
+          pWidth: rect.width,
+          pX: rect.x,
+          pY: rect.y - offset,
+          isMinz: isMinz ?? false,
+        },
+      }));
 
-    setCompAttri(prev => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        pHeight: rect.height,
-        pWidth: rect.width,
-        pX: rect.x,
-        pY: rect.y - offset,
-        isMinz: isMinz ?? false,
-      },
-    }));
+    }
 
     windowEl.style.transition = "transform .35s ease, width .35s ease, height .35s ease";
 
@@ -92,19 +106,28 @@ export default function Home() {
     const windowEl = winRefs.current[key];
     if (!windowEl) return;
     const rect = windowEl.getBoundingClientRect();
+    if(compAttri[key].isMax){
+      setCompAttri((prev) => ({
+        ...prev,
+        [key]: {
+          ...prev[key],
+          isClose: isCloseB ?? true
+        }
+      }));
+    }else {
+      setCompAttri((prev) => ({
+        ...prev,
+        [key]: {
+          ...prev[key],
+          pWidth: rect.width,
+          pHeight: rect.height,
+          pY: rect.y - offset,
+          pX: rect.x,
+          isClose: isCloseB ?? true
+        }
+      }));
+    }
 
-
-    setCompAttri((prev) => ({
-      ...prev,
-      [key]: {
-        ...prev[key],
-        isClose: isCloseB ?? false,
-        pHeight: rect.height,
-        pWidth: rect.width,
-        pX: rect.x,
-        pY: rect.y - offset
-      }
-    }));
   };
 
   const handleOnMax = (windowEl: HTMLDivElement | null, key?: string, isMaxB?: boolean) => {
@@ -170,20 +193,28 @@ export default function Home() {
         };
       }
 
-      // MINIMIZE / RESTORE
-      const newIsMinz = !item.isMinz; // correctly computed from prev
-
+      // MINIMIZE / RESTORE BEHAVIOR
       const windowEl = winRefs.current[key];
       if (!windowEl) return prev;
 
       windowEl.style.transition = "transform .35s ease, width .35s ease, height .35s ease";
-
-      if (newIsMinz) {
+      let newItemz = item.isMinz;
+      console.log(item.isMinz);
+      if (item.isMinz) {
         // RESTORE
+        newItemz = !item.isMinz;
         requestAnimationFrame(() => {
-          windowEl.style.width = item.pWidth + "px";
-          windowEl.style.height = item.pHeight + "px";
-          windowEl.style.transform = `translate(${item.pX}px, ${item.pY}px)`;
+          if(item.isMax){
+            windowEl.style.width  = "100%";
+            windowEl.style.height = "100%";
+            windowEl.style.transform = "translate(0px,0px)";
+          }else {
+            windowEl.style.width = item.pWidth + "px";
+            windowEl.style.height = item.pHeight + "px";
+            windowEl.style.transform = `translate(${item.pX}px, ${item.pY}px)`;
+
+          }
+
         });
       }
 
@@ -192,13 +223,13 @@ export default function Home() {
         windowEl.removeEventListener("transitionend", removeTransition);
       };
       windowEl.addEventListener("transitionend", removeTransition);
-
       // Return NEW state
+      console.log(newItemz+'2');
       return {
         ...prev,
         [key]: {
           ...item,
-          isMinz: newIsMinz,
+          isMinz: newItemz,
           zIndex: activezIndex.current
         }
       };
@@ -221,7 +252,12 @@ export default function Home() {
                 className={`win-container ${key} blur-bg `}
                 key={key}
                 ref={(el) => { winRefs.current[key] = el }}
-                style={{ transform: `translate(${compAttri[key].pX}px,${compAttri[key].pY}px)`, width: `${compAttri[key].pWidth}px`, height: `${compAttri[key].pHeight}px`, zIndex: compAttri[key].zIndex }}
+                style={{ 
+                  transform: `translate(${!compAttri[key].isMax ? compAttri[key].pX : '0'}px,${!compAttri[key].isMax ? compAttri[key].pY : '0'}px)`, 
+                  width:  `${!compAttri[key].isMax ? compAttri[key].pWidth+'px' : '100%'}`, 
+                  height: `${!compAttri[key].isMax ? compAttri[key].pHeight+"px" : '100%'}`, 
+                  zIndex: compAttri[key].zIndex 
+                }}
                 onMouseDown={(e) => {
                   //console.log(activezIndex.current)
                   activezIndex.current = activezIndex.current + 1;
@@ -231,6 +267,8 @@ export default function Home() {
                 }}
               >
                 <Component
+                  isMax={compAttri[key].isMax}
+                  isMinz={compAttri[key].isMinz}
                   sendMinz={(isMinz?: boolean) => handleOnMin(winRefs.current[key], key, isMinz ?? false)}
                   sendCloseB={(isClose?: boolean) => handleOnClose(key, isClose ?? false)}
                   sendMaxB={(isMax?: boolean) => handleOnMax(winRefs.current[key], key, isMax ?? false)} />

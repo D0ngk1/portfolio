@@ -5,7 +5,7 @@
   y:number;
 }*/
 import "./Windows.css";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 interface MyComponentProps {
   title?: string;
   hideResizeBtn: boolean;
@@ -15,14 +15,25 @@ interface MyComponentProps {
   onClose?: (state: boolean) => void;
   onMax?: (state: boolean) => void;
   onMinz?: (state: boolean) => void;
+  isMax?:boolean;
+  isMinz?:boolean;
 }
 
 
-const Windows: React.FC<MyComponentProps> = ({ title, hideResizeBtn = false, menuBar, height = '30px', onClose, onMax, onMinz, disableMax = false }) => {
+const Windows: React.FC<MyComponentProps> = ({ title, hideResizeBtn = false, menuBar, height = '30px', onClose, isMax,isMinz,onMax, onMinz, disableMax = false }) => {
   const [showMax, setShowMax] = useState<boolean>(false);
   const [isClose, setisClose] = useState<boolean>(false);
   const [isMinimized, setIsMinized] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (isMax !== undefined) {
+      setShowMax(isMax);  // sync when parent updates
+    }
+    if (isMinz !== undefined) {
+      setIsMinized(isMinz);
+    }
+    
+  }, [isMax,isMinz]);
 
   const onClickMax = () => {
     if (disableMax) return
@@ -37,7 +48,7 @@ const Windows: React.FC<MyComponentProps> = ({ title, hideResizeBtn = false, men
   }
 
   const minimizeBtn = () => {
-    const minz = isMinimized;
+    const minz = !isMinimized;
     setIsMinized(minz);
     onMinz?.(minz);
   }
