@@ -10,9 +10,10 @@ interface ProjProps {
   sendMaxB?: (isMax?:boolean) => void;
   sendMinz?: (isMinz?:boolean) => void;
   isMax?:boolean;
+  isMinz?:boolean;
 }
 
-const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz,isMax}) => {
+const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz,isMax,isMinz}) => {
   //Margin height base on title
   const height = "45px";
   const [menu,setMenu] = useState<String>('Projects');
@@ -34,7 +35,7 @@ const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz,isMax}) =
 
   return (
     <div className="exp exp-container">
-          <Windows  title='Experience' hideResizeBtn={false} isMax={isMax} onMinz={handelOnMinz} onClose={handleOnclose} onMax={handleOnMax} height={height} menuBar= { <>
+          <Windows  title='Experience' hideResizeBtn={false} isMax={isMax} isMinz={isMinz} onMinz={handelOnMinz} onClose={handleOnclose} onMax={handleOnMax} height={height} menuBar= { <>
             <div className={`menu-btn-exp over-btn flex-center ${menu === 'Overview' ? "active" : ""}`} onClick={()=>handleMenuClick(1)}> Overview</div>
             <div className={`menu-btn-exp exp-btn flex-center  ${menu === 'Experience' ? "active" : ""}`} onClick={()=>handleMenuClick(2)}> Experience</div>
             <div className={`menu-btn-exp proj-btn flex-center ${menu === 'Projects' ? "active" : ""}`} onClick={()=>handleMenuClick(3)}> Projects</div>

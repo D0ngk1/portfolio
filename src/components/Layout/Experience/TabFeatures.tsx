@@ -113,7 +113,7 @@ const TabFeatures = () => {
   return (
     <>
       <div className="feat-container">
-        <div className="feat-intro display-flex-center"><h1>A tech enthusiast equipped with strong programming, cybersecurity and IT skills.</h1></div>
+        <div className="feat-intro display-flex-center"><h1>A Developer equipped with Cybersecurity and IT skills.</h1></div>
         <div className="feat-proj-wrapper">
           <h2 className="feat-label">Featured</h2>
           <div className="recent-feat-container display-flex-row" ref={recentRef}> 

@@ -9,6 +9,7 @@ interface ProjProps {
   sendMaxB?: (isMax?:boolean) => void;
   sendMinz?: (isMinz?:boolean) => void;
   isMax?:boolean;
+  isMinz?:boolean;
 }
 
 
@@ -16,7 +17,7 @@ interface ProjProps {
 pdfjsLib.GlobalWorkerOptions.workerSrc = 
   `https://unpkg.com/pdfjs-dist@5.4.394/build/pdf.worker.min.mjs`;
 
-  const PDFViewer: React.FC<ProjProps> = ({sendCloseB,isMax,sendMaxB,sendMinz}) => {
+  const PDFViewer: React.FC<ProjProps> = ({sendCloseB,isMax,isMinz,sendMaxB,sendMinz}) => {
   const [pdf, setPdf] = useState<pdfjsLib.PDFDocumentProxy | null>(null);
   const [pageNum, setPageNum] = useState(1);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -103,7 +104,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
 
   return (
     <div className="pdf-container">
-      <Windows  title='Resume' hideResizeBtn={false} isMax={isMax} onMinz={handleOnMinz} onClose={handleOnclose} onMax={handleOnMax} />
+      <Windows  title='Resume' hideResizeBtn={false} isMax={isMax} isMinz={isMinz} onMinz={handleOnMinz} onClose={handleOnclose} onMax={handleOnMax} />
       <div className="pdf-wrapper">
        <div className="pdf-btns-container">        
        <input
