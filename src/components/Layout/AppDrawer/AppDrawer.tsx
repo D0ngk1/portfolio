@@ -44,7 +44,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({keyApp}) => {
       <div className="app-icon" onClick={()=>handleApp('cert')}><img src={Files} alt="boy icon" /><p className="files-label">Files</p></div>
       <div className="app-icon" onClick={()=>handleApp('experience')}><img src={Skills} alt="boy icon" /><p className="skills-label">Skills</p></div>
       <div className="app-icon" onClick={()=>handleApp('resume')}><img src={Resume} alt="boy icon" /><p className="resume-label">Resume</p></div>
-      <div className="app-icon calendar"><img src={Calendar} alt="boy icon" /><p className="calendar-label">Calendar</p></div>
+      <div className="app-icon calendar" onClick={()=>handleApp('calendar')}><img src={Calendar} alt="boy icon" /><p className="calendar-label">Calendar</p></div>
      </div>
     </div>
   );

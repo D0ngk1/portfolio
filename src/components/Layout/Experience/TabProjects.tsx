@@ -3,6 +3,7 @@ import TodoApp from "@/assets/projects/todo-list.jpg";
 import Dictionary from "@/assets/projects/dictionary.jpg";
 import Portfolio from "@/assets/wallhaven-y892kg.jpg";
 import ImageScraper from "@/assets/projects/image-scraper.jpeg";
+import Homelab from "@/assets/projects/homelab.png";
 import {useState} from "react";
 
 interface Proj {
@@ -18,6 +19,12 @@ export const proj = [
     image:Portfolio,
     description:'A custom desktop-inspired interface featuring draggable and resizable windows, styled after Linux Ricing. Built to feel like a personalized Linux desktop inside the browser — smooth, dynamic, and fully interactive.',
     shortDesc:'React with TypeScript'
+  },
+  { 
+    name:'Homelab', 
+    image:Homelab,
+    description: 'Built a NAS, self-hosted a personal wiki server, and created a Linux lab environment for hands-on IT administration, networking, and cybersecurity experiments.',
+    shortDesc:'Networking,IT & Cybersecurity'
   },
   { 
     name:'Image Scraper', 
@@ -55,10 +62,21 @@ const TabProjects = () => {
         </div>
         <div className="selector">
          <ul className="select-items-proj">
-          <li className={`items portfolio-item  ${activeProj?.name === 'Portfolio' ? "active-item" : "not-active-item"}`} style={{ backgroundImage:`url(${Portfolio})` }} onClick={() => selectProject(1)}><h3>Portfolio</h3></li>
+         {/*<li className={`items portfolio-item  ${activeProj?.name === 'Portfolio' ? "active-item" : "not-active-item"}`} style={{ backgroundImage:`url(${Portfolio})` }} onClick={() => selectProject(1)}><h3>Portfolio</h3></li>
           <li className={`items image-scraper-item ${activeProj?.name === 'Image Scraper' ? "active-item" : "not-active-item"}`} style={{ backgroundImage:`url(${ImageScraper})` }}  onClick={() => selectProject(2)}><h3>Image Scraper</h3></li>
           <li className={`items todo-app-item ${activeProj?.name  === 'Todo App' ? "active-item" : "not-active-item"}`} style={{ backgroundImage:`url(${TodoApp})` }}  onClick={() => selectProject(3)}><h3>Todo App</h3></li>
-          <li className={`items dictionary-item ${activeProj?.name  === 'Dictionary' ? "active-item" : "not-active-item"}`} style={{ backgroundImage:`url(${Dictionary})` }}  onClick={() => selectProject(4)}><h3>Dictionary</h3></li>
+          <li className={`items dictionary-item ${activeProj?.name  === 'Dictionary' ? "active-item" : "not-active-item"}`} style={{ backgroundImage:`url(${Dictionary})` }}  onClick={() => selectProject(4)}><h3>Dictionary</h3></li>*/}
+            {
+              proj.map(({name,image},i)=>{
+                return (
+                <li 
+                className={`items ${name.toLowerCase()}-item ${activeProj?.name == name ? "active-item" : "not-active-item"}`}
+                key={i}
+                onClick={() => selectProject(i+1)}
+                style={{backgroundImage:`url(${image})`}}
+                ><h3>{name}</h3></li> 
+              )})
+            }
          </ul>
         </div>
     </>

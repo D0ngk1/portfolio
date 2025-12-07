@@ -11,7 +11,7 @@ interface  AboutMeProps{
   sendMinz?: (isMin?:boolean) =>void;
   isMinz?:boolean;
 }
-export default function AboutMe({sendCloseB,sendMinz,isMinz}:AboutMeProps) {
+const AboutMe:React.FC<AboutMeProps> = ({sendCloseB,sendMinz,isMinz}) => {
  // const [isClose,setIsClose] = useState(null);
   const handleOnClose = (data?:boolean) => {
     sendCloseB?.(data);
@@ -40,3 +40,5 @@ export default function AboutMe({sendCloseB,sendMinz,isMinz}:AboutMeProps) {
     
   );
 }
+
+export default AboutMe; 

@@ -6,6 +6,7 @@ import Cert from "@/components/Layout/Cert/Cert.tsx";
 import Exp from "@/components/Layout/Experience/Experience.tsx";
 import AppDrawer from "@/components/Layout/AppDrawer/AppDrawer.tsx";
 import Resume from "@/components/Layout/PDFViewer/PDFViewer.tsx";
+import Calendar from "@/components/Layout/Calendar/Calendar.tsx";
 
 
 import { useRef, useState, useEffect } from "react";
@@ -33,6 +34,7 @@ export default function Home() {
     { key: "cert", Component: Cert, defaultX: 26, defaultY: 542, pWidth: 0, pHeight: 0 },
     { key: "experience", Component: Exp, defaultX: 535, defaultY: 0, pWidth: 0, pHeight: 0 },
     { key: "resume", Component: Resume },
+    { key: "calendar", Component: Calendar },
   ]
   const offset = window.innerHeight * 0.022;
   const maxHeight = window.innerHeight * 0.38;
@@ -45,7 +47,8 @@ export default function Home() {
       'about':      { ...prev['about'],      pX: 26,  pY: 18,  isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
       'cert':       { ...prev['cert'],       pX: 26,  pY: 542, isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
       'experience': { ...prev['experience'], pX: 535, pY: 0,   isMinz:false, isClose: false},
-      'resume':     { ...prev['resume'],     pX: 800, pY: 25,  isMinz:false, isClose: true }
+      'resume':     { ...prev['resume'],     pX: 800, pY: 25,  isMinz:false, isClose: true },
+      'calendar':     { ...prev['calendar'], pX: 800, pY: 25,  isMinz:false, isClose: true,pWidth:window.innerWidth * 0.3,pHeight:window.innerHeight * 0.5}
     }));
     setLoadApps?.(true);
 
