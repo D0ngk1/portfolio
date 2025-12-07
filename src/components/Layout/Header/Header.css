@@ -5,6 +5,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  pointer-events:none; 
 }
 
 .header-left,.header-center,.header-right{

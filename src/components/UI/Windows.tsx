@@ -36,7 +36,6 @@ const Windows: React.FC<MyComponentProps> = ({ title, hideResizeBtn = false, men
   }, [isMax,isMinz]);
 
   const onClickMax = () => {
-    if (disableMax) return
     const maxB = !showMax;
     setShowMax(maxB);
     onMax?.(maxB);
@@ -63,7 +62,7 @@ const Windows: React.FC<MyComponentProps> = ({ title, hideResizeBtn = false, men
 
           <div className="window-container">
             <div className="minimize-btn window-btn" onClick={() => minimizeBtn()}>&#128469;</div>
-            <div className="maximize-btn window-btn" onClick={onClickMax}>{showMax ? '🗗' : '🗖'}</div>
+            { !disableMax && <div className="maximize-btn window-btn" onClick={onClickMax}>{showMax ? '🗗' : '🗖'}</div> }
             <div className="close-btn window-btn" onClick={() => closeBtn()}>&#x2715;</div>
           </div>
         </div>

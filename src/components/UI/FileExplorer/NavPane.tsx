@@ -17,7 +17,7 @@ const NavPane:React.FC<ChildProps> = ({onDataSend}) => {
     <div className="nav-pane">
       <div className="nav-recent nav-pane-btn"     onClick={() => handleClick(1)}>Recent</div>
       <div className="nav-home nav-pane-btn"       onClick={() => handleClick(2)}>Home</div>
-      <div className="nav-cert nav-pane-btn"       onClick={() => handleClick(3 )}>Certificate</div>
+      <div className="nav-cert nav-pane-btn"       onClick={() => handleClick(3 )}>Certificates</div>
       <div className="nav-tech-stack nav-pane-btn" onClick={() => handleClick(4)}>Tech Stack</div>
     </div>
   );

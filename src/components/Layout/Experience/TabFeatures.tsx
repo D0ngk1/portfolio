@@ -18,11 +18,17 @@ import Arrow from "@/assets/arrow.png";
 
 const feat = [
   { name: 'Software Engineer',Description:'' ,shortDesc: '1.5 years of Experience', image: '' },
-  ...proj.slice(0, -1),
+  ...proj.slice(0, -1)
+  /*{ id: 1, name: 'Software Engineer', Description:'', shortDesc:'1.5 years', image:'' },
+  ...proj.slice(0, -1).map((p, i) => ({
+    ...p,
+    id: i + 2,  // ensures ALL proj items have unique IDs
+  }))*/
 ];
 const extFeat = [
   ...feat,
-  ...feat,
+  ...feat
+  //...feat.map((f, i) => ({ ...f, id: f.id + feat.length }))
 ]
 const skills = [
   {name: 'Networking',img:NetworkingImg},
@@ -41,7 +47,6 @@ const skills = [
 const TabFeatures = () => {
   const recentRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(4);
-
   const throttleRef = useRef(false);
 
   const throttledNext = () => {
@@ -53,7 +58,7 @@ const TabFeatures = () => {
     // unlock after 350ms (match your scroll animation)
     setTimeout(() => {
       throttleRef.current = false;
-    }, 450);
+    }, 500);
   };
 
   const throttledPrev = () => {
@@ -65,7 +70,7 @@ const TabFeatures = () => {
     // unlock after 350ms (match your scroll animation)
     setTimeout(() => {
       throttleRef.current = false;
-    }, 450);
+    }, 500);
   };
 
 
@@ -117,8 +122,9 @@ const TabFeatures = () => {
         <div className="feat-proj-wrapper">
           <h2 className="feat-label">Featured</h2>
           <div className="recent-feat-container display-flex-row" ref={recentRef}> 
-            {extFeat.map((name, i) => {
-              if (name.name !== 'Dictionary') return (
+            {
+              extFeat.map((name, i) => {
+              return (
                 <div style={{ ...(name.image ? { backgroundImage: `url(${name.image})` } : {}) }} className={`flex-shrink-0 recent-feat feat-${name.name.replace(/\s+/g, '-').toLowerCase()}`}
                   key={i}
                   //onClick={()=>setActiveIndex(i)}
@@ -139,10 +145,10 @@ const TabFeatures = () => {
           <h2 className="feat-skill-label feat-label">Skills</h2>
           <div className="feat-skill-content  flex-wrap">
             {skills.map(({name,img},i) =>  ( 
-            <div className="container-skill-items">
-              <div className="feat-skill-items" key={i} 
+            <div className="container-skill-items" key={i}>
+              <div className="feat-skill-items" 
               >{img && (<img src={img} alt="" /> )}</div>
-            <h4 className="title-feat-skill" key={i}>{name}</h4>
+            <h4 className="title-feat-skill">{name}</h4>
             </div>
             ))}
           </div>

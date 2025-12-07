@@ -26,7 +26,7 @@ const AppDrawer: React.FC<AppDrawerProps> = ({keyApp}) => {
     delayRef.current = setTimeout(() => {
       //appRef.style.width = "380px";
       const appDrawerWidth = appRef.getBoundingClientRect().width;
-      console.log(appDrawerWidth);
+      //console.log(appDrawerWidth);
       appRef.style.width = appDrawerWidth+"px";
     },300); // 0.5s
   }

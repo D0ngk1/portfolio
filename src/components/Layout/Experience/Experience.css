@@ -14,15 +14,15 @@
 
 .menu-btn-exp {
   padding:0 5px;
-  width: 120px;
-  height: 100%;
-  font-size: 20px;
+  width: 5.5vw;
+  height: 95%;
+  font-size: 1.6vh;
 }
 
 .select-items-proj {
   list-style-type: none;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   height: 80%;
   margin:0;
   padding:0;

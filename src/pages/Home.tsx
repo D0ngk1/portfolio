@@ -56,7 +56,7 @@ export default function Home() {
     if (!windowEl || !key) return;
     // Save previous size/pos (for restore)
     const rect = windowEl.getBoundingClientRect();
-    console.log(isMinz)
+    //console.log(isMinz)
     if(compAttri[key].isMax){
       setCompAttri(prev => ({
         ...prev,
@@ -143,7 +143,7 @@ export default function Home() {
     if (isMaxB) {
 
       const rect = windowEl.getBoundingClientRect();
-      console.log("Max: " + rect.x + "-" + rect.y);
+      //console.log("Max: " + rect.x + "-" + rect.y);
       setCompAttri((prev) => ({
         ...prev,
         [key]: {
@@ -199,7 +199,7 @@ export default function Home() {
 
       windowEl.style.transition = "transform .35s ease, width .35s ease, height .35s ease";
       let newItemz = item.isMinz;
-      console.log(item.isMinz);
+      //console.log(item.isMinz);
       if (item.isMinz) {
         // RESTORE
         newItemz = !item.isMinz;
@@ -224,7 +224,7 @@ export default function Home() {
       };
       windowEl.addEventListener("transitionend", removeTransition);
       // Return NEW state
-      console.log(newItemz+'2');
+      //console.log(newItemz+'2');
       return {
         ...prev,
         [key]: {
@@ -239,7 +239,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="main-background">
+      <div className="main-background" onMouseDown={(e)=> e.preventDefault()}>
         <Header />
         <div className="desktop">
           {sections.map(({ key, Component,
