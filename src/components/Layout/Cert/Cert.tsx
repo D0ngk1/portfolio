@@ -40,7 +40,7 @@ const certImageUrls = [
   {key:1, src:APlus,    label:"Comptia A+", url:'https://www.credly.com/earner/earned/badge/08f5dcf5-4e4a-4290-bcf3-d77c0a3b6133'},
   {key:2, src:NetPlus,  label:"Comptia Net+",url:'https://www.credly.com/earner/earned/badge/e08d711b-7114-4d27-bb60-1039e7d3d60f'},
   {key:3, src:SecPlus,  label:"Comptia Sec+", url:'https://www.credly.com/earner/earned/badge/319d953e-ec23-4a46-ab8f-8c10ae99c216'},
-  {key:4, src:AzureFun, label:"Azure Fundamentals",url:'https://learn.microsoft.com/en-us/users/darylguzman-9695/credentials/certification/azure-fundamentals?tab=credentials-tab'},
+  {key:4, src:AzureFun, label:"Azure Fundamentals",url:'https://learn.microsoft.com/api/credentials/share/en-us/DarylGuzman-9695/F7147AA9DA704566?sharingId=81B256736F7F6ED4'},
 //{key:5, src:"sdfsdfsdf", label:"Azure Fundamentals"},
 ];
 
