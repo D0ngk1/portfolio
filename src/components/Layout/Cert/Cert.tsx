@@ -33,13 +33,14 @@ interface ImageURLS {
   key:number;
   src:string;
   label:string;
+  url?:string;
 }
 
 const certImageUrls = [ 
-  {key:1, src:APlus,    label:"Comptia A+"},
-  {key:2, src:NetPlus,  label:"Comptia Net+"},
-  {key:3, src:SecPlus,  label:"Comptia Sec+"},
-  {key:4, src:AzureFun, label:"Azure Fundamentals"},
+  {key:1, src:APlus,    label:"Comptia A+", url:'https://www.credly.com/earner/earned/badge/08f5dcf5-4e4a-4290-bcf3-d77c0a3b6133'},
+  {key:2, src:NetPlus,  label:"Comptia Net+",url:'https://www.credly.com/earner/earned/badge/e08d711b-7114-4d27-bb60-1039e7d3d60f'},
+  {key:3, src:SecPlus,  label:"Comptia Sec+", url:'https://www.credly.com/earner/earned/badge/319d953e-ec23-4a46-ab8f-8c10ae99c216'},
+  {key:4, src:AzureFun, label:"Azure Fundamentals",url:'https://learn.microsoft.com/en-us/users/darylguzman-9695/credentials/certification/azure-fundamentals?tab=credentials-tab'},
 //{key:5, src:"sdfsdfsdf", label:"Azure Fundamentals"},
 ];
 
@@ -86,11 +87,13 @@ const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB,sendMinz,isMax,isMinz})
           <NavPane onDataSend={handleDataFromNavPane}/>
           <div className="image-container">
             <div className="image-container-wrap">
-            { imageURLS?.map(({key,src,label}) => (
-              <div className="img-label" key={key}>
-                <img className="imgs"  src={src} alt={`img-${key}-${label}`} />
-                <p className="lbl">{label}</p>
-              </div>
+            { imageURLS?.map(({key,src,label,url}) => (
+                <a href={url} key={key} target="_blank">                         
+                  <div className="img-label" >
+                    <img className="imgs"  src={src} alt={`img-${key}-${label}`} />
+                    <p className="lbl">{label}</p>
+                  </div>
+                </a> 
               ))}
             </div>
           </div>

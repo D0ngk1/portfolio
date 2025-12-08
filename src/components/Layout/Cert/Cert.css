@@ -42,7 +42,9 @@
   margin: 1em auto;
   display: block;
 }
-
-
+.image-container a,.image-container a:visited, .image-container a:link {
+  text-decoration: none;
+  color: --var(primary-color);
+}
 
 
