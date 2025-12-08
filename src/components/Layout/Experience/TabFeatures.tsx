@@ -89,8 +89,8 @@ const TabFeatures = () => {
 
     const timeout = setTimeout(() => {
     //If we moved to the left clone
-    if (activeIndex === 1 ) {
-      setActiveIndex(5);
+    if (activeIndex === 2 ) {
+      setActiveIndex(7);
       const lItem = container.children[extFeat.length-3] as HTMLElement;
       const lastItem = lItem.offsetLeft;
       const lastItemWidth = lItem.clientWidth;
@@ -100,9 +100,9 @@ const TabFeatures = () => {
       });
     }
      //If we moved to the right clone
-    else if (activeIndex === 6) {
-      setActiveIndex(2);
-      const fItem = container.children[2] as HTMLElement;
+    else if (activeIndex === 8) {
+      setActiveIndex(3);
+      const fItem = container.children[3] as HTMLElement;
       const firstItem = fItem.offsetLeft;
       const firstItemWidth = fItem.clientWidth;
       // jump to first real item

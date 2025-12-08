@@ -10,7 +10,7 @@ import AppDrawer from "@/components/Layout/AppDrawer/AppDrawer.tsx";
 import Resume from "@/components/Layout/PDFViewer/PDFViewer.tsx";
 import Calendar from "@/components/Layout/Calendar/Calendar.tsx";
 import IFrame from "@/components/Layout/IFrames/IFramesCert.tsx";
-
+import Wallpaper from "@/assets/wallpaper-1.png";
 
 import { useRef, useState, useEffect } from "react";
 import wm from "@/hooks/windowM.tsx";
@@ -46,7 +46,6 @@ export default function Home() {
 
   useEffect(() => {
     //setLoadApps?.(true);
-
     setCompAttri((prev) => ({
       'about':      { ...prev['about'],      pX: 26,  pY: 18,  isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
       'cert':       { ...prev['cert'],       pX: 26,  pY: 542, isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
@@ -244,10 +243,24 @@ export default function Home() {
       };
     });
   };
-
+  const img = new Image();
+  img.src = Wallpaper;
+  img.onload = () => {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if(!loadingScreen) return;
+    loadingScreen.classList.add('hidden');
+    
+    // Remove from DOM after fade
+    setTimeout(() => {
+      loadingScreen.remove();
+    }, 500);
+  };
 
   return (
     <>
+      <div className="loading-screen" id="loadingScreen">
+        <div className="spinner"></div>
+      </div>
       <div className="main-background" onMouseDown={(e)=> e.preventDefault()}>
         <Header />
         <div className="desktop">
