@@ -46,7 +46,7 @@ const skills = [
 ]
 const TabFeatures = () => {
   const recentRef = useRef<HTMLDivElement>(null);
-  const [activeIndex, setActiveIndex] = useState(4);
+  const [activeIndex, setActiveIndex] = useState(5);
   const throttleRef = useRef(false);
 
   const throttledNext = () => {

@@ -6,7 +6,7 @@
   height: max-content;
   position: fixed;
   bottom: 10px;
-  z-index: 9999;
+  z-index: 9998;
   left: 50%;
   transform: translate(-50%,0);
   transform-origin: center;

@@ -232,7 +232,6 @@ export default function Home() {
       };
       windowEl.addEventListener("transitionend", removeTransition);
       // Return NEW state
-      //console.log(newItemz+'2');
       return {
         ...prev,
         [key]: {
@@ -259,7 +258,14 @@ export default function Home() {
   return (
     <>
       <div className="loading-screen" id="loadingScreen">
-        <div className="spinner"></div>
+        <div className="sticks">
+          <div className="stick-one"></div>
+          <div className="stick-two"></div>
+          <div className="stick-three"></div>
+          <div className="stick-two"></div>
+          <div className="stick-one"></div>
+        </div>
+        <h2>Loading...</h2>
       </div>
       <div className="main-background" onMouseDown={(e)=> e.preventDefault()}>
         <Header />

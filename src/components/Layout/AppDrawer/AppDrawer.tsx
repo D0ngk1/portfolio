@@ -19,9 +19,9 @@ const AppDrawer: React.FC<AppDrawerProps> = ({keyApp}) => {
   const handleMouseOver = () => {
     const appRef = appRefc.current;
     if (!appRef) return;
-        //appRef.style.width = appDrawerWidth+""; 
+    //appRef.style.width = appDrawerWidth+""; 
     //appRef.style.width = '380';
-  // clear previous timer so it doesn't stack
+    // clear previous timer so it doesn't stack
     clearTimeout(delayRef.current || undefined);
     delayRef.current = setTimeout(() => {
       //appRef.style.width = "380px";

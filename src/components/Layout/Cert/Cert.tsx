@@ -18,6 +18,7 @@ import Python from "@/assets/tech-stack/python.svg";
 import React from "@/assets/tech-stack/react.svg";
 import Spring from "@/assets/tech-stack/spring-icon.svg";
 import TS from "@/assets/tech-stack/typescript-icon.svg";
+import FolderImg from "@/assets/app-icon/folder.png"; 
 
 
 interface CertProps{
@@ -45,18 +46,23 @@ const certImageUrls = [
 ];
 
 const techImageUrls = [ 
-  {key:1, src:Git,    label:"Git"},
-  {key:2, src:Java,  label:"Java"},
-  {key:3, src:JS,  label:"JavaScript"},
-  {key:4, src:MySQL, label:"MySQL"},
-  {key:5, src:PosgtgreSQL,    label:"PosgtgreSQL"},
-  {key:6, src:Python,  label:"Python"},
-  {key:7, src:React,  label:"React"},
-  {key:8, src:Spring, label:"SpringBoot"},
-  {key:9, src:TS, label:"TypeScript"},
+  {key:5, src:Git,    label:"Git"},
+  {key:6, src:Java,  label:"Java"},
+  {key:7, src:JS,  label:"JavaScript"},
+  {key:8, src:MySQL, label:"MySQL"},
+  {key:9, src:PosgtgreSQL,    label:"PosgtgreSQL"},
+  {key:10, src:Python,  label:"Python"},
+  {key:12, src:React,  label:"React"},
+  {key:13, src:Spring, label:"SpringBoot"},
+  {key:14, src:TS, label:"TypeScript"},
 //{key:5, src:"sdfsdfsdf", label:"Azure Fundamentals"},
 ];
-
+const homeFolder = [ 
+  {key:1, src:FolderImg,  label:"Certificate"},
+  {key:2, src:FolderImg,  label:"Tech Stack"},
+  {key:3, src:FolderImg,  label:"Homelab"}, 
+//{key:5, src:"sdfsdfsdf", label:"Azure Fundamentals"},
+];
 
 const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB,sendMinz,isMax,isMinz}) => {
   const [activeFolder, setActiveFolder] = useState<string>('Certificate');
@@ -75,8 +81,9 @@ const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB,sendMinz,isMax,isMinz})
 
   const handleDataFromNavPane = (data:string) => {
     setActiveFolder(data);
-    if(data == 'Certificate') setImageURLS(certImageUrls);
-    else if(data == 'Tech Stack')  setImageURLS(techImageUrls);
+    if(data == 'Certificate')     setImageURLS(certImageUrls);
+    else if(data == 'Tech Stack') setImageURLS(techImageUrls);
+    else if(data == 'Recent')       setImageURLS([...certImageUrls,...techImageUrls]);
     else setImageURLS(null);
    
   }
@@ -87,14 +94,22 @@ const Cert: React.FC<CertProps> = ({sendCloseB, sendMaxB,sendMinz,isMax,isMinz})
           <NavPane onDataSend={handleDataFromNavPane}/>
           <div className="image-container">
             <div className="image-container-wrap">
-            { imageURLS?.map(({key,src,label,url}) => (
+            {activeFolder !== 'Home' ? (
+              imageURLS?.map(({key,src,label,url}) => (
                 <a href={url} key={key} target="_blank">                         
                   <div className="img-label" >
                     <img className="imgs"  src={src} alt={`img-${key}-${label}`} />
                     <p className="lbl">{label}</p>
                   </div>
                 </a> 
-              ))}
+            ))) : (
+              homeFolder?.map(({key,src,label}) => (
+                  <div className="img-label" style={{cursor:'pointer'}} onClick={()=>handleDataFromNavPane(label)}>
+                    <img className="imgs"  src={src} alt={`img-${key}-${label}`} />
+                    <p className="lbl">{label}</p>
+                  </div>
+              )))
+            }
             </div>
           </div>
       </div>
