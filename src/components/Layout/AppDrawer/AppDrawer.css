@@ -1,8 +1,6 @@
 .app-drawer-container {
-  ----background-color: ;
   width: max-content;
   height:max-content;
-  --background-color: red;
   height: max-content;
   position: fixed;
   bottom: 10px;
@@ -18,11 +16,10 @@
   flex-direction: row;
   justify-content: space-evenly;
   background-color: var(--secondary-color);
-  gap:10px;
   border-radius: 10px;
   margin: 0 auto;
   width: max-content;
-  height:70px;
+  height:5vh;
   align-items: center;
 }
 
@@ -31,17 +28,16 @@
 .app-icon {
   width: min-content;
   height: 100%;
-  width: 50px;
-  padding: 10px 3px 0 3px;
-  margin: 0;
+  width: 2.5vw;
   display: flex;
   justify-content: center;
+  align-items: center;
   transition: 200ms ease-in-out;
   transform-origin: bottom;
 }
 .app-icon:hover{
   cursor: pointer;
-  margin: 0 10px;
+  margin: 0 15px;
   padding-bottom:6px;
   transform: scale(1.8) ;
   transform-origin: bottom;
@@ -55,9 +51,8 @@
 }
 
 .app-icon img {
-  width: 100%;
- height: 70%;
- padding: 0;
+  width: 1.8vw;
+  padding: 0;
   transform-origin: bottom;
 }
 .app-icon p {
@@ -79,12 +74,10 @@
 }
 
 .app-drawer-content .about {
-  width: 60px;
-  padding-left: 15px;
+  padding-left: 10px;
 }
 .app-drawer-content .calendar {
-  width: 60px;
-  padding-right: 15px;
+  padding-right: 10px;
 }
 
 

@@ -32,7 +32,8 @@ const AboutMe:React.FC<AboutMeProps> = ({sendCloseB,sendMinz,isMinz}) => {
         <div className="links-containers">
           <div className="github-icon icon-containers"><a href="https://github.com/D0ngk1" target="_blank"><img src={githubIcon} className="github-img icons" alt="github icon" /></a></div>
           <div className="linkedIn-icon icon-containers"><a href="https://www.linkedin.com/in/daryl-guzman-82556a256/" target="_blank"> <img src={linkedInIcon} className="linkedin-img icons" alt="linked-in icon" /></a></div>
-          <div className="gmail-icon icon-containers"><img src={gmailIcon} alt="gmail icon" className="icons" /></div>
+          <div className="gmail-icon icon-containers">
+          <a href="mailto:darylgzmn@gmail.com" target="_blank"><img src={gmailIcon} alt="gmail icon" className="icons" /></a></div>
           
         </div>
       </div>
