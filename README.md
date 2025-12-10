@@ -8,7 +8,7 @@ A personal portfolio site designed to look and feel like a Linux desktop environ
 
  - Responsive layout optimized for desktop. (Mobile optimization coming soon).
 
-## - 🪟 Interactive Window System
+## 🪟 Interactive Window System
 
 Each “app” or “section” of the portfolio opens in a window with:
 
