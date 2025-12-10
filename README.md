@@ -39,19 +39,19 @@ The website is structured like a desktop with apps, such as:
 Efficient state updates for window positions/sizes
 
 ## 🛠️ Tech Stack
-Frontend
+ - Frontend
 
-React / TypeScript
+ - React / TypeScript
 
-Vite for development and build
+ - Vite for development and build
 
-CSS 
+ - CSS 
 
-Custom hooks and reusable UI components
+ - Custom hooks and reusable UI components
 
 ## Deployment
 
-GitHub Pages 
+ - GitHub Pages 
 
 ## 🖱️ User Interactions
 
@@ -71,10 +71,10 @@ GitHub Pages
 
 This portfolio represents my interest in:
 
-Web development
+ - Web development
 
-UI/UX design
+ - UI/UX design
 
-Linux and system-like interfaces
+ - Linux and system-like interfaces
 
-Building creative, interactive user experiences
+ - Building creative, interactive user experiences
