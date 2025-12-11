@@ -1,7 +1,7 @@
 import Windows from "@/components/UI/Windows.tsx";
 import React, { useState, useEffect, useRef } from 'react';
 import * as pdfjsLib from 'pdfjs-dist';
-import pdfFile from "@/assets/resume-darylg.pdf";
+import pdfFile from "@/assets/Resume_SE_DarylG.pdf";
 import "./PDFViewer.css";
 
 interface ProjProps {
@@ -135,9 +135,10 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
             </button>
            </div>
           )}
-        <a href={pdfFile} className='a-dl-cv' download='darylg-cv' target='_blank'>
-         <button className='download-cv'>Download</button>
-        </a>
+          {pdf && (
+            <a href={pdfFile} className='a-dl-cv' download='darylg-cv' target='_blank'>
+             <button className='download-cv'>Download</button>
+            </a>)}
         </div>
         <div className="pdf-content">
           <canvas ref={canvasRef} />

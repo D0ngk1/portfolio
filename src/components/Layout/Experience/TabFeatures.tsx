@@ -11,7 +11,8 @@ import TroubleshootingImg from "@/assets/skills/troubleshooting.png";
 import LinuxImg from "@/assets/skills/linux.png";
 import OOPImg from "@/assets/skills/programming.png";
 import RootCImg from "@/assets/skills/root-cause.png";
-
+import CloudImg from "@/assets/skills/cloud.png";
+import VirtualImg from "@/assets/skills/virtual.png";
 import Arrow from "@/assets/arrow.png";
 
 
@@ -19,11 +20,7 @@ import Arrow from "@/assets/arrow.png";
 const feat = [
   { name: 'Software Engineer',Description:'' ,shortDesc: '1.5 years of Experience', image: '' },
   ...proj.slice(0, -1)
-  /*{ id: 1, name: 'Software Engineer', Description:'', shortDesc:'1.5 years', image:'' },
-  ...proj.slice(0, -1).map((p, i) => ({
-    ...p,
-    id: i + 2,  // ensures ALL proj items have unique IDs
-  }))*/
+
 ];
 const extFeat = [
   ...feat,
@@ -33,7 +30,7 @@ const extFeat = [
 const skills = [
   {name: 'Networking',img:NetworkingImg},
   {name: 'Programming',img:ProgrammingImg},
-  {name: 'OOP',img:OOPImg},
+
   {name: 'Backend',img:Backend},
   {name: 'Frontend',img:FrontendImg},
   {name: 'IT Security',img:SecurityImg},
@@ -41,6 +38,9 @@ const skills = [
   //{name: 'Windows'},
   {name: 'Troubleshooting',img:TroubleshootingImg},
   {name: 'Root Cause Analysis',img:RootCImg},
+  {name: 'OOP',img:OOPImg},
+  {name: 'Cloud',img:CloudImg},
+  {name: 'Virtualization',img:VirtualImg},
   //{name: ''},
   //{name: 'Frontend'},
 ]

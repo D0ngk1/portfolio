@@ -2,7 +2,6 @@
   width: 100%;
   height: 100%;
   position: relative;
-  --background-color: green;
 }
 .profile {
   width: 45%;
@@ -45,8 +44,10 @@
 }
 
 .icons:hover {
-  --width: 30px;
   filter: grayscale(100%);
-  --transition: width 0.3 ease;
   cursor: pointer;
 }
+
+
+
+
