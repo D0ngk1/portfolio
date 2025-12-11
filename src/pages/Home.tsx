@@ -24,18 +24,18 @@ export default function Home() {
     isMinz: boolean;
     pWidth: number;
     pHeight: number;
+    minW:number;
     pY: number;
     pX: number;
-    //isFocus:boolean;
     zIndex: number;
   }>>({});
   const activezIndex = useRef(1);
   const winRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [isLoadApps, setLoadApps] = useState<boolean>(false);
   const sections = [
-    { key: "about", Component: AboutMe, defaultX: 26, defaultY: 18, pWidth: 0, pHeight: 0 },
-    { key: "cert", Component: Cert, defaultX: 26, defaultY: 542, pWidth: 0, pHeight: 0 },
-    { key: "experience", Component: Exp, defaultX: 535, defaultY: 0, pWidth: 0, pHeight: 0 },
+    { key: "about", Component: AboutMe},
+    { key: "cert", Component: Cert },
+    { key: "experience", Component: Exp },
     { key: "resume", Component: Resume },
     { key: "calendar", Component: Calendar },//change me!!!!!
     { key: "iframe", Component: IFrame },
@@ -47,12 +47,12 @@ export default function Home() {
   useEffect(() => {
     //setLoadApps?.(true);
     setCompAttri((prev) => ({
-      'about':      { ...prev['about'],      pX: 26,  pY: 18,  isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
-      'cert':       { ...prev['cert'],       pX: 26,  pY: 542, isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
-      'experience': { ...prev['experience'], pX: 535, pY: 0,   isMinz:false, isClose: false},
-      'resume':     { ...prev['resume'],     pX: 800, pY: 25,  isMinz:false, isClose: true },
-      'calendar':     { ...prev['calendar'], pX: 800, pY: 25,  isMinz:false, isClose: true,pWidth:window.innerWidth * 0.3,pHeight:window.innerHeight * 0.5},
-      'iframe':     { ...prev['iframe'], pX: 800, pY: 25,  isMinz:false, isClose: true,pWidth:window.innerWidth * 0.3,pHeight:window.innerHeight * 0.5}
+      'about':      { ...prev['about'],      pX: 26,  pY: 18,  minW: 45,isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
+      'cert':       { ...prev['cert'],       pX: 26,  pY: 542, minW: 47.5,isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
+      'experience': { ...prev['experience'], pX: 535, pY: 0,   minW: 50,isMinz:false, isClose: false},
+      'resume':     { ...prev['resume'],     pX: 800, pY: 25,  minW: 52.5,isMinz:false, isClose: true },
+      'calendar':   { ...prev['calendar'],   pX: 800, pY: 25,  minW: 55,isMinz:false, isClose: true,pWidth:window.innerWidth * 0.3,pHeight:window.innerHeight * 0.5},
+      'iframe':     { ...prev['iframe'],     pX: 800, pY: 25,  isMinz:false, isClose: true,pWidth:window.innerWidth * 0.3,pHeight:window.innerHeight * 0.5}
     }));
 
     setLoadApps?.(true);
@@ -98,7 +98,7 @@ export default function Home() {
     requestAnimationFrame(() => {
       windowEl.style.width = "0";
       windowEl.style.height = "0";
-      windowEl.style.transform = `translate3d(50vw,90vh,0)`;
+      windowEl.style.transform = `translate3d(${compAttri[key].minW}vw,93vh,0)`;
 
     });
     const removeTransition = () => {
