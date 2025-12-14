@@ -10,7 +10,7 @@ import AppDrawer from "@/components/Layout/AppDrawer/AppDrawer.tsx";
 import Resume from "@/components/Layout/PDFViewer/PDFViewer.tsx";
 import Calendar from "@/components/Layout/Calendar/Calendar.tsx";
 import IFrame from "@/components/Layout/IFrames/IFramesCert.tsx";
-import Wallpaper from "@/assets/wallpaper-1.png";
+import Wallpaper from "@/assets/wallpapers/wallpaper2.png";
 
 import { useRef, useState, useEffect } from "react";
 import wm from "@/hooks/windowM.tsx";
@@ -267,7 +267,7 @@ export default function Home() {
         </div>
         <h2>Loading...</h2>
       </div>
-      <div className="main-background" onMouseDown={(e)=> e.preventDefault()}>
+      <div className="main-background" style={{backgroundImage:`url(${Wallpaper})`}} onMouseDown={(e)=> e.preventDefault()}>
         <Header />
         <div className="desktop">
           {sections.map(({ key, Component,
