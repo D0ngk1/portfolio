@@ -28,12 +28,13 @@
 .app-icon {
   width: min-content;
   height: 100%;
-  width: 2.5vw;
+  width: clamp(3rem,2.5vw,4rem);
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 200ms ease-in-out;
   transform-origin: bottom;
+  position: relative;
 }
 .app-icon:hover{
   cursor: pointer;
@@ -51,7 +52,7 @@
 }
 
 .app-icon img {
-  width: 1.8vw;
+  width: 80%;
   padding: 0;
   transform-origin: bottom;
 }
@@ -74,10 +75,10 @@
 }
 
 .app-drawer-content .about {
-  padding-left: 10px;
+  padding-left: 2.5%;
 }
 .app-drawer-content .calendar {
-  padding-right: 10px;
+  padding-right: 2.5%;
 }
 
 
