@@ -1,6 +1,7 @@
 .main-background {
   width:100%;
   height:100vh;
+  height: 100dvh;
   background-color: grey;
   background-image: url('../assets/wallpaper-1.png');
   background-repeat: no-repeat;

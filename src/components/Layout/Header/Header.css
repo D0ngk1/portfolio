@@ -33,7 +33,7 @@
   backdrop-filter: blur(5px); /* Apply blur to the background behind this element */
   -webkit-backdrop-filter: blur(5px); /* Safari support */
   margin-left: 10px;
-  padding: 3px 15px;
+  padding: 2px 15px;
   font-size: 13px;
   color:var(--primary-color);
   font-weight: bold;
@@ -43,4 +43,22 @@
 
 .time-display {
   white-space: pre;
+}
+
+.header-left .short {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .header-left .location, .header-left .name,.header-center *{
+        font-size: 12px;
+        padding: 2px 7px;
+    }
+    .header-left .short {
+        display: flex;
+    }
+    .header-left .full {
+        display: none;
+    }
+
 }

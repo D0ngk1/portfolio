@@ -37,7 +37,7 @@ export default function Home() {
     { key: "cert", Component: Cert },
     { key: "experience", Component: Exp },
     { key: "resume", Component: Resume },
-    { key: "calendar", Component: Calendar },//change me!!!!!
+    { key: "calendar", Component: Calendar },
     { key: "iframe", Component: IFrame },
   ]
   const offset = window.innerHeight * 0.022;

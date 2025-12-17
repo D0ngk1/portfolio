@@ -11,7 +11,7 @@ export default function Header() {
         timeZone: 'Pacific/Honolulu',
         hour:'2-digit',
         minute: '2-digit',
-        month: 'long',
+        month: 'short',
         day: 'numeric',
       }
       const spaces = "   ";
@@ -29,7 +29,9 @@ export default function Header() {
    <div className="main-header">   
     <div className="header-left">
       <div className="name">DG</div>
-      <div className="location">Honolulu, HI. | Open to relocate</div>
+      <div className="location full">Honolulu, HI. | Open to relocate</div>
+      <div className="location short">Hon, HI.</div>
+
     </div>
       <div className="header-center "><div className="time-display">{pstTime}</div></div>
       <div className="header-right"></div>
