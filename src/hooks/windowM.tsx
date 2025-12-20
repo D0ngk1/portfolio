@@ -40,8 +40,8 @@ export default function useWindowDrag() {
         y: e.clientY - rect.top,
       };
 
-      document.addEventListener("mousemove", onMove);
-      document.addEventListener("mouseup", stopAll);
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", stopAll);
     } //-------------------startResize-----------------------
     else if (isResize) {
       const rect = windowEl.getBoundingClientRect();
@@ -50,9 +50,10 @@ export default function useWindowDrag() {
 
       startSize.current = { w: rect.width, h: rect.height };
       startPos.current = { x: e.clientX, y: e.clientY };
-
-      document.addEventListener("mousemove", onMove);
-      document.addEventListener("mouseup", stopAll);
+      document.addEventListener("pointermove", onMove);
+      document.addEventListener("pointerup", stopAll);
+      //document.addEventListener("mousemove", onMove);
+      //document.addEventListener("mouseup", stopAll);
     }
     else return;
   };
@@ -66,12 +67,14 @@ export default function useWindowDrag() {
   const resizeMove = (e: MouseEvent) => {
     if (!isResizing.current || !activeWindow.current) return;
     let maxHeight = 0; let maxWidth = 0;
+    const isPhone = window.innerWidth <= 500;
     if (keyRef.current !== 'experience') {
       maxHeight = window.innerHeight * 0.38;
-      maxWidth = window.innerWidth * 0.2;
+      maxWidth = !isPhone ? window.innerWidth * 0.2 : window.innerWidth * 0.8;
     } else {
       maxHeight = window.innerHeight * 0.7;
-      maxWidth = window.innerWidth * 0.55;
+      maxWidth = isPhone ? window.innerWidth * 0.55 : window.innerWidth * 0.8;
+
     }
     const newWidth = startSize.current.w + (e.clientX - startPos.current.x);
     const newHeight = startSize.current.h + (e.clientY - startPos.current.y);
@@ -98,8 +101,10 @@ export default function useWindowDrag() {
     isDragging.current = false;
     isResizing.current = false;
 
-    document.removeEventListener("mousemove", onMove);
-    document.removeEventListener("mouseup", stopAll);
+    //document.removeEventListener("mousemove", onMove);
+    //document.removeEventListener("mouseup", stopAll);
+    document.addEventListener("pointermove", onMove);
+    document.addEventListener("pointerup", stopAll);
     activeWindow.current = null;
   };
   return { onClickWindows };

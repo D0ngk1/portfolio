@@ -24,7 +24,7 @@ export default function Home() {
     isMinz: boolean;
     pWidth: number;
     pHeight: number;
-    minW:number;
+    minW: number;
     pY: number;
     pX: number;
     zIndex: number;
@@ -33,7 +33,7 @@ export default function Home() {
   const winRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [isLoadApps, setLoadApps] = useState<boolean>(false);
   const sections = [
-    { key: "about", Component: AboutMe},
+    { key: "about", Component: AboutMe },
     { key: "cert", Component: Cert },
     { key: "experience", Component: Exp },
     { key: "resume", Component: Resume },
@@ -41,18 +41,24 @@ export default function Home() {
     { key: "iframe", Component: IFrame },
   ]
   const offset = window.innerHeight * 0.022;
-  const maxHeight = window.innerHeight * 0.38;
-  const maxWidth = window.innerWidth * 0.2;
+
+
 
   useEffect(() => {
+
+    const isPhone = window.innerWidth <= 500;
+    const maxHeight = window.innerHeight * 0.38;
+    console.log(isPhone);
+    const maxWidth = !isPhone ? window.innerWidth * 0.2 : window.innerWidth * 0.8;
+    console.log(maxWidth);
     //setLoadApps?.(true);
     setCompAttri((prev) => ({
-      'about':      { ...prev['about'],      pX: 26,  pY: 18,  minW: 45,isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
-      'cert':       { ...prev['cert'],       pX: 26,  pY: 542, minW: 47.5,isMinz:false, isClose:false,pWidth: maxWidth, pHeight: maxHeight },
-      'experience': { ...prev['experience'], pX: 535, pY: 0,   minW: 50,isMinz:false, isClose: false},
-      'resume':     { ...prev['resume'],     pX: 800, pY: 25,  minW: 52.5,isMinz:false, isClose: true },
-      'calendar':   { ...prev['calendar'],   pX: 800, pY: 25,  minW: 55,isMinz:false, isClose: true,pWidth:window.innerWidth * 0.3,pHeight:window.innerHeight * 0.5},
-      'iframe':     { ...prev['iframe'],     pX: 800, pY: 25,  isMinz:false, isClose: true,pWidth:window.innerWidth * 0.3,pHeight:window.innerHeight * 0.5}
+      'about': { ...prev['about'], pX: 26, pY: 18, minW: 45, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: maxHeight },
+      'cert': { ...prev['cert'], pX: 26, pY: 542, minW: 47.5, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: maxHeight },
+      'experience': { ...prev['experience'], pX: isPhone ? 26 : 525, pY: 0, minW: 50, isMinz: false, isClose: false },
+      'resume': { ...prev['resume'], pX: 800, pY: 25, minW: 52.5, isMinz: false, isClose: true },
+      'calendar': { ...prev['calendar'], pX: 800, pY: 25, minW: 55, isMinz: false, isClose: true, pWidth: window.innerWidth * 0.3, pHeight: window.innerHeight * 0.5 },
+      'iframe': { ...prev['iframe'], pX: 26, pY: 25, isMinz: false, isClose: true, pWidth: window.innerWidth * 0.3, pHeight: window.innerHeight * 0.5 }
     }));
 
     setLoadApps?.(true);
@@ -65,7 +71,7 @@ export default function Home() {
     // Save previous size/pos (for restore)
     const rect = windowEl.getBoundingClientRect();
     //console.log(isMinz)
-    if(compAttri[key].isMax){
+    if (compAttri[key].isMax) {
       setCompAttri(prev => ({
         ...prev,
         [key]: {
@@ -77,7 +83,7 @@ export default function Home() {
           isMinz: isMinz ?? false,
         },
       }));
-    }else {
+    } else {
       setCompAttri(prev => ({
         ...prev,
         [key]: {
@@ -114,7 +120,7 @@ export default function Home() {
     const windowEl = winRefs.current[key];
     if (!windowEl) return;
     const rect = windowEl.getBoundingClientRect();
-    if(compAttri[key].isMax){
+    if (compAttri[key].isMax) {
       setCompAttri((prev) => ({
         ...prev,
         [key]: {
@@ -122,7 +128,7 @@ export default function Home() {
           isClose: isCloseB ?? true
         }
       }));
-    }else {
+    } else {
       setCompAttri((prev) => ({
         ...prev,
         [key]: {
@@ -212,11 +218,11 @@ export default function Home() {
         // RESTORE
         newItemz = !item.isMinz;
         requestAnimationFrame(() => {
-          if(item.isMax){
-            windowEl.style.width  = "100%";
+          if (item.isMax) {
+            windowEl.style.width = "100%";
             windowEl.style.height = "100%";
             windowEl.style.transform = "translate(0px,0px)";
-          }else {
+          } else {
             windowEl.style.width = item.pWidth + "px";
             windowEl.style.height = item.pHeight + "px";
             windowEl.style.transform = `translate(${item.pX}px, ${item.pY}px)`;
@@ -246,9 +252,9 @@ export default function Home() {
   img.src = Wallpaper;
   img.onload = () => {
     const loadingScreen = document.getElementById('loadingScreen');
-    if(!loadingScreen) return;
+    if (!loadingScreen) return;
     loadingScreen.classList.add('hidden');
-    
+
     // Remove from DOM after fade
     setTimeout(() => {
       loadingScreen.remove();
@@ -267,7 +273,7 @@ export default function Home() {
         </div>
         <h2>Loading...</h2>
       </div>
-      <div className="main-background" style={{backgroundImage:`url(${Wallpaper})`}} onMouseDown={(e)=> e.preventDefault()}>
+      <div className="main-background" style={{ backgroundImage: `url(${Wallpaper})` }} onMouseDown={(e) => e.preventDefault()}>
         <Header />
         <div className="desktop">
           {sections.map(({ key, Component,
@@ -280,13 +286,13 @@ export default function Home() {
                 className={`win-container ${key} blur-bg `}
                 key={key}
                 ref={(el) => { winRefs.current[key] = el }}
-                style={{ 
-                  transform: `translate(${!compAttri[key].isMax ? compAttri[key].pX : '0'}px,${!compAttri[key].isMax ? compAttri[key].pY : '0'}px)`, 
-                  width:  `${!compAttri[key].isMax ? compAttri[key].pWidth+'px' : '100%'}`, 
-                  height: `${!compAttri[key].isMax ? compAttri[key].pHeight+"px" : '100%'}`, 
-                  zIndex: compAttri[key].zIndex 
+                style={{
+                  transform: `translate(${!compAttri[key].isMax ? compAttri[key].pX : '0'}px,${!compAttri[key].isMax ? compAttri[key].pY : '0'}px)`,
+                  width: `${!compAttri[key].isMax ? compAttri[key].pWidth + 'px' : '100%'}`,
+                  height: `${!compAttri[key].isMax ? compAttri[key].pHeight + "px" : '100%'}`,
+                  zIndex: compAttri[key].zIndex
                 }}
-                onMouseDown={(e) => {
+                onPointerDown={(e) => {
                   activezIndex.current = activezIndex.current + 1;
                   e.preventDefault();
                   winRefs.current[key]!.style.zIndex = activezIndex.current.toString();

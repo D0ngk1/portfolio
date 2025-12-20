@@ -25,6 +25,8 @@
 .win-container {
   position: absolute;
   overflow: hidden;
+  touch-action: none;
+  user-select: none;
 }
 
 
