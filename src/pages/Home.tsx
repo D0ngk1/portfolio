@@ -53,7 +53,7 @@ export default function Home() {
     console.log(maxWidth);
     //setLoadApps?.(true);
     setCompAttri((prev) => ({
-      'about': { ...prev['about'], pX: 26, pY: 18, minW: 45, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: maxHeight },
+      'about': { ...prev['about'], pX: 26, pY: 18, minW: 45, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: isPhone ? maxHeight+100 : maxHeight},
       'cert': { ...prev['cert'], pX: 26, pY: 542, minW: 47.5, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: maxHeight },
       'experience': { ...prev['experience'], pX: isPhone ? 26 : 525, pY: 0, minW: 50, isMinz: false, isClose: false },
       'resume': { ...prev['resume'], pX: 800, pY: 25, minW: 52.5, isMinz: false, isClose: true },

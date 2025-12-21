@@ -40,7 +40,6 @@
 }
 .content {
   margin-top: 30px;
-  --background-color: red;
   position: absolute;
   height: calc(100% - 30px);
   width: 100%;

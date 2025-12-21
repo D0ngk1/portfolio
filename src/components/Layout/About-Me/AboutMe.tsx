@@ -25,7 +25,7 @@ const AboutMe:React.FC<AboutMeProps> = ({sendCloseB,sendMinz,isMinz}) => {
       <div className="content">
         <div className="profile">
             <img className="profile-picture" src={selfie} alt="daryl"/>
-        </div>
+            </div>
         <div className="about-name">Daryl G. Guzman</div>
         <div className="job-title">Software Engineer | IT Specialist</div>
         <div className="education">BS in Computer Science</div>
