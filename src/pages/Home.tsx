@@ -40,10 +40,8 @@ export default function Home() {
     { key: "calendar", Component: Calendar },
     { key: "iframe", Component: IFrame },
   ]
-  const offset = window.innerHeight * 0.022;
-
-
-
+  const header = document.querySelector('.main-header');
+  const offset = header?.getBoundingClientRect().height; 
   useEffect(() => {
 
     const isPhone = window.innerWidth <= 500;

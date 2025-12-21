@@ -39,14 +39,18 @@
         flex-direction: column;
         align-items: center;
         position: absolute;
-        top:45px;
+        top:35px;
         width: 33%;
-        background-color: black;
+        padding: 5px;
+        background-color: rgba(0,0,0,0.8 );
     }
     .hamburger-exp img{
         width: 20px;
         margin-left: 10px;
         filter: invert(100%);
+    }
+    .menu-btn-exp {
+        margin: 3px 0;
     }
 }
 .select-items-proj {

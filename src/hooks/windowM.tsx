@@ -12,7 +12,8 @@ export default function useWindowDrag() {
   //const resizeDir = useRef<{ right?: boolean; bottom?: boolean; corner?: boolean }>({});
   const startSize = useRef({ w: 0, h: 0 });
   const startPos = useRef({ x: 0, y: 0 });
-  const marginTop = window.innerHeight * 0.022;
+  const header = document.querySelector('.main-header');
+  const marginTop = header?.getBoundingClientRect().height;
 
 
   //---------------When CLicked on main-windows
