@@ -5,6 +5,7 @@ import {useState} from 'react';
 import TabProjects from "@/components/Layout/Experience/TabProjects.tsx";
 import TabExperience from "@/components/Layout/Experience/TabExperience.tsx";
 import TabFeatures from "@/components/Layout/Experience/TabFeatures.tsx";
+import Burger from "@/assets/burger-bar.png"; 
 interface ProjProps {
   sendCloseB?: (isClose?:boolean) => void;  
   sendMaxB?: (isMax?:boolean) => void;
@@ -17,6 +18,7 @@ const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz,isMax,isM
   //Margin height base on title
   const height = "45px";
   const [menu,setMenu] = useState<String>('Projects');
+  const [isBurgerMenuOpen,setIsBurgerMenuOpen] = useState<boolean>(false);
   const handleOnclose =(data?: boolean)=>{
     sendCloseB?.(data);
   }
@@ -24,6 +26,7 @@ const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz,isMax,isM
     sendMaxB?.(data);
   }
   const handleMenuClick =  (key=1) => {
+   if(isBurgerMenuOpen) setIsBurgerMenuOpen(false);
    if       (key == 1) setMenu('Overview');
    else if  (key == 2) setMenu('Experience');
    else setMenu('Projects'); 
@@ -36,10 +39,13 @@ const Experience: React.FC<ProjProps> = ({sendCloseB,sendMaxB,sendMinz,isMax,isM
   return (
     <div className="exp exp-container">
           <Windows  title='Experience' hideResizeBtn={false} isMax={isMax} isMinz={isMinz} onMinz={handelOnMinz} onClose={handleOnclose} onMax={handleOnMax} height={height} menuBar= { <>
-            <div className={`menu-btn-exp over-btn flex-center ${menu === 'Overview' ? "active" : ""}`} onClick={()=>handleMenuClick(1)}> Overview</div>
-            <div className={`menu-btn-exp exp-btn flex-center  ${menu === 'Experience' ? "active" : ""}`} onClick={()=>handleMenuClick(2)}> Experience</div>
-            <div className={`menu-btn-exp proj-btn flex-center ${menu === 'Projects' ? "active" : ""}`} onClick={()=>handleMenuClick(3)}> Projects</div>
-            </> } />
+            <div className={`exp-menu-title ${isBurgerMenuOpen ? "open" : ""}`}>
+                <div className={`menu-btn-exp over-btn flex-center ${menu === 'Overview' ? "active" : ""}`} onClick={()=>handleMenuClick(1)}> Overview</div>
+                <div className={`menu-btn-exp exp-btn flex-center  ${menu === 'Experience' ? "active" : ""}`} onClick={()=>handleMenuClick(2)}> Experience</div>
+                <div className={`menu-btn-exp proj-btn flex-center ${menu === 'Projects' ? "active" : ""}`} onClick={()=>handleMenuClick(3)}> Projects</div>
+            </div>
+            <div className="hamburger-exp" onClick={()=> setIsBurgerMenuOpen(prev => !prev)}>{menu}<img src={Burger}/></div>
+            </>} />
           <div className="exp-content-container content" style={{marginTop:0}}>
             { menu === "Projects" && ( <TabProjects />)}
             { menu === "Experience" && ( <TabExperience />)}
