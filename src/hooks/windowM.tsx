@@ -34,7 +34,6 @@ export default function useWindowDrag() {
 
       activeWindow.current = windowEl;
       isDragging.current = true;
-
       dragOffset.current = {
         x: e.clientX - rect.left,
         y: e.clientY - rect.top,

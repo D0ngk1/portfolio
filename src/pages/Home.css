@@ -55,7 +55,7 @@
 
 
 .experience{
-  width: 70%;
+  width: clamp(350px,70%,80%);
   height: 85%;
 }
 

@@ -53,8 +53,8 @@
   -webkit-backdrop-filter: blur(15px); /* Safari support */
 }
 .resize-btn {
-  width: 15px;
-  height: 15px;
+  width: 1rem;
+  height: 1rem;
   position: absolute;
   bottom: -5px;
   right:-5px;
@@ -83,4 +83,12 @@
 .maximize-btn {
   font-size:17px;
   padding-bottom: 3px;
+}
+
+
+@media (max-width: 600px) {
+  .resize-btn {
+    width: 30px;
+    height: 30px;
+  }
 }
