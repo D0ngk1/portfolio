@@ -4,6 +4,9 @@
   x:number;
   y:number;
 }*/
+import HideIcon from "@/assets/app-icon/window-minimize.png";
+import MaximizeIcon from "@/assets/app-icon/maximize.png";
+import MinimizeIcon from "@/assets/app-icon/layers.png";
 import "./Windows.css";
 import { useState,useEffect } from 'react';
 interface MyComponentProps {
@@ -61,8 +64,9 @@ const Windows: React.FC<MyComponentProps> = ({ title, hideResizeBtn = false, men
           <div className="title-con" style={{ height: height }} > {menuBar || <h4>{title}</h4>}</div>
 
           <div className="window-container">
-            <div className="minimize-btn window-btn" onClick={() => minimizeBtn()}>&#128469;</div>
-            { !disableMax && <div className="maximize-btn window-btn" onClick={onClickMax}>{showMax ? '🗗' : '🗖'}</div> }
+            <div className="minimize-btn window-btn" onClick={() => minimizeBtn()}> <img src={HideIcon} alt="dash" /></div>
+
+            { !disableMax && <div className="maximize-btn window-btn" onClick={onClickMax}><img src={showMax ? MinimizeIcon : MaximizeIcon} alt="" /></div> }
             <div className="close-btn window-btn" onClick={() => closeBtn()}>&#x2715;</div>
           </div>
         </div>

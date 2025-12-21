@@ -41,7 +41,7 @@ export default function Home() {
     { key: "iframe", Component: IFrame },
   ]
   const header = document.querySelector('.main-header');
-  const offset = header?.getBoundingClientRect().height; 
+  const offset = (header?.getBoundingClientRect().height ?? 0); 
   useEffect(() => {
 
     const isPhone = window.innerWidth <= 500;

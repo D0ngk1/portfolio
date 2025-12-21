@@ -84,7 +84,7 @@ export default function useWindowDrag() {
   };
 
   const dragMove = (e: MouseEvent) => {
-    if (!isDragging.current || !activeWindow.current) return;
+    if (!isDragging.current || !activeWindow.current || !marginTop) return;
 
     const x = e.clientX - dragOffset.current.x;
     let y = e.clientY - dragOffset.current.y - marginTop;

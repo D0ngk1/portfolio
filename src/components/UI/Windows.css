@@ -70,19 +70,13 @@
 .window-btn:hover {
   filter: brightness(100%);
 }
-.minimize-btn {
-  font-size: 18px;
-  padding-bottom: 4px;
-  
+.window-btn img {
+  filter: invert(100%);
+  width: clamp(10px,.7vw,.7vw);
 }
 
 .close-btn {
-  font-size: 20px;
-}
-
-.maximize-btn {
-  font-size:17px;
-  padding-bottom: 3px;
+  font-size: clamp(15px, 1.2vw,1.4vw);
 }
 
 
