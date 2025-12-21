@@ -53,6 +53,28 @@
         margin: 3px 0;
     }
 }
+
+/************************** TabProjects *************************/
+
+ .title-link {
+  display: flex;
+  align-items: end;
+}
+.title-link a {
+  position: relative;
+  z-index: 1;
+  filter: brightness(70%);
+}
+.title-link a:hover {
+  filter:brightness(100%);
+}
+.title-link img {
+  min-width: 25px;
+  width: 1.5vw;
+  margin-left: clamp(10px,1vw,1vw);
+  margin-bottom: 1.8vh;
+}
+
 .select-items-proj {
   list-style-type: none;
   display: flex;
@@ -81,9 +103,10 @@
   width: 100%;
   bottom: -38px;
   margin: 0;
+  height: 30px;
 }
 .items h3 {
-  font-size: 20px;
+  font-size: clamp(15px,1vw,1vw);
   font-weight:normal;
 
 }
@@ -97,7 +120,7 @@
  cursor: pointer;
 }
 .active {
-  border-bottom: 1px solid red;
+    border-bottom: 1px solid red;
 }
 
 .active-item {
@@ -136,7 +159,7 @@
   position: relative;
 }
 .active-proj-text {
-  width: max-content;
+  width: 100%;
   height: max-content;
   position: absolute;
   bottom: 40%;
@@ -152,7 +175,6 @@
   filter: brightness(70%);
 }
 
-
 .active-items::after{
   content:'';
   width: 100%;
@@ -164,9 +186,8 @@
   background-image: linear-gradient(
   to top, #000 15%,transparent
   );
-
 }
-/******************** Experience **************************/
+/******************** TabExperience **************************/
 .exp-con-menu{
   width: 100%;
   --height: 60%;
@@ -479,20 +500,39 @@ box-shadow: -1px 6px 23px 4px rgba(0,0,0,0.88);
    cursor: pointer;
  }
 
- .title-link {
-  display: flex;
-  align-items: end;
+
+
+@media (max-width: 600px) {
+    .active-proj-text .proj-desc {
+        width: 90%;
+    }
+    .active-items::after{
+        content:'';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        z-index: 0;
+        background-image: linear-gradient(
+        to top, #000 50%,transparent
+        );
+    }
+    .exp .selector {
+        /* background-color: red; */
+        width:  100%;
+    }
+    .exp .select-items-proj {
+       /* background-color: green; */
+       display: flex;
+       flex-direction: row;
+       overflow-x: scroll;
+    }
+    .select-items-proj li {
+        flex-shrink: 0;
+        height: 70%;
+        width: 120px;
+    }
+
 }
-.title-link a {
-  position: relative;
-  z-index: 1;
-  filter: brightness(70%);
-}
-.title-link a:hover {
-  filter:brightness(100%);
-}
-.title-link img {
-  width: 1.5vw;
-  margin-left: 1vw;
-  margin-bottom: 1.8vh;
-}
+
