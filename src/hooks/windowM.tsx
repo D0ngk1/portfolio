@@ -72,7 +72,7 @@ export default function useWindowDrag() {
       maxWidth = !isPhone ? window.innerWidth * 0.2 : window.innerWidth * 0.8;
     } else {
       maxHeight = window.innerHeight * 0.7;
-      maxWidth = isPhone ? window.innerWidth * 0.55 : window.innerWidth * 0.8;
+      maxWidth = !isPhone ? window.innerWidth * 0.55 : window.innerWidth * 0.9;
 
     }
     const newWidth = startSize.current.w + (e.clientX - startPos.current.x);
