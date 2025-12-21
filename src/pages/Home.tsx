@@ -48,9 +48,7 @@ export default function Home() {
 
     const isPhone = window.innerWidth <= 500;
     const maxHeight = window.innerHeight * 0.38;
-    console.log(isPhone);
     const maxWidth = !isPhone ? window.innerWidth * 0.2 : window.innerWidth * 0.8;
-    console.log(maxWidth);
     //setLoadApps?.(true);
     setCompAttri((prev) => ({
       'about': { ...prev['about'], pX: 26, pY: 18, minW: 45, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: isPhone ? maxHeight+100 : maxHeight},
