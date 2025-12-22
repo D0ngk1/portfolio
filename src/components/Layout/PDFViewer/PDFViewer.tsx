@@ -69,10 +69,24 @@ pdfjsLib.GlobalWorkerOptions.workerSrc =
         const page = await pdf.getPage(pageNum);
         const canvas = canvasRef.current!;
         const context = canvas.getContext('2d')!;
-        
-        const viewport = page.getViewport({ scale: 1.5 });
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
+        const isPhone = window.innerWidth <= 500;
+        // const viewport = page.getViewport({ scale: isPhone ? 1 : 1.5 });
+        const dpr = window.devicePixelRatio || 1;
+
+        // base scale you want visually
+        const baseScale = isPhone ? 1 : 1.5;
+
+        // scale * DPR for sharp rendering
+        const viewport = page.getViewport({
+            scale: baseScale * dpr,
+        });
+
+         canvas.height = viewport.height;
+         canvas.width = viewport.width;
+
+         // Set visual size
+         canvas.style.width = `${viewport.width / dpr}px`;
+         canvas.style.height = `${viewport.height / dpr}px`;
 
         ///
         renderTask = page.render({

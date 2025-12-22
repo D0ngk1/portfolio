@@ -38,6 +38,11 @@
   color: white;
   margin: 10px 0;
 }
+@media (max-width: 600px) {
+    .pdf-btns-container {
+        grid-template-columns: 0% 60% 40%;
+    }
+}
 
 .pdf-btns{
   height: 45px;
@@ -47,6 +52,7 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  font-size: clamp(10px,.8vw,.8vw);
 }
 .pdf-content {
   width: 100%;
@@ -58,14 +64,15 @@
 
 .pdf-btns-nav{
   height: 3.5vh;
-  width: 4vw;
+  width: clamp(50px,4vw,4vw);
   text-align: center;
   padding: 0;  
   cursor: pointer;
+  font-size: clamp(10px,.8vw,.8vw);
 }
 
 .download-cv {
-  width: 4vw;
+  width: clamp(80px,4vw,4vw);
   height: 3vh;
   cursor: pointer;
 }

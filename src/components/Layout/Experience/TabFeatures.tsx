@@ -137,8 +137,8 @@ const TabFeatures = () => {
               )
             })}
             
-            <div className="left-slide slide-btn" onClick={throttledPrev}><img className='left-arrow' src={Arrow} alt="left arrow" /></div>
-            <div className="right-slide slide-btn" onClick={throttledNext}><img className='right-arrow' src={Arrow} alt="right arrow" /></div>
+            <div className="left-slide slide-btn" onClick={throttledPrev}><img className='left-arrow arrow' src={Arrow} alt="left arrow" /></div>
+            <div className="right-slide slide-btn" onClick={throttledNext}><img className='right-arrow arrow' src={Arrow} alt="right arrow" /></div>
           </div>
         </div>
         <div className="feat-skill-wrapper">

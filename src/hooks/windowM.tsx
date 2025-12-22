@@ -68,12 +68,12 @@ export default function useWindowDrag() {
     if (!isResizing.current || !activeWindow.current) return;
     let maxHeight = 0; let maxWidth = 0;
     const isPhone = window.innerWidth <= 500;
-    if (keyRef.current !== 'experience') {
+    if (keyRef.current !== 'experience' && keyRef.current !== 'resume') {
       maxHeight = window.innerHeight * 0.38;
       maxWidth = !isPhone ? window.innerWidth * 0.2 : window.innerWidth * 0.8;
     } else {
       maxHeight = window.innerHeight * 0.7;
-      maxWidth = !isPhone ? window.innerWidth * 0.55 : window.innerWidth * 0.9;
+      maxWidth = !isPhone ? window.innerWidth * 0.55 : 350;
 
     }
     const newWidth = startSize.current.w + (e.clientX - startPos.current.x);

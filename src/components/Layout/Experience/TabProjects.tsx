@@ -81,8 +81,7 @@ const TabProjects = () => {
                 className={`items ${name.toLowerCase()}-item ${activeProj?.name == name ? "active-item" : "not-active-item"}`}
                 key={i}
                 onClick={() => selectProject(i+1)}
-                style={{backgroundImage:`url(${image})`}}
-                ><h3>{name}</h3></li> 
+                 ><img src={image} alt="project images" /><h3>{name}</h3></li> 
               )})
             }
          </ul>

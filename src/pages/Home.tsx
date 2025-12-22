@@ -9,7 +9,7 @@ import Exp from "@/components/Layout/Experience/Experience.tsx";
 import AppDrawer from "@/components/Layout/AppDrawer/AppDrawer.tsx";
 import Resume from "@/components/Layout/PDFViewer/PDFViewer.tsx";
 import Calendar from "@/components/Layout/Calendar/Calendar.tsx";
-import IFrame from "@/components/Layout/IFrames/IFramesCert.tsx";
+// import IFrame from "@/components/Layout/IFrames/IFramesCert.tsx";
 import Wallpaper from "@/assets/wallpapers/wallpaper2.png";
 
 import { useRef, useState, useEffect } from "react";
@@ -38,7 +38,7 @@ export default function Home() {
     { key: "experience", Component: Exp },
     { key: "resume", Component: Resume },
     { key: "calendar", Component: Calendar },
-    { key: "iframe", Component: IFrame },
+    // { key: "iframe", Component: IFrame },
   ]
   const header = document.querySelector('.main-header');
   const offset = (header?.getBoundingClientRect().height ?? 0); 
@@ -52,9 +52,9 @@ export default function Home() {
       'about': { ...prev['about'], pX: 26, pY: 18, minW: 45, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: isPhone ? maxHeight+100 : maxHeight},
       'cert': { ...prev['cert'], pX: 26, pY: 542, minW: 47.5, isMinz: false, isClose: false, pWidth: maxWidth, pHeight: maxHeight },
       'experience': { ...prev['experience'], pX: isPhone ? 26 : 525, pY: 0, minW: 50, isMinz: false, isClose: false },
-      'resume': { ...prev['resume'], pX: 800, pY: 25, minW: 52.5, isMinz: false, isClose: true },
-      'calendar': { ...prev['calendar'], pX: 800, pY: 25, minW: 55, isMinz: false, isClose: true, pWidth: window.innerWidth * 0.3, pHeight: window.innerHeight * 0.5 },
-      'iframe': { ...prev['iframe'], pX: 26, pY: 25, isMinz: false, isClose: true, pWidth: window.innerWidth * 0.3, pHeight: window.innerHeight * 0.5 }
+      'resume': { ...prev['resume'], pX: isPhone ? 26 : 800, pY: 25, minW: 52.5, isMinz: false, isClose: true },
+      'calendar': { ...prev['calendar'], pX: isPhone ? 26 : 800, pY: 25, minW: 55, isMinz: false, isClose: true, pWidth:maxWidth, pHeight: window.innerHeight * 0.5 }
+      /*'iframe': { ...prev['iframe'], pX: 26, pY: 25, isMinz: false, isClose: true, pWidth: window.innerWidth * 0.3, pHeight: window.innerHeight * 0.5 } */
     }));
 
     setLoadApps?.(true);
