@@ -195,16 +195,21 @@
   --height: max-content;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-top: 4vh;
   /* background-color: pink; */
   height: 70vh;
 }
 .right-box{
-  width: max-content;
-  height: calc-size(max-content,size - 70px);
+  width:90%;
+  height: max-content;
   padding: 0;
-  margin-top: 110px;
-  /* background-color: green; */
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-template-rows: repeat(4,80px);
+  gap:1rem 0px;
+  position: relative;
+  overflow-y:hidden
 }
 .left-box {
   /* background-color: blue; */
@@ -216,6 +221,7 @@
 .exp-con-menu .item {
   position: relative;
   padding: 0;
+  /* background-color: red; */
 }
 .move-to-right {
   width: 400px;
@@ -229,15 +235,10 @@
 .move-to-right:hover {
   filter:brightness(100%);
 }
-.item-left {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-}
+
 
 .horizontal-line{
   width: clamp(40px,5vw,5vw);
-  height: 100%;
   border-top: solid 3px white;
   position: absolute;
   top:20px;
@@ -246,23 +247,17 @@
 .horizontal-line-left {
   right: 0;
 }
-.horizontal-line-left::after {
-  content: '';
-  width: 100px;
-  height: 200px;
-  position: absolute;
-  top:10px;
-  right: -3px;
-}
 .horizontal-line-right {
   left: 0;
 }
 .vertical-line-center {
-    height: 35vh;
-    width: 1px;
+    /* height: clamp(350px,45vh,500px); */
+    height: 100%;
+    margin-top: 3%;
+    width: 2px;
     position: absolute;
     background-color: red;
-    left: calc(50% - 2px); 
+    left: calc(50% - 3px); 
 }
 
 .circle{
@@ -278,25 +273,32 @@
   left: -17px;
 }
 .circle-left {
-  top:7px;
+  top:8px;
   right:-12px;
 }
 .item-right-first {
-    display: none;
+    grid-column:1 / 2;
+    grid-row: 1;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: row-reverse;
+    filter: brightness(60%);
+}
+.item-right:nth-of-type(2) { grid-column: 2; grid-row: 2; }
+.item-right:nth-of-type(3) { grid-column: 2; grid-row: 3; }
+.item-right:nth-of-type(4) { grid-column: 2; grid-row: 4; }
+
+
+.item-content {
+  width: 300px;
+  height: max-content;
 }
 .item-right-content {
-  width: 300px;
-  height: 110px;
   margin-left: clamp(48px,5.5vw,6vw);
-  margin-top: -70px;
-  margin-bottom: 50px;
 }
 .item-left-content {
+  margin-right: clamp(48px,5.5vw,6vw);
   text-align: end;
-  width: 300px;
-  padding-right: 10px;
-  height: 110px;
-
 }
 .job-title, .company , .year {
   margin:0;
@@ -522,6 +524,7 @@ box-shadow: -1px 6px 23px 4px rgba(0,0,0,0.88);
 
 
 @media (max-width: 600px) {
+    /* Projects*/
     .active-proj-text .proj-desc {
         width: 90%;
     }
@@ -537,6 +540,71 @@ box-shadow: -1px 6px 23px 4px rgba(0,0,0,0.88);
         to top, #000 50%,transparent
         );
     }
+    /* End of TabProjects*/
+
+    /* Start of TabExperience */
+
+    .exp-con-menu {
+        height: 50vh;
+        position: relative;
+        margin-top: 0;
+    }
+    .right-box{
+        grid-template-columns: 1fr;
+        width: 95%;
+        overflow: hidden;
+    }
+    .item-left-content {
+        text-align: start;
+        margin-left: 5.5vw;
+    }
+
+    .item-content {
+        margin-left: calc(5.5vw + 48px);
+        margin-top: 8px;
+        width: 70%;
+    }
+    .item-left {
+        display: block;
+    }
+    .item-right-first {
+    grid-column: 1;
+    grid-row: 1;
+    display: inline;
+    }
+    .horizontal-line-left {
+        left: 0;
+    }
+    .horizontal-line {
+        left: 30px;
+        width: 30px;
+    }
+    .circle-left {
+      top:8px;
+      left: -17px;
+    }
+    .circle {
+        left: 5px;
+        height: 25px;
+        width: 25px;
+    }
+    .exp-con-menu .company{
+        font-size: 15px;
+    }
+    .exp-con-menu .year {
+        font-size: 12px;
+    }
+    .exp-con-menu .job-title {
+        font-size: 13px;
+    }
+
+      .item-right:nth-of-type(2) { grid-column: 1; grid-row: 2; }
+      .item-right:nth-of-type(3) { grid-column: 1; grid-row: 3; }
+      .item-right:nth-of-type(4) { grid-column: 1; grid-row: 4; }
+    .vertical-line-center {
+        left: 17px;
+    }
+    /***************8*End TabExperience***********8*/
     .exp .selector {
         /* background-color: red; */
         width:  100%;
@@ -550,26 +618,6 @@ box-shadow: -1px 6px 23px 4px rgba(0,0,0,0.88);
         flex-shrink: 0;
         height: 70%;
         width: 120px;
-    }
-    .left-box {
-        display: none;
-    }
-    .item-right-first{
-        display: block;
-        filter: brightness(70%);
-    }
-    .exp-con-menu {
-        height: 50vh;
-        position: relative;
-        margin-top: 0;
-    }
-    .right-box{
-        margin-left: 10vw;
-    }
-    .vertical-line-center {
-        left: 9.5vw;
-        height: 42vh;
-        bottom: 0;
     }
     .feat-label {
         margin-left: 30px;
