@@ -15,10 +15,9 @@
 
 .menu-btn-exp {
   padding:0 5px;
-  width:  4vw;
+  width:  max-content;
   height: 95%;
   font-size: 1.6vh;
-  display: flex;
 }
 .exp-menu-title {
   display: flex;

@@ -66,18 +66,18 @@
   margin-left: 15px;
   cursor: pointer;
   filter: brightness(30%);
+  display: flex;
+  height: max-content;
 }
 .window-btn:hover {
   filter: brightness(100%);
 }
 .window-btn img {
   filter: invert(100%);
-  width: clamp(10px,.7vw,.7vw);
+  width: clamp(12px,.6vw,19px);
 }
 
-.close-btn {
-  font-size: clamp(15px, 1.2vw,1.4vw);
-}
+
 
 
 @media (max-width: 600px) {
