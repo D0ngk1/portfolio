@@ -15,12 +15,16 @@
 
 .menu-btn-exp {
   padding:0 5px;
-  width: max-content;
+  width:  4vw;
   height: 95%;
   font-size: 1.6vh;
+  display: flex;
 }
 .exp-menu-title {
   display: flex;
+  width: 100%;
+  justify-content:center;
+  gap: 4px;
 }
 .hamburger-exp {
     display: none;
@@ -51,6 +55,7 @@
     }
     .menu-btn-exp {
         margin: 3px 0;
+        width: max-content;
     }
 }
 
@@ -202,21 +207,13 @@
 }
 .right-box{
   width:90%;
-  height: max-content;
-  padding: 0;
+  padding: 0 0 2% 0;
   display: grid;
   grid-template-columns: repeat(2,1fr);
   grid-template-rows: repeat(4,80px);
   gap:1rem 0px;
   position: relative;
-  overflow-y:hidden
-}
-.left-box {
-  /* background-color: blue; */
-  width: 50%;
-  height: max-content;
-  position: relative;
-  margin-top: -20vh;
+  overflow-y:hidden;
 }
 .exp-con-menu .item {
   position: relative;
@@ -253,7 +250,7 @@
 .vertical-line-center {
     /* height: clamp(350px,45vh,500px); */
     height: 100%;
-    margin-top: 3%;
+    margin-top: 2%;
     width: 2px;
     position: absolute;
     background-color: red;
@@ -603,6 +600,7 @@ box-shadow: -1px 6px 23px 4px rgba(0,0,0,0.88);
       .item-right:nth-of-type(4) { grid-column: 1; grid-row: 4; }
     .vertical-line-center {
         left: 17px;
+        margin-top: 5%;
     }
     /***************8*End TabExperience***********8*/
     .exp .selector {
