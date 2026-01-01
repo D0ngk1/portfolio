@@ -32,7 +32,7 @@ export default function Home() {
   const activezIndex = useRef(1);
   const winRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [isLoadApps, setLoadApps] = useState<boolean>(false);
-  const sections = [
+   const sections = [
     { key: "about", Component: AboutMe },
     { key: "cert", Component: Cert },
     { key: "experience", Component: Exp },
@@ -42,6 +42,7 @@ export default function Home() {
   ]
   const header = document.querySelector('.main-header');
   const offset = (header?.getBoundingClientRect().height ?? 0); 
+  //set Inital size , position, open on start and etc..
   useEffect(() => {
 
     const isPhone = window.innerWidth <= 500;
@@ -305,7 +306,9 @@ export default function Home() {
             );
           })}
         </div>
-        <AppDrawer keyApp={handleAppClose} />
+        <AppDrawer keyApp={handleAppClose}   appStates={Object.fromEntries(
+            Object.entries(compAttri).map(([key, value]) => [key, { isClose: value.isClose }])
+        )}/>
       </div>
     </>
   );

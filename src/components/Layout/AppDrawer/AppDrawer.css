@@ -20,6 +20,7 @@
   height:5vh;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
 }
 
 .app-icon {
@@ -31,14 +32,26 @@
   transition: 200ms ease-in-out;
   transform-origin: bottom;
   position: relative;
-  padding: 5px;
 }
+.app-drawer-container .app-img-container {
+    height: 75%;
+    position: relative;
+    width: 2.1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.app-drawer-container .open-app{
+    background-color: rgba(255,255,255,0.3);
+}
+
 .app-icon:hover{
   cursor: pointer;
   margin: 0 15px;
-  padding-bottom:6px;
   transform: scale(1.8) ;
   transform-origin: bottom;
+  z-index: 2;
 }
 .app-icon:hover + .app-icon {
   transform: scale(1.1) translateY(-5px);
@@ -49,7 +62,7 @@
 }
 
 .app-icon img {
-  width: 85%;
+  width: 80%;
   padding: 0;
   transform-origin: bottom;
   position: relative;
@@ -74,12 +87,13 @@
 
 .app-drawer-content .about {
   justify-content: flex-end;
-  
+  width: 2.8vw;
+  padding-right: .2vw;
 }
 .app-drawer-content .calendar {
   justify-content: flex-start;
-
-
+  width: 2.8vw;
+  padding-left: .2vw;
 }
 
 
