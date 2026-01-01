@@ -17,7 +17,7 @@
   border-radius: 10px;
   margin: 0 auto;
   width: max-content;
-  height:5vh;
+  height: clamp(3rem,5vh,5vh);
   align-items: center;
   justify-content: space-evenly;
   position: relative;
@@ -32,11 +32,12 @@
   transition: 200ms ease-in-out;
   transform-origin: bottom;
   position: relative;
+  /* background-color: red; */
 }
 .app-drawer-container .app-img-container {
     height: 75%;
     position: relative;
-    width: 2.1vw;
+    width: clamp(2.5rem,2.1vw,4rem);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -46,7 +47,7 @@
     background-color: rgba(255,255,255,0.3);
 }
 
-.app-icon:hover{
+.app-icon:not(.about,.calendar):hover{
   cursor: pointer;
   margin: 0 15px;
   transform: scale(1.8) ;
@@ -87,13 +88,20 @@
 
 .app-drawer-content .about {
   justify-content: flex-end;
-  width: 2.8vw;
-  padding-right: .2vw;
+  width: clamp(3.5rem,3vw,2.8vw);
+  padding-right: clamp(.25rem,.2vw,.2vw);
 }
 .app-drawer-content .calendar {
   justify-content: flex-start;
-  width: 2.8vw;
-  padding-left: .2vw;
+  width:  clamp(3.5rem,2.8vw,2.8vw);
+  padding-left: clamp(.25rem,.2vw,.2vw);
+}
+.app-drawer-content .about:hover, .app-drawer-content .calendar:hover{
+  cursor: pointer;
+  margin: 0 19px;
+  transform: scale(1.8) ;
+  transform-origin: bottom;
+  z-index: 2;
 }
 
 

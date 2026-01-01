@@ -12,12 +12,7 @@ interface AppDrawerProps {
   appStates: Record<string, {isClose: boolean}>;
 }
 const AppDrawer: React.FC<AppDrawerProps> = ({keyApp,appStates}) => {
-  // const [appStatus, setAppStatus] = useState<Record<string,boolean>>({});
-  const isActive = false;
-  //check if app is open or close
-  
-  //     }));
-  // },[stringKey,isOpen])
+
   const appRefc = useRef<HTMLDivElement>(null);
   const handleApp = (key:string) => {
      keyApp?.(key);
