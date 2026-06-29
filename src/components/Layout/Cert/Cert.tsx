@@ -7,7 +7,9 @@ import APlus from  "@/assets/cert/A+-svg.svg";
 import NetPlus from "@/assets/cert/Network+-svg.svg";
 import SecPlus from "@/assets/cert/Security+-svg.svg";
 import AzureFun from  "@/assets/cert/Azure-Fundamentals.png";
+import CCNA from "@/assets/cert/ccna_large.jpg";
 import {useState} from "react";
+
 //Import Images of TECH STACK
 import Git from "@/assets/tech-stack/git-icon.svg";
 import Java from "@/assets/tech-stack/java.svg";
@@ -36,17 +38,17 @@ interface ImageURLS {
   label:string;
   url?:string;
 }
-
-const certImageUrls = [ 
+//Image of Certificates
+const certImageUrls = [
+  {key:5, src:CCNA, label:"CCNA", url:'https://www.credly.com/earner/earned/badge/3b0f27ea-6d65-4594-9983-64393a754437'},
   {key:1, src:APlus,    label:"Comptia A+", url:'https://www.credly.com/earner/earned/badge/08f5dcf5-4e4a-4290-bcf3-d77c0a3b6133'},
   {key:2, src:NetPlus,  label:"Comptia Net+",url:'https://www.credly.com/earner/earned/badge/e08d711b-7114-4d27-bb60-1039e7d3d60f'},
   {key:3, src:SecPlus,  label:"Comptia Sec+", url:'https://www.credly.com/earner/earned/badge/319d953e-ec23-4a46-ab8f-8c10ae99c216'},
-  {key:4, src:AzureFun, label:"Azure Fundamentals",url:'https://learn.microsoft.com/api/credentials/share/en-us/DarylGuzman-9695/F7147AA9DA704566?sharingId=81B256736F7F6ED4'},
-//{key:5, src:"sdfsdfsdf", label:"Azure Fundamentals"},
+  {key:4, src:AzureFun, label:"Azure Fundamentals",url:'https://learn.microsoft.com/api/credentials/share/en-us/DarylGuzman-9695/F7147AA9DA704566?sharingId=81B256736F7F6ED4'}
 ];
 
 const techImageUrls = [ 
-  {key:5, src:Git,    label:"Git"},
+  {key:15, src:Git,    label:"Git"},
   {key:6, src:Java,  label:"Java"},
   {key:7, src:JS,  label:"JavaScript"},
   {key:8, src:MySQL, label:"MySQL"},
